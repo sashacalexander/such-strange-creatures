@@ -98,7 +98,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://E2BE3D1E-4C61-402E-A8B8-8EF0E931EA4F// --><tw-storydata name="Such Strange Creatures" startnode="137" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="E2BE3D1E-4C61-402E-A8B8-8EF0E931EA4F" zoom="0.6" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "Story-Stylesheet.css" */
+	<!-- UUID://E2BE3D1E-4C61-402E-A8B8-8EF0E931EA4F// --><tw-storydata name="Such Strange Creatures" startnode="172" creator="Tweego" creator-version="2.1.1+81d1d71" ifid="E2BE3D1E-4C61-402E-A8B8-8EF0E931EA4F" zoom="0.6" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "Story-Stylesheet.css" */
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans);
 @import url('https://fonts.googleapis.com/css2?family=Raleway');
@@ -131,10 +131,15 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
   src: url(fonts/LetterGothic-Bold.ttf);
 }
 
+@font-face {
+  font-family: Handwriting;
+  src: url(fonts/AbigailsHand-Regular.ttf);
+}
+
 /*** CSS Variables ***/
 :root{
   --gameMaxHeight: 70vh;
-  --gameWidth: 70%;
+  --gameWidth: 84%;
   --gamePadding: 1.7em;
   --gameFont: 'zero';
   --gameFontDyslexic: 'OpenDyslexic';
@@ -148,151 +153,18 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
   --gameAccentColor: #E9CB81;
   --gameHighlightColor: #b69644;
   --gameIndent: 2em;
+  --charaWidth: 21%;
   --titleButtonHeight: 2em;
   --mobileWidth: 90%;
   --mobileFontSize: 1em;
-  --hisDialogue: #819FE9;
-}
-
-/*** Mobile View ***/
-@media only screen and (max-width:800px) {
-	body{
-		font-size: var(--mobileFontSize) !important;
-	}
-	
-	#Sidebar{
-	  display:none;
-	}
-	#choice, #passages{
-	  text-align:left !important;
-	}
-
-	#content-column{
-	width: var(--mobileWidth) !important;
-	}
-
-	#ui-dialog{
-		min-width: var(--mobileWidth) !important;
-	}
-	
-	.altMenuContainer{
-		flex-direction:column !important;
-	}
-	
-	.inventoryList{
-		order: 1 !important;
-	}
-
-	.inventorySide, .peopleSide{
-		order: 3 !important;
-	}
-	
-	.inventorySide span.narration+br, .peopleSide span.narration+br{ /* Gets rid of extra line break before [-] on items and people descriptions */
-		display:none !important;
-	}
-	
-	.inventoryDivider{
-		order: 2 !important;
-		align-self: center !important;
-		width: 50% !important;
-		border-left: none !important;
-		border-top: 1px solid white !important;
-	}
-
-  .direction{
-    padding: 0 !important;
-  }
-
-  .settingsScreen{
-    flex-direction:column !important;
-    gap:1em !important;
-  }
-
-  .settingsFooter{
-    padding-top: 1em;
-  }
-}
-
-/*** Landscape View ***/
-@media only screen and (orientation:landscape) and  (max-width:1200px){
-  :root{
-      --gamePadding: 1.4em !important;
-    }
-
-	body{
-		font-size: var(--mobileFontSize) !important;
-	}
-
-  #passagesContainer{
-    max-height:63vh !important;
-  }
-	
-	#Sidebar{
-	  display:none;
-	}
-
-  #passages{
-	  text-align:left !important;
-	}
-
-  #choice{
-    display:flex !important;
-    justify-content: center !important;
-    background-color: black;
-    border: 1px solid white !important;
-    width: 80vw !important;
-    text-align: center !important;
-    position: fixed !important;
-    left: 10% !important;
-    bottom: var(--gamePadding) !important;
-  }
-
-  .choice-item{
-    display:inline !important;
-  }
-
-  .choice-item:not(.choice-item:last-of-type):after{
-    content:' / ';
-  }
-
-	#content-column{
-	  width: var(--mobileWidth) !important;
-	}
-
-	#ui-dialog{
-		min-width: var(--mobileWidth) !important;
-	}
-	
-	.altMenuContainer{
-		flex-direction:column !important;
-	}
-	
-	.inventoryList{
-		order: 1 !important;
-	}
-
-	.inventorySide, .peopleSide{
-		order: 3 !important;
-	}
-	
-	.inventorySide span.narration+br, .peopleSide span.narration+br{ /* Gets rid of extra line break before [-] on items and people descriptions */
-		display:none !important;
-	}
-	
-	.inventoryDivider{
-		order: 2 !important;
-		align-self: center !important;
-		width: 50% !important;
-		border-left: none !important;
-		border-top: 1px solid white !important;
-	}
+  --hisDialogue: white;
 }
 
 
 /*** Main UI ***/
 html{
   height: 100%;
-  background-color:white;
+  background-color:black;
   margin: 0;
   overflow:hidden;
 }
@@ -343,7 +215,7 @@ a:hover{
   color: var(--gameHighlightColor);
 }
 
-#choice a:hover, .replaceLink:hover{
+#choice a:hover, .replaceLink:hover, #charaChoice a:hover{
   padding-left: 0.84em;
 }
 
@@ -386,6 +258,7 @@ a:hover{
 	justify-content:center;
 	align-items: self-start;
 	margin-top: 0.7em;
+  gap: 0.7em;
 }
 
 #passages{
@@ -402,18 +275,27 @@ a:hover{
       font-weight: 400;
  }
 
-#passagesContainer{
+#gameContainer{
 	position:relative;
 	flex-grow: 1;
 	background-color: black;
 	border: 1px solid white;
-	margin: 0 0 0 0.35em;
-	padding: var(--gamePadding);
 	align-self: flex-start;
 	text-align: justify;
-	max-height: var(--gameMaxHeight);
+	max-height: calc(var(--gameMaxHeight) + 14vh);
 	overflow: auto;
-  transition: height 0.2s;
+}
+
+#passagesContainer{
+  padding: var(--gamePadding);
+}
+
+#videoPassage{
+  display:inline;
+}
+
+video {
+  width: 100%;
 }
 
 #menuContainer{
@@ -426,6 +308,39 @@ a:hover{
 	text-align: left;
 	max-height: var(--gameMaxHeight);
 	overflow: auto;
+}
+
+
+#charaContainer{
+  background-color: black;
+  border: 0px solid white;
+  min-width: 0%;
+  overflow: hidden;
+  transition: min-width 0.49s ease, max-width 0.49s ease, border-width 0.49s ease;
+}
+
+#charaContainer .direction{
+  padding:0;
+}
+
+#charaContainer .narration{
+  padding-right: var(--gameIndent);
+}
+
+#charaText{
+  opacity: 0;
+  padding: var(--gameIndent) var(--gameIndent) var(--gameIndent) calc(var(--gameIndent) * 2);
+  transition: opacity 0.49s ease-in;
+  min-width: 0%;
+  overflow: hidden;
+}
+
+#charaText a{
+  margin-left: calc(var(--gameIndent) * -1);
+}
+
+.charaLink a{
+  filter: hue-rotate(140deg) saturate(5);
 }
 
 #topBar {
@@ -453,129 +368,24 @@ a:hover{
 #passages :is(div, span, p):has(~ :is(span.macro-append-insert, span.macro-replace-insert, span.continuelink)){
 	opacity: 0.49 !important;
 	transition: opacity 0.28s;
+  pointer-events: none;
 }
 
 
 /*** Sidebar ***/
 .extra{
-  	display:flex;
+  display:flex;
 	flex-direction:column;
 	justify-content:center;
-	background-color: #282828; 
+	background-color: black; 
 	padding: 0 1em;
-	box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.35);
-	margin-right:0.35em;
+	border: 1px solid white;
 	font-family: var(--gameAccentFont);
 }
 
 .extra td{
 	font-size: 0.84em;
 	padding:0.14em 0.5em;
-}
-
-
-/*** Title Screen ***/
-#titleScreen{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background-color:black;
-  display:flex;
-  flex-direction: column;
-  gap:1vh;
-  z-index:14;
-  padding: 1.4vh 2.1vw;
-  box-sizing:border-box;
-  transition: opacity 1.4s ease-in-out;
-}
-
-#titleBack{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background-color:black;
-}
-
-.title{
-  font-family: var(--gameTitleFont);
-  font-size:8.4vw;
-  text-align: center;
-  margin:0 !important;
-  line-height: 1em;
-  align-self:flex-start;
-}
-
-.titleOptionList{
-  align-self:flex-end;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  padding-right: 3.5vw;
-  flex-grow:1;
-  background-color:transparent !important;
-}
-
-.titleOption{
-  font-size:8.4vh;
-}
-
-.titleOption button, .titleChapterSelect button{
-  padding:0;
-}
-
-.titleSettings{
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  font-size:4.2vh;
-  border-right: 0.1em solid white;
-  padding-right: 1em;
-}
-
-.titleSaveLoad{
-  font-size:1em;
-  border-right: 0.1em solid white;
-  padding-right: 1em;
-}
-
-.titleChapterSelect{
-  display:flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1em;
-  font-size:4.2vh;
-  border-right: 0.1em solid white;
-}
-
-.titleOption1, .titleOption2, .titleOption3, .titleOption4{
-  -webkit-transition: height 0.49s ease, opacity 0.49s ease; 
-  -moz-transition: height 0.49s ease, opacity 0.49s ease; 
-  -ms-transition: height 0.49s ease, opacity 0.49s ease; 
-  -o-transition: height 0.49s ease, opacity 0.49s ease; 
-  transition: height 0.49s ease, opacity 0.49s ease; 
-  height:var(--titleButtonHeight);
-  opacity:100%;
-  overflow:hidden;
-}
-
-.titleContentSave, .titleContentLoad, .titleContentChapter, .titleContentSettings{
-  -webkit-transition: height 0.35s ease, opacity 0.35s ease; 
-  -moz-transition: height opacity 0.35s ease, opacity 0.35s ease; 
-  -ms-transition: height opacity 0.35s ease, opacity 0.35s ease; 
-  -o-transition: height opacity 0.35s ease, opacity 0.35s ease; 
-  transition: height opacity 0.35s ease, opacity 0.35s ease;
-  height:0%;
-  opacity:0;
-  overflow:hidden;
-}
-
-.titleButtonPressed{
-  color:var(--gameHighlightColor);
-  pointer-events: none;
 }
 
 
@@ -756,7 +566,7 @@ a:hover{
   display:inline-block;
   margin: 0 auto;
   text-indent: var(--gameIndent) hanging;
-  padding: 0 calc(var(--gameIndent) * 4);
+  padding: 0 calc(var(--gameIndent) * 2);
 }
 
 
@@ -809,7 +619,7 @@ a:hover{
 	display:none;
 }*/
 
-#choice br{
+#choice br, #charaChoice br, #videoPassage br{
   display:none;
 }
 
@@ -825,20 +635,26 @@ a:hover{
 
 /*** Hacks ***/
  /* Hide scrollbar for Chrome, Safari and Opera */
-#passagesContainer::-webkit-scrollbar {
+#gameContainer::-webkit-scrollbar {
   display: none;
 }
 
 /* Hide scrollbar for IE, Edge and Firefox */
-#passagesContainer {
+#gameContainer {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+/* When passages (in this game's case, black screen passages) are tagged with no-transition, this eliminates the transition animation flicker AKA easy consistent black screen  */
+.no-transition.passage-in {
+	opacity: 1;
 }
 
 .devConsole select{
   text-overflow: ellipsis;
   width: 9.8vw;
 }
+
 
 /*** Imports ***/
 /*! <<replacelink>> macro set for SugarCube 2.x */
@@ -1011,7 +827,322 @@ input[type="range"]::-moz-range-thumb{
   height: 1em;
   border-radius: 50%;
 }/*for the slider itself*/
-/* twine-user-stylesheet #2: "click-to-proceed.css" */
+
+#quoteScreen{
+  display:flex;
+  flex-direction: column;
+  max-width: 50%;
+  margin:auto;
+  z-index: 14;
+  transition: opacity 1.4s ease-in-out;
+}
+
+.quote1{
+  font-family: 'Handwriting';
+  font-size:140%;
+  text-shadow: 0 0 2px lightblue, 0 0 10px pink, 0 0 20px red;
+
+  animation: fade 1.4s ease;
+  -webkit-animation: fade 1.4s ease;
+  -moz-animation: fade 1.4s ease;
+}
+
+.quote2{
+  animation: blur 2.1s ease-out;
+  -webkit-animation: blur 2.1s ease-out;
+  -moz-animation: blur 2.1s ease-out;
+}
+
+@keyframes blur {
+  0% {
+    -webkit-filter: blur(1em);
+    -moz-filter: blur(1em);
+    -o-filter: blur(1em);
+    -ms-filter: blur(1em);
+  }
+}
+
+@keyframes fade {
+  0% {
+    -webkit-filter: opacity(0%);
+    -moz-filter: opacity(0%);
+    -o-filter: opacity(0%);
+    -ms-filter: opacity(0%);
+  }
+}
+
+.footnote{
+  position: absolute;
+  width: 100%;
+  background-color: black;
+  border: 1px solid white;
+  padding: 0.42em calc(var(--gameIndent) * 2);
+  margin: 0.42em calc(var(--gameIndent) * -1);
+  font-style: normal;
+}
+/* twine-user-stylesheet #2: "Story-Breakpoints.css" */
+/*** Mobile View ***/
+@media only screen and (max-width:800px) {
+	body{
+		font-size: var(--mobileFontSize) !important;
+	}
+	
+	#Sidebar{
+	  display:none;
+	}
+	#choice, #passages{
+	  text-align:left !important;
+	}
+
+	#content-column{
+	width: var(--mobileWidth) !important;
+	}
+
+	#ui-dialog{
+		min-width: var(--mobileWidth) !important;
+	}
+	
+	.altMenuContainer{
+		flex-direction:column !important;
+	}
+	
+	.inventoryList{
+		order: 1 !important;
+	}
+
+	.inventorySide, .peopleSide{
+		order: 3 !important;
+	}
+	
+	.inventorySide span.narration+br, .peopleSide span.narration+br{ /* Gets rid of extra line break before [-] on items and people descriptions */
+		display:none !important;
+	}
+	
+	.inventoryDivider{
+		order: 2 !important;
+		align-self: center !important;
+		width: 50% !important;
+		border-left: none !important;
+		border-top: 1px solid white !important;
+	}
+
+	.direction{
+		padding: 0 !important;
+	}
+
+	.settingsScreen{
+		flex-direction:column !important;
+		gap:1em !important;
+	}
+
+	.settingsFooter{
+		padding-top: 1em;
+	}
+
+	.title{
+		align-self: center !important;
+		padding: 1em 0;
+	}
+
+	.titleOptionList{
+		align-self: center !important;
+		align-items: center !important;
+		padding: 0 !important;
+	}
+
+	.titleOption{
+		font-size: 8.4vw !important;
+	}
+
+	.titleSubScreen{
+		padding:0 2em !important;
+		border-right: none !important;
+	}
+
+	.titleSettings{
+		font-size: 4.2vw !important;
+	}
+}
+
+/*** Landscape View ***/
+@media only screen and (orientation:landscape) and  (max-width:1200px){
+  :root{
+      --gamePadding: 1.4em !important;
+    }
+
+	body{
+		font-size: var(--mobileFontSize) !important;
+	}
+
+  #passagesContainer{
+    max-height:63vh !important;
+  }
+	
+	#Sidebar{
+	  display:none;
+	}
+
+  #passages{
+	  text-align:left !important;
+	}
+
+  #choice{
+    display:flex !important;
+    justify-content: center !important;
+    background-color: black;
+    border: 1px solid white !important;
+    width: 80vw !important;
+    text-align: center !important;
+    position: fixed !important;
+    left: 10% !important;
+    bottom: var(--gamePadding) !important;
+  }
+
+  .choice-item{
+    display:inline !important;
+  }
+
+  .choice-item:not(.choice-item:last-of-type):after{
+    content:' / ';
+  }
+
+	#content-column{
+	  width: var(--mobileWidth) !important;
+	}
+
+	#ui-dialog{
+		min-width: var(--mobileWidth) !important;
+	}
+	
+	.altMenuContainer{
+		flex-direction:column !important;
+	}
+	
+	.inventoryList{
+		order: 1 !important;
+	}
+
+	.inventorySide, .peopleSide{
+		order: 3 !important;
+	}
+	
+	.inventorySide span.narration+br, .peopleSide span.narration+br{ /* Gets rid of extra line break before [-] on items and people descriptions */
+		display:none !important;
+	}
+	
+	.inventoryDivider{
+		order: 2 !important;
+		align-self: center !important;
+		width: 50% !important;
+		border-left: none !important;
+		border-top: 1px solid white !important;
+	}
+}
+/* twine-user-stylesheet #3: "Story-TitleScreen.css" */
+/*** Title Screen ***/
+#titleScreen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:black;
+    display:flex;
+    flex-direction: column;
+    gap:1vh;
+    z-index:14;
+    padding: 1.4vh 2.1vw;
+    box-sizing:border-box;
+    transition: opacity 1.4s ease-in-out;
+  }
+  
+  #blackBackground{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:black;
+    transition: opacity 1.4s ease-in-out;
+  }
+  
+  .title{
+    font-family: var(--gameTitleFont);
+    font-size:8.4vw;
+    text-align: center;
+    margin:0 !important;
+    line-height: 1em;
+    align-self:flex-start;
+  }
+  
+  .titleOptionList{
+    align-self:flex-end;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    padding-right: 3.5vw;
+    flex-grow:1;
+    background-color:transparent !important;
+  }
+  
+  .titleOption{
+    font-size:8.4vh;
+  }
+  
+  .titleOption button, .titleChapterSelect button{
+    padding:0;
+  }
+  
+  .titleSubScreen{
+    border-right: 0.1em solid white;
+    padding-right: 1em;
+  }
+  .titleSettings{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-size:4.2vh;
+  }
+  
+  .titleSaveLoad{
+    font-size:1em;
+
+  }
+  
+  .titleChapterSelect{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1em;
+  }
+  
+  .titleOption1, .titleOption2, .titleOption3, .titleOption4{
+    -webkit-transition: height 0.49s ease, opacity 0.49s ease; 
+    -moz-transition: height 0.49s ease, opacity 0.49s ease; 
+    -ms-transition: height 0.49s ease, opacity 0.49s ease; 
+    -o-transition: height 0.49s ease, opacity 0.49s ease; 
+    transition: height 0.49s ease, opacity 0.49s ease; 
+    height:var(--titleButtonHeight);
+    opacity:100%;
+    overflow:hidden;
+  }
+  
+  .titleContentSave, .titleContentLoad, .titleContentChapter, .titleContentSettings{
+    -webkit-transition: height 0.35s ease, opacity 0.35s ease; 
+    -moz-transition: height opacity 0.35s ease, opacity 0.35s ease; 
+    -ms-transition: height opacity 0.35s ease, opacity 0.35s ease; 
+    -o-transition: height opacity 0.35s ease, opacity 0.35s ease; 
+    transition: height opacity 0.35s ease, opacity 0.35s ease;
+    height:0%;
+    opacity:0;
+    overflow:hidden;
+  }
+  
+  .titleButtonPressed{
+    color:var(--gameHighlightColor);
+    pointer-events: none;
+  }
+/* twine-user-stylesheet #4: "click-to-proceed.css" */
 .--macro-ctp-hidden {
 	display: none;
 }
@@ -1024,7 +1155,7 @@ input[type="range"]::-moz-range-thumb{
 	from { opacity: 0; }
 	to { opacity: 1; }
 }
-/* twine-user-stylesheet #3: "simple-inventory.css" */
+/* twine-user-stylesheet #5: "simple-inventory.css" */
 /* Simple Inventory, for SugarCube 2, by Chapel
 v3.0.0-beta1, 2022-07-25, 19f255d958852e55a8a3afcde5c53331f0d938e8 */
 ul.simple-inventory-list{margin:0 auto;padding:0}.simple-inventory-listing{list-style:none;padding:.3rem .3rem .3rem 1rem;display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr}.simple-inventory-listing:nth-child(2n){background-color:#000}.simple-inventory-listing>a,.simple-inventory-listing>span{display:inline-block}.all-listing.simple-inventory-listing{border-top:1px solid #fafafa;background-color:transparent}.drop-link{color:#e33}.drop-link:active,.drop-link:focus,.drop-link:hover{color:#f88}
@@ -1072,7 +1203,7 @@ postrender["Associate Special Passages"] = function (content, taskName) {
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
 var r = document.querySelector(':root');
 var observePassage = document.getElementById("passages");
-var scroller = document.getElementById("passagesContainer");
+var scroller = document.getElementById("gameContainer");
 var elem;
 var observer = new MutationObserver(function(mutations, observer) {
     // fired when a mutation occurs
@@ -2022,7 +2153,327 @@ Macro.add('chunkText', {
         },
     });
 }());
-/* twine-user-script #5: "preloadImages.js" */
+/* twine-user-script #5: "menuButton.js" */
+(function menuButtonUtil() {
+    'use strict';
+
+    // Utility functions to create buttons in dock menu.
+    // scUtils.createPassageButton creates button which opens dialog displaying passage with given name.
+    // scUtils.createHandlerButton creates button which calls given handler.
+    // Both methods return {button, style} objects with jQuery-wrapped references to created elements
+
+    /* globals Story, Dialog */
+
+    // save some DOM references for later use
+    const $head = jQuery('head');
+    const $menuCore = jQuery('#menu-core');
+
+    function createButton(id, label, onClick) {
+        const buttonTemplate = `<li id="${id}"><a>${label}</a></li>`;
+        const $button = jQuery(buttonTemplate);
+
+        $button.ariaClick(onClick);
+        $button.appendTo($menuCore);
+
+        return $button;
+    }
+
+    function createMultiButton(id, mainLabel, labels, onClick) {
+        const buttonTemplate = `
+            <li id="${id}" class="multiButton">
+                ${mainLabel ? `<div class="mainLabel">${mainLabel}</div>` : ''}
+                <div class="buttons">
+                    ${labels.map(label => `<a>${label}</a>`).join('')}
+                </div>
+            </li>`;
+        const $button = jQuery(buttonTemplate);
+        $button.on('click', 'a', (event) => {
+            const index = jQuery(event.currentTarget).index();
+            onClick(event, index);
+        });
+
+        if (jQuery('style#multi-button-style').length === 0) {
+            const styles = `
+                .multiButton .mainLabel {
+                    text-transform: uppercase;
+                }
+                .multiButton .buttons {
+                    display: flex;
+                }
+                .multiButton .buttons a {
+                    flex-grow: 1;
+                }
+                .multiButton .buttons a[disabled] {
+                    opacity: 0.6;
+                    pointer-events: none;
+                }
+                .multiButton .buttons a.active {
+                    border-color: currentColor !important;
+                }
+                `;
+
+            const $style = jQuery(`<style type="text/css" id="multi-button-style">${styles}</style>`);
+            $style.appendTo($head);
+        }
+
+        $button.appendTo($menuCore);
+
+        return {button: $button};
+    }
+
+    function createButtonStyle(id, iconContent) {
+        const styles = `
+            #menu-core #${id} a::before {
+                ${iconContent ? `content: '${iconContent}'` : ''};
+            }
+        `;
+
+        const $style = jQuery(`<style type="text/css" id="${id}-style">${styles}</style>`);
+        $style.appendTo($head);
+
+        return $style;
+    }
+
+    function createDlgFromPassage(passageName, title = passageName) {
+        const content = Story.get(passageName).processText();
+
+        Dialog.setup(title);
+        Dialog.wiki(content);
+        Dialog.open();
+    }
+
+    /**
+     * Creates button in UI dock opening given passage.
+     * @param {string} label Button label
+     * @param {string} iconContent Some UTF sequence, like `\\e809\\00a0`
+     * @param {string} passageName Passage name to display in dialogue
+     * @return {{button: jQuery, style: jQuery}}
+     */
+    function createPassageButton(label, iconContent, passageName) {
+        const id = `menu-item-${passageName}`;
+
+        return {
+            button: createButton(id, label, () => createDlgFromPassage(passageName, label)),
+            style: createButtonStyle(id, iconContent),
+        };
+    }
+
+    /**
+     * Creates button in UI dock which calls `handler` when clicked.
+     * @param {string} label Button label
+     * @param {string} iconContent Some UTF sequence, like `\e809\00a0`
+     * @param {string} shortName any unique identifier, only letters, digits, dashes, underscore
+     * @param {Function} handler Function to call on click/tap
+     * @return {{button: jQuery, style: jQuery}}
+     */
+    function createHandlerButton(label, iconContent, shortName, handler) {
+        const id = `menu-item-${shortName}`;
+
+        return {
+            button: createButton(id, label, handler),
+            style: createButtonStyle(id, iconContent),
+        };
+    }
+
+    window.scUtils = Object.assign(
+        window.scUtils || {},
+        {
+            createDlgFromPassage,
+            createPassageButton,
+            createHandlerButton,
+            createMultiButton,
+        }
+    );
+}());
+/* twine-user-script #6: "on-macro.js" */
+/* Maliface's <<on>> macro, customizable element which updates on event.
+Syntax:
+<<on 'eventName' 'elementType' [attribute + value] [`{ attribute : value }`]>>
+...contents...
+<</on>>
+To run the contents again (update it):
+<<trigger 'eventName'>> */
+
+(function() {
+
+setup.on_macro_events = [];
+
+//Clean listeners on passage transition to avoid stacking !
+$(document).on(':passageinit', function () {
+	setup.on_macro_events.forEach(event => $(document).off(event));
+	setup.on_macro_events = [];
+});
+
+Macro.add('ou', {
+	tags  : null,
+
+	handler() {
+		
+		if (!this.args[0]) {
+			return this.error(`Missing event type.`);
+		} else if (typeof this.args[0] !== 'string'){
+			return this.error(`Event name must be a string, reading: ${typeof this.args[0]}.`);
+		};
+        
+		const trig = this.args[0].split(',').map(event => event.trim()),
+        		content = this.payload[0].contents,
+            		attributes = this.args.slice(2);
+      		let onInit;
+      
+		// Create element, apply attributes
+		let container = $(document.createElement(this.args[1] || 'span'));
+		
+      		if (attributes.includes('onInit')){
+        		onInit = eval(attributes.deleteAt(attributes.indexOf('onInit')+1)[0]);
+          		attributes.delete('onInit');
+		} else {
+        		onInit = true;
+		};
+      
+		for (let i = 0; i < attributes.length;i++) {
+			if (typeof attributes[i] === 'object'){//JQuery style object
+				container.attr(attributes[i]);
+			} else { // Simple pairs
+				container.attr(attributes[i], attributes[i+1]);
+				i++;
+			}
+		};
+
+		// Apply listener for each event name
+		trig.forEach(event => {
+			setup.on_macro_events.pushUnique(event);
+			$(document).on(event, function() {
+				container.empty().wiki(content);
+			});
+		});
+      
+		// Wikify on passage load, unless onInit is false
+		container.addClass(`macro-${this.name}`).wiki(onInit ? content : '').appendTo(this.output);
+	}
+});
+
+// Triggers custom events
+
+Macro.add('ou-trig', {
+	handler() {
+		
+      		let trig = this.args[0];
+      
+		if (!['string','object'].includes(typeof trig)) {
+			return this.error(`Invalid event type, reading :'${typeof trig}'.`);
+		}
+		
+		if (typeof trig === 'string'){ //Comma-separated string of events
+			trig = trig.split(',').map(event => event.trim());
+		} else if (typeof trig === 'object' && !Array.isArray(trig)){ //A single event object
+        		trig = [trig];
+        	}//Do nothing if trig is already an array, it's fine
+
+		// Triggers each event supplied
+		trig.forEach(event => {
+			$(this.args[1] ?? document).trigger(event);
+		});
+	}
+});
+})();
+/* twine-user-script #7: "pickUnique.js" */
+(function pickUniqueUtil() {
+    'use strict';
+
+    /* globals random, Story */
+
+    const lastIndex = '__lastIndex';
+
+    function has(obj, prop) {
+        return Object.prototype.hasOwnProperty.call(obj, prop);
+    }
+
+    function _extendArray(arr, value = null) {
+        if (!Array.isArray(arr)) {
+            throw new TypeError('Not an array');
+        }
+
+        if (value === null) {
+            value = random(arr.length - 1);
+        }
+
+        Object.defineProperty(arr, lastIndex, {
+            enumerable: false,
+            writable: true,
+            value,
+        });
+    }
+
+    function _getNextUnique(arr) {
+        let newValue;
+
+        do {
+            newValue = random(arr.length - 1);
+        } while (newValue === arr[lastIndex]);
+
+        arr[lastIndex] = newValue;
+        return arr[arr[lastIndex]];
+    }
+
+    /**
+     * @param {any[]} arr
+     * @return {any}
+     */
+    function pickUnique(arr) {
+        if (!has(arr, lastIndex)) {
+            const value = random(arr.length - 1);
+            _extendArray(arr, value);
+
+            return arr[value];
+        } else {
+            return _getNextUnique(arr);
+        }
+    }
+
+    function createUniquePicker(arr) {
+        _extendArray(arr);
+
+        return function () {
+            return _getNextUnique(arr);
+        };
+    }
+
+    function _getPassageLines(passage) {
+        let text;
+        if (passage.processText) { // we have passage itself
+            text = passage.processText();
+        } else { // we have passage name
+            const rawPassage = Story.get(passage);
+            if (!rawPassage) {
+                throw new Error(`No such passage: "${passage}".`);
+            }
+
+            text = rawPassage.processText();
+        }
+
+        return text.split('\n');
+    }
+
+    /**
+     * @param {string|Passage} passage
+     * @return {function (): string}
+     */
+    function createUniquePickerFromPassage(passage) {
+        const arr = _getPassageLines(passage);
+
+        return createUniquePicker(arr);
+    }
+
+    window.scUtils = Object.assign(
+        window.scUtils || {},
+        {
+            pickUnique,
+            createUniquePicker,
+            createUniquePickerFromPassage,
+        }
+    );
+}());
+/* twine-user-script #8: "preloadImages.js" */
 (function () {
     'use strict';
     // v1.0.0
@@ -2081,12 +2532,8 @@ Macro.add('chunkText', {
             }));
         }
     });
-}());</script><tw-tag name="nobr" color="none"></tw-tag><tw-tag name="To-the-Void" color="orange"></tw-tag><tw-tag name="Inner-Ring" color="green"></tw-tag><tw-tag name="Item" color="red"></tw-tag><tw-tag name="Lowest-Point" color="blue"></tw-tag><tw-tag name="Menu" color="yellow"></tw-tag><tw-tag name="Outer-Ring" color="red"></tw-tag><tw-tag name="People" color="purple"></tw-tag><tw-tag name="U" color="orange"></tw-tag><tw-tag name="the-Void" color="purple"></tw-tag><tw-passagedata pid="1" name="quote-1" tags="Gate" position="100,100" size="100,100">&lt;&lt;run memorize(&#39;Act I&#39;, true)&gt;&gt;&lt;&lt;timedinsert 0.7s&gt;&gt;//&quot;How mysterious is the Lord,//&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;timedinsert 2.8s&gt;&gt;// that He amuses Himself with such strange creatures?&quot;//&lt;&lt;/timedinsert&gt;&gt;
-
-&lt;&lt;timedinsert 5.6s t8n&gt;&gt;-János Valuska&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;timedinsert 8.4s&gt;&gt;
-
-&lt;&lt;link &#39;Begin&#39; &#39;intro&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/timedinsert&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="intro" tags="" position="225,100" size="100,100">&lt;&lt;n&gt;&gt;He sits, draped across a chair, staring at a wall crisscrossed with yarn. He tightens His grip on the dark green ball in His hand.&lt;&lt;/n&gt;&gt;
+}());</script><tw-tag name="Item" color="red"></tw-tag><tw-tag name="Lowest-Point" color="blue"></tw-tag><tw-tag name="People" color="purple"></tw-tag><tw-tag name="Inner-Ring" color="green"></tw-tag><tw-tag name="Menu" color="yellow"></tw-tag><tw-tag name="Outer-Ring" color="red"></tw-tag><tw-tag name="U" color="orange"></tw-tag><tw-tag name="the-Void" color="purple"></tw-tag><tw-tag name="nobr" color="none"></tw-tag><tw-tag name="To-the-Void" color="orange"></tw-tag><tw-passagedata pid="1" name="intro" tags="" position="100,100" size="100,100">&lt;&lt;css &#39;#content-column&#39; &#39;opacity&#39; &#39;100%&#39;&gt;&gt;\
+&lt;&lt;n&gt;&gt;He sits, draped across a chair, staring at a wall crisscrossed with yarn. He tightens His grip on the dark green ball in His hand.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;continuelink &#39;Throw the ball&#39;&gt;&gt;&lt;&lt;audio &quot;bounce&quot; play&gt;&gt;\
 &lt;&lt;p&gt;&gt;He throws the ball at the maze of yarn.&lt;&lt;/p&gt;&gt;
@@ -2100,7 +2547,7 @@ Macro.add('chunkText', {
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;ql &#39;Throw the ball&#39; intro-2&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="intro-2" tags="" position="350,100" size="100,100">&lt;&lt;audio &quot;missed&quot; play&gt;&gt;\
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="intro-2" tags="" position="225,100" size="100,100">&lt;&lt;audio &quot;missed&quot; play&gt;&gt;\
 &lt;&lt;p&gt;&gt;He throws the ball. It bounces back and flies past His distracted hand. It rolls to a stop on the floor.&lt;&lt;/p&gt;&gt;
 
 &lt;&lt;n&gt;&gt;He heaves His body from the chair. He takes a deep breath, creasing His forehead with His fingers. After a moment&#39;s pause, His eyes land on a &lt;&lt;first&gt;&gt;[[single page|look-flyer]]&lt;&lt;finally&gt;&gt;single page&lt;&lt;/first&gt;&gt; at the maze&#39;s center.&lt;&lt;/n&gt;&gt;\
@@ -2113,13 +2560,13 @@ Macro.add('chunkText', {
 &lt;&lt;/if&gt;&gt;\
 &lt;&lt;nobr&gt;&gt;&lt;&lt;lb&gt;&gt;
 	&lt;&lt;if Flag(&#39;ball&#39;) &amp;&amp; $inventory.has(&#39;Flyer for Missing Girl&#39;)&gt;&gt;\
-    	&lt;&lt;al &#39;Leave Void&#39; gate-1&gt;&gt;
+    	&lt;&lt;al &#39;Leave Void&#39; chara-wait&gt;&gt;
     &lt;&lt;/if&gt;&gt;
-&lt;&lt;/lb&gt;&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="look-flyer" tags="" position="475,100" size="100,100">&lt;&lt;include &#39;Flyer for Missing Girl&#39;&gt;&gt;
+&lt;&lt;/lb&gt;&gt;&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="look-flyer" tags="" position="350,100" size="100,100">&lt;&lt;include &#39;Flyer for Missing Girl&#39;&gt;&gt;
 &lt;&lt;flag &#39;flyerViewed&#39;&gt;&gt;
-&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="take-flyer" tags="" position="600,100" size="100,100">&lt;&lt;n&gt;&gt;He rips down the &lt;span class=&quot;add&quot;&gt;missing girl&#39;s flyer&lt;/span&gt;.&lt;&lt;/n&gt;&gt;\
+&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="take-flyer" tags="" position="475,100" size="100,100">&lt;&lt;n&gt;&gt;He rips down the &lt;span class=&quot;add&quot;&gt;missing girl&#39;s flyer&lt;/span&gt;.&lt;&lt;/n&gt;&gt;\
 
-&lt;&lt;add &quot;Flyer for Missing Girl&quot;&gt;&gt;&lt;&lt;update&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="intro-3" tags="" position="725,100" size="100,100">&lt;&lt;n&gt;&gt;He lumbers towards the ball and picks it up from the floor.&lt;&lt;/n&gt;&gt;\
+&lt;&lt;add &quot;Flyer for Missing Girl&quot;&gt;&gt;&lt;&lt;update&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="intro-3" tags="" position="600,100" size="100,100">&lt;&lt;n&gt;&gt;He lumbers towards the ball and picks it up from the floor.&lt;&lt;/n&gt;&gt;\
 
 &lt;&lt;nobr&gt;&gt;
 &lt;&lt;te t8n&gt;&gt;
@@ -2130,105 +2577,45 @@ Macro.add('chunkText', {
 		&lt;&lt;/if&gt;&gt;
 &lt;&lt;/liveblock&gt;&gt;
 &lt;&lt;/te&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="ball-pocket" tags="" position="850,100" size="100,100">&lt;&lt;n&gt;&gt;He haphazardly stuffs the &lt;span id=&quot;add&quot;&gt;ball&lt;/span&gt; into his pants pocket. Despite its small size, it sticks like an uncomfortable lump on the side of His leg.&lt;&lt;/n&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="ball-pocket" tags="" position="725,100" size="100,100">&lt;&lt;n&gt;&gt;He haphazardly stuffs the &lt;span class=&quot;add&quot;&gt;ball&lt;/span&gt; into his pants pocket. Despite its small size, it sticks like an uncomfortable lump on the side of His leg.&lt;&lt;/n&gt;&gt;
 
 \&lt;&lt;flag &#39;ball&#39;&gt;&gt;&lt;&lt;update&gt;&gt;
-\&lt;&lt;add Ball&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="ball-trash" tags="" position="975,100" size="100,100">&lt;&lt;n&gt;&gt;He brings the ball to eye level, examining its smooth texture. Somehow dissatisfied, He chucks the ball into a trash bin in the corner of the room.&lt;&lt;/n&gt;&gt;
+\&lt;&lt;add Ball&gt;&gt;</tw-passagedata><tw-passagedata pid="7" name="ball-trash" tags="" position="850,100" size="100,100">&lt;&lt;n&gt;&gt;He brings the ball to eye level, examining its smooth texture. Somehow dissatisfied, He chucks the ball into a trash bin in the corner of the room.&lt;&lt;/n&gt;&gt;
 
 \&lt;&lt;flag &#39;ball&#39;&gt;&gt;&lt;&lt;update&gt;&gt;
-\&lt;&lt;flag &#39;ballTrash&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="gate-1" tags="Gate" position="1100,100" size="100,100">&lt;&lt;nobr&gt;&gt;&lt;&lt;run Save.autosave.save(&#39;Act I: The Outer Ring&#39;)&gt;&gt;
+\&lt;&lt;flag &#39;ballTrash&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="8" name="chara-wait" tags="" position="975,100" size="100,100">&lt;&lt;p&gt;&gt;He pauses, sensing that He has forgotten something.&lt;&lt;/p&gt;&gt;
+
+&lt;&lt;n&gt;&gt;A &lt;&lt;fn &#39;meeting&#39;&gt;&gt;tattered black umbrella&lt;&lt;/fn&gt;&gt; hangs on a small hook beside the maze of yarn.&lt;&lt;/n&gt;&gt;
+&lt;&lt;lb&gt;&gt;
+&lt;&lt;if $inventory.has(&#39;Chara&#39;)&gt;&gt;\
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;ql &#39;Leave Void&#39; gate-1&gt;&gt;
+&lt;&lt;/te&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/lb&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="gate-1" tags="Gate" position="1100,100" size="100,100">&lt;&lt;nobr&gt;&gt;&lt;&lt;run Save.autosave.save(&#39;Act I: The Outer Ring&#39;)&gt;&gt;
 &lt;&lt;script&gt;&gt;
 jQuery(&quot;.titlecard&quot;).fitText();
 &lt;&lt;/script&gt;&gt;&lt;&lt;/nobr&gt;&gt;\
 &lt;span class=&#39;titlecard&#39;&gt;THE&lt;br \&gt;OUTER RING&lt;/span&gt;
-&lt;h2&gt;[[Continue|docks-arrive]]&lt;/h2&gt;</tw-passagedata><tw-passagedata pid="10" name="docks-arrive" tags="" position="1225,100" size="100,100">&lt;&lt;set $inVoid = false&gt;&gt;&lt;&lt;n&gt;&gt;A cool breeze carresses His face. He stands on a desolate dock with an endless expanse of ocean in front of Him. The wooden planks beneath His feet creak under His weight.&lt;&lt;/n&gt;&gt;
-
-&lt;&lt;p&gt;&gt;He opens His eyes.&lt;&lt;/p&gt;&gt;
-
-&lt;&lt;n&gt;&gt;A lone figure leans against the corrugated metal walls of a nearby shack.&lt;&lt;/n&gt;&gt;
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;ql &#39;Confront the figure&#39; confront-luna&gt;&gt;
-&lt;&lt;/te&gt;&gt;
-\&lt;&lt;set $loc = &quot;The Docks&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="confront-luna" tags="Luna" position="100,225" size="100,100">\&lt;&lt;p&gt;&gt;He approaches the figure.&lt;&lt;/p&gt;&gt;
-
-&lt;&lt;n&gt;&gt;A bright pair of eyes peer out at Him from under a dark shawl.&lt;&lt;/n&gt;&gt;
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;Who are you?&#39; luna-who&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="luna-who" tags="Luna" position="225,225" size="100,100">&lt;&lt;n&gt;&gt;The figure claims her name is &lt;span id=&quot;add&quot;&gt;Luna&lt;/span&gt;.&lt;&lt;/n&gt;&gt;
-
-$luna We&#39;ve met before.
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;I don\&#39;t remember you.&#39; luna-remember&gt;&gt;
-	&lt;&lt;td &#39;Ah yes, of course.&#39; luna-yes&gt;&gt;
-&lt;&lt;/te&gt;&gt;
-\&lt;&lt;met Luna&gt;&gt;&lt;&lt;flag &#39;knowLuna&#39; u&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="luna-remember" tags="Luna" position="350,225" size="100,100">$luna &lt;&lt;p i&gt;&gt;scoffing&lt;&lt;/p&gt;&gt; Of course you don&#39;t. Are you quite done staring out at the sea?
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;I was just resting my eyes.&#39; luna-resting&gt;&gt;
-    &lt;&lt;td &#39;I was thinking about that girl.&#39; luna-thinking&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="luna-yes" tags="Luna" position="475,225" size="100,100">&lt;&lt;n&gt;&gt;Luna clicks her tongue.&lt;&lt;/n&gt;&gt;
-
-$luna You should get going soon.
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;I was just on my way.&#39; luna-on-my-way&gt;&gt;
-    &lt;&lt;tc &#39;Have you seen this girl?&#39; &#39;Present flyer&#39; luna-flyer&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="luna-guess-not" tags="Luna" position="600,225" size="100,100">&lt;&lt;n&gt;&gt;He puts the flyer away and heads up the stairs. Luna&#39;s eyes follow Him as He saunters away.&lt;&lt;/n&gt;&gt;
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;ql &#39;Go to the city&#39; to-the-city&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="luna-resting" tags="Luna" position="725,225" size="100,100">&lt;&lt;n&gt;&gt;The slighest smile creeps onto Luna&#39;s face.&lt;&lt;/n&gt;&gt;
-
-$luna Of course you were. You should get going soon.
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;I suppose so.&#39; luna-suppose&gt;&gt;
-    &lt;&lt;td &#39;Have you seen this girl?&#39; &#39;Present flyer&#39; luna-flyer&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="luna-thinking" tags="Luna" position="850,225" size="100,100">$luna You&#39;ve been thinking about her for a while now.
-
-&lt;&lt;te&gt;&gt;
-    &lt;&lt;td &#39;Have you seen her?&#39; &#39;Present flyer&#39; luna-flyer&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="luna-flyer" tags="Luna" position="975,225" size="100,100">&lt;&lt;n&gt;&gt;Luna glances dismissively at the flyer in His hand.&lt;&lt;/n&gt;&gt;
-
-$luna I know what she looks like, And no,  I haven&#39;t seen her. You&#39;re not going to find her loitering around a dock.
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;I guess not.&#39; luna-guess-not&gt;&gt;
-    &lt;&lt;td &#39;You\&#39;re loitering on a dock.&#39; luna-loitering&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="luna-loitering" tags="Luna" position="1100,225" size="100,100">$luna And I&#39;m not the girl you&#39;re looking for. So get going.
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;Alright, alright.&#39; luna-guess-not&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="luna-on-my-way" tags="Luna" position="1225,225" size="100,100">$luna The way you were standing there, I didn&#39;t think you&#39;d ever start moving,
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;I was just resting my eyes.&#39; luna-resting&gt;&gt;
-    &lt;&lt;ql &#39;Go to the city&#39; to-the-city&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="luna-suppose" tags="Luna" position="100,350" size="100,100">&lt;&lt;n&gt;&gt;He heads up the stairs, still seemingly lost in His own world. Luna&#39;s eyes follow Him as He saunters away.&lt;&lt;/n&gt;&gt;
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;ql &#39;Go to the city&#39; to-the-city&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="to-the-city" tags="" position="225,350" size="100,100">&lt;&lt;n&gt;&gt;At the top the stairs, He is met with a dark, circular landscape populated with a sparsity of dim lampposts. They provide just enough light for Him to see down the looping path ahead. The dull hum of distant conversation and running machinery fill the air with a tepid white noise.&lt;&lt;/n&gt;&gt;
+&lt;h2&gt;[[Continue|docks-arrive]]&lt;/h2&gt;</tw-passagedata><tw-passagedata pid="10" name="to-the-city" tags="" position="1225,100" size="100,100">&lt;&lt;n&gt;&gt;At the top the stairs, He is met with a dark, circular landscape populated with a sparsity of dim lampposts. They provide just enough light for Him to see down the looping path ahead. The dull hum of distant conversation and running machinery fill the air with a tepid white noise.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;ql &#39;Go down Main Street&#39; main-street&gt;&gt;
 &lt;&lt;/te&gt;&gt;
-\&lt;&lt;set $loc = &quot;The City&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="main-street" tags="Hub" position="350,350" size="100,100">&lt;&lt;intros &#39;main-street&#39;&gt;&gt;\
-&lt;&lt;p&gt;&gt;He twists His head from side to side and observes the buildings surrounding Him.&lt;&lt;/p&gt;&gt;
+\&lt;&lt;set $loc = &quot;The City&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="11" name="main-street" tags="Hub" position="100,225" size="100,100">&lt;&lt;intros &#39;main-street&#39;&gt;&gt;\
+&lt;&lt;p&gt;&gt;He twists His head from side to side and observes the surrounding buildings.&lt;&lt;/p&gt;&gt;
 
 &lt;&lt;n&gt;&gt;On the outer side of the looping road, a bar. Further down, a mountainous pile of electronic waste. On the inner side, a gigantic hole; colloquially called the Mine.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
-	&lt;&lt;ql &#39;Visit the bar&#39; bar&gt;&gt;
+	&lt;&lt;ql &#39;Visit the Bar&#39; bar&gt;&gt;
 	&lt;&lt;ql &#39;Visit the Trash Heap&#39; trash-heap&gt;&gt;
-	&lt;&lt;ql &#39;Visit Mine&#39; mine&gt;&gt;
+	&lt;&lt;ql &#39;Visit the Mine&#39; mine&gt;&gt;
+	&lt;&lt;ql &#39;Visit the Memory Center&#39; memory-center&gt;&gt;
 	&lt;&lt;ql &#39;Return to the docks&#39; docks-return&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="bar" tags="" position="475,350" size="100,100">&lt;&lt;if previous() is &#39;leave-the-void&#39;&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;audio &quot;ring&quot; play&gt;&gt;&lt;&lt;p&gt;&gt;He pushes His way into the bar.&lt;&lt;/p&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="12" name="bar" tags="" position="225,225" size="100,100">&lt;&lt;if previous() is &#39;leave-the-void&#39;&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;audio &quot;ring&quot; play&gt;&gt;&lt;&lt;p&gt;&gt;He pushes His way into the bar.&lt;&lt;/p&gt;&gt;
 
-&lt;&lt;/if&gt;&gt;&lt;&lt;include &#39;at-bar&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="at-bar" tags="" position="600,350" size="100,100">&lt;&lt;n&gt;&gt;There is only one patron: &lt;&lt;if Flag(&#39;knowIliza&#39;)&gt;&gt;Iliza&lt;&lt;else&gt;&gt;a lone woman&lt;&lt;/if&gt;&gt;. Across from her is the bartender, idly shaking a cocktail shaker.&lt;&lt;/n&gt;&gt;&lt;&lt;extras &#39;bar&#39;&gt;&gt;
+&lt;&lt;/if&gt;&gt;&lt;&lt;include &#39;at-bar&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="13" name="at-bar" tags="" position="350,225" size="100,100">&lt;&lt;n&gt;&gt;There is only one patron: &lt;&lt;if Flag(&#39;knowIliza&#39;)&gt;&gt;Iliza&lt;&lt;else&gt;&gt;a lone woman&lt;&lt;/if&gt;&gt;. Across from her is the bartender, idly shaking a cocktail shaker.&lt;&lt;/n&gt;&gt;&lt;&lt;extras &#39;bar&#39;&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;if Flag(&#39;gin&#39;) &amp;&amp; Flag(&#39;ginDrunk&#39;) is false&gt;&gt;&lt;&lt;ql &#39;Drink gin&#39; gin-drink&gt;&gt;&lt;&lt;/if&gt;&gt;
@@ -2236,13 +2623,13 @@ $luna I know what she looks like, And no,  I haven&#39;t seen her. You&#39;re no
 	&lt;&lt;ql &#39;Talk to the bartender&#39; bartender-talk&gt;&gt;
     &lt;&lt;if Flag(&#39;knowIliza&#39;) is false&gt;&gt;&lt;&lt;ql &#39;Talk to the patron&#39; bar-patron&gt;&gt;&lt;&lt;elseif Flag(&#39;knowIliza&#39;)&gt;&gt;&lt;&lt;ql &#39;Talk to Iliza&#39; bar-iliza&gt;&gt;&lt;&lt;/if&gt;&gt;
 	&lt;&lt;ql &#39;Leave&#39; main-street&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="bartender-talk" tags="" position="725,350" size="100,100">&lt;&lt;n&gt;&gt;The bartender seems singularly focused on their continuous shaking.&lt;&lt;first&gt;&gt;&lt;&lt;finally&gt;&gt; He wonders how the ice inside the shaker is still solid.&lt;&lt;/first&gt;&gt;&lt;&lt;/n&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="14" name="bartender-talk" tags="" position="475,225" size="100,100">&lt;&lt;n&gt;&gt;The bartender seems singularly focused on their continuous shaking.&lt;&lt;first&gt;&gt;&lt;&lt;finally&gt;&gt; He wonders how the ice inside the shaker is still solid.&lt;&lt;/first&gt;&gt;&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;if Flag(&#39;gin&#39;) is false&gt;&gt;&lt;&lt;td &#39;Gin &amp; Tonic.&#39; bartender-gin&gt;&gt;&lt;&lt;/if&gt;&gt;
 	&lt;&lt;if Flag(&#39;beer&#39;) is false&gt;&gt;&lt;&lt;td &#39;Beer.&#39; bartender-beer&gt;&gt;&lt;&lt;/if&gt;&gt;
 	&lt;&lt;ql &#39;Return&#39; at-bar&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="bartender-gin" tags="" position="850,350" size="100,100">$bartender Did you know? The gin &amp; tonic is the most common cocktail chosen by men.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="15" name="bartender-gin" tags="" position="600,225" size="100,100">$bartender Did you know? The gin &amp; tonic is the most common cocktail chosen by men.
 
 &lt;&lt;p&gt;&gt;The bartender pulls a chilled glass from beneath the bar and pours the contents of the cocktail shaker inside.&lt;&lt;/p&gt;&gt;
 
@@ -2251,9 +2638,9 @@ $luna I know what she looks like, And no,  I haven&#39;t seen her. You&#39;re no
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;ql &#39;Drink&#39; gin-drink&gt;&gt;
 	&lt;&lt;tc &#39;Talk to gin&#39; gin-talk true&gt;&gt;
-&lt;&lt;/te&gt;&gt;&lt;&lt;flag &#39;gin&#39;&gt;&gt;&lt;&lt;num &#39;bar-extras&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="gin-drink" tags="" position="975,350" size="100,100">&lt;&lt;n&gt;&gt;He grimaces as the sharp scent of juniper fills His nostrils and numbs His tongue. He stares down into the drink and sees the wood of the bar beneath; the drink is so clear as to be water to Him. Like water, He is compelled to drink.&lt;&lt;/n&gt;&gt;
+&lt;&lt;/te&gt;&gt;&lt;&lt;flag &#39;gin&#39;&gt;&gt;&lt;&lt;num &#39;bar-extras&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="16" name="gin-drink" tags="" position="725,225" size="100,100">&lt;&lt;n&gt;&gt;He grimaces as the sharp scent of juniper fills His nostrils and numbs His tongue. He stares down into the drink and sees the wood of the bar beneath; the drink is so clear as to be water to Him. Like water, He is compelled to drink.&lt;&lt;/n&gt;&gt;
 
-&lt;&lt;continuelink &#39;Drink&#39;&gt;&gt;\
+&lt;&lt;x&gt;&gt;
 &lt;&lt;n&gt;&gt;He takes another drink. It feels smoother the second time over.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;n&gt;&gt;He takes time to reminisce. A memory forces its way to the forefront of His mind: HER soft hair pressed against His cheek, HER breathing moving in steady tandem with His own. Something about the juniper reminds Him of HER, but He is unsure as to why.&lt;&lt;/n&gt;&gt;
@@ -2265,30 +2652,30 @@ $luna I know what she looks like, And no,  I haven&#39;t seen her. You&#39;re no
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;ql &#39;Return&#39; at-bar&gt;&gt;
-&lt;&lt;/te&gt;&gt;&lt;&lt;flag &#39;ginDrunk&#39;&gt;&gt;&lt;&lt;num &#39;bar-extras&#39; s&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="gin-talk" tags="" position="1100,350" size="100,100">&lt;&lt;n&gt;&gt;He gently swirls the contents of His drink around in the glass. He mumbles beneath His breath, with the lifeless gin serving as his only audience.&lt;&lt;/n&gt;&gt;
+&lt;&lt;/te&gt;&gt;&lt;&lt;flag &#39;ginDrunk&#39;&gt;&gt;&lt;&lt;num &#39;bar-extras&#39; s&gt;&gt;</tw-passagedata><tw-passagedata pid="17" name="gin-talk" tags="" position="850,225" size="100,100">&lt;&lt;n&gt;&gt;He gently swirls the contents of His drink around in the glass. He mumbles beneath His breath, with the lifeless gin serving as his only audience.&lt;&lt;/n&gt;&gt;
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;ql &#39;Return&#39; at-bar&gt;&gt;
-&lt;&lt;/te&gt;&gt;&lt;&lt;set $voidLevel += 1&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="bartender-beer" tags="" position="1225,350" size="100,100">$bartender Did you know? If you give a plant beer instead of water, it will grow stronger than it would otherwise.
+&lt;&lt;/te&gt;&gt;&lt;&lt;set $voidLevel += 1&gt;&gt;</tw-passagedata><tw-passagedata pid="18" name="bartender-beer" tags="" position="975,225" size="100,100">$bartender Did you know? If you give a plant beer instead of water, it will grow stronger than it would otherwise.
 
 &lt;&lt;p&gt;&gt;The bartender sets the cocktail shaker down and pulls a cold bottle of beer from beneath the bar. The bartender slides the beer towards Him.&lt;&lt;/p&gt;&gt;&lt;&lt;flag &#39;beer&#39;&gt;&gt;&lt;&lt;num &#39;bar-extras&#39;&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;tc &#39;Take the beer&#39; take-beer true&gt;&gt;
 	&lt;&lt;ql &#39;Return&#39; at-bar&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="take-beer" tags="" position="100,475" size="100,100">&lt;&lt;p&gt;&gt;He takes the &lt;span id=&quot;add&quot;&gt;beer&lt;/span&gt;. The bartender returns to the cocktail shaker.&lt;&lt;/p&gt;&gt;
-\&lt;&lt;add &quot;Beer&quot;&gt;&gt;&lt;&lt;flag &#39;beerTaken&#39;&gt;&gt;&lt;&lt;num &#39;bar-extras&#39; s&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="bar-patron" tags="Iliza" position="225,475" size="100,100">&lt;&lt;n&gt;&gt;He takes a seat at the bar next to the lone patron. She ignores Him, preferring to sip on a bright blue cocktail.&lt;&lt;/n&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="19" name="take-beer" tags="" position="1100,225" size="100,100">&lt;&lt;p&gt;&gt;He takes the &lt;span id=&quot;add&quot;&gt;beer&lt;/span&gt;. The bartender returns to the cocktail shaker.&lt;&lt;/p&gt;&gt;
+\&lt;&lt;add &quot;Beer&quot;&gt;&gt;&lt;&lt;flag &#39;beerTaken&#39;&gt;&gt;&lt;&lt;num &#39;bar-extras&#39; s&gt;&gt;</tw-passagedata><tw-passagedata pid="20" name="bar-patron" tags="Iliza" position="1225,225" size="100,100">&lt;&lt;n&gt;&gt;He takes a seat at the bar next to the lone patron. She ignores Him, preferring to sip on a bright blue cocktail.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;td &#39;What\&#39;s your name?&#39; iliza-introduction&gt;&gt;
     &lt;&lt;td &#39;Fancy meeting you here.&#39; iliza-introduction-2&gt;&gt;
     &lt;&lt;tc &#39;&quot;Have you seen this girl?&quot; (Present flyer)&#39; iliza-flyer&gt;&gt;
 &lt;&lt;/te&gt;&gt;
-\&lt;&lt;flag &#39;ilizaSpoken&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="bar-iliza" tags="Iliza" position="350,475" size="100,100">$iliza &lt;&lt;p i&gt;&gt;mumbling&lt;&lt;/p&gt;&gt; You again.
+\&lt;&lt;flag &#39;ilizaSpoken&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="21" name="bar-iliza" tags="Iliza" position="100,350" size="100,100">$iliza &lt;&lt;p i&gt;&gt;mumbling&lt;&lt;/p&gt;&gt; You again.
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;tc &#39;&quot;Have you seen this girl?&quot; (Present flyer)&quot;&#39; iliza-flyer&gt;&gt;
 	&lt;&lt;ql &#39;Return&#39; at-bar&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="iliza-introduction" tags="Iliza" position="475,475" size="100,100">&lt;&lt;n&gt;&gt;The patron&#39;s pupil lingers in the corner of her eye, surveying Him thoroughly.&lt;&lt;/n&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="22" name="iliza-introduction" tags="Iliza" position="225,350" size="100,100">&lt;&lt;n&gt;&gt;The patron&#39;s pupil lingers in the corner of her eye, surveying Him thoroughly.&lt;&lt;/n&gt;&gt;
 
 $patron It&#39;s &lt;span id=&quot;add&quot;&gt;Iliza&lt;/span&gt;. Why?
 
@@ -2296,11 +2683,11 @@ $patron It&#39;s &lt;span id=&quot;add&quot;&gt;Iliza&lt;/span&gt;. Why?
 	&lt;&lt;tc &#39;(Shrugs) &quot;Thought I\&#39;d ask.&quot;&#39; iliza-shrug true&gt;&gt;
     &lt;&lt;tc &#39;&quot;Have you seen this girl?&quot; (Present flyer)&quot;&#39; iliza-flyer&gt;&gt;
 &lt;&lt;/te&gt;&gt;
-\&lt;&lt;met Iliza&gt;&gt;&lt;&lt;flag &#39;knowIliza&#39; u&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="iliza-shrug" tags="Iliza" position="600,475" size="100,100">&lt;&lt;he&gt;&gt;&lt;&lt;p i&gt;&gt;shrugging&lt;&lt;/p&gt;&gt; Thought I&#39;d ask.&lt;&lt;/he&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="iliza-introduction-2" tags="Iliza" position="725,475" size="100,100">$iliza &lt;&lt;p i&gt;&gt;Raising an eyebrow&lt;&lt;/p&gt;&gt; &quot;Have we met?&quot;
+\&lt;&lt;met Iliza&gt;&gt;&lt;&lt;flag &#39;knowIliza&#39; u&gt;&gt;</tw-passagedata><tw-passagedata pid="23" name="iliza-shrug" tags="Iliza" position="350,350" size="100,100">&lt;&lt;he&gt;&gt;&lt;&lt;p i&gt;&gt;shrugging&lt;&lt;/p&gt;&gt; Thought I&#39;d ask.&lt;&lt;/he&gt;&gt;</tw-passagedata><tw-passagedata pid="24" name="iliza-introduction-2" tags="Iliza" position="475,350" size="100,100">$iliza &lt;&lt;p i&gt;&gt;Raising an eyebrow&lt;&lt;/p&gt;&gt; &quot;Have we met?&quot;
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;tc &#39;(Smile) &quot;Not yet&quot;&#39; iliza-not-yet&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="iliza-flyer" tags="Iliza" position="850,475" size="100,100">&lt;&lt;he&gt;&gt;Have you seen this girl?&lt;&lt;/he&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="25" name="iliza-flyer" tags="Iliza" position="600,350" size="100,100">&lt;&lt;he&gt;&gt;Have you seen this girl?&lt;&lt;/he&gt;&gt;
 
 &lt;&lt;p&gt;&gt;He shows her the flyer.&lt;&lt;/p&gt;&gt;
 
@@ -2313,21 +2700,21 @@ $iliza How old is this thing? I haven&#39;t seen something like this in years.
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;td &#39;I\&#39;ve been searching for a while.&#39; iliza-searching&gt;&gt;
 	&lt;&lt;td &#39;Vaguely familiar?&#39; iliza-familiar&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="iliza-searching" tags="Iliza" position="975,475" size="100,100">$iliza Well you&#39;re not going to find her in this empty place.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="26" name="iliza-searching" tags="Iliza" position="725,350" size="100,100">$iliza Well you&#39;re not going to find her in this empty place.
 
 &lt;&lt;p&gt;&gt;?iliza turns back to her drink.&lt;&lt;/p&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;if Flag(&#39;knowIliza&#39;)&gt;&gt;&lt;&lt;td &#39;Please Iliza. Anything helps.&#39; iliza-please&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;td &#39;Please miss, I\&#39;d really appreciate some help.&#39; iliza-please-miss&gt;&gt;&lt;&lt;/if&gt;&gt;
 	&lt;&lt;ql &#39;Return&#39; at-bar&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="iliza-please-miss" tags="Iliza" position="1100,475" size="100,100">&lt;&lt;p&gt;&gt;?iliza grunts.&lt;&lt;/p&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="27" name="iliza-please-miss" tags="Iliza" position="850,350" size="100,100">&lt;&lt;p&gt;&gt;?iliza grunts.&lt;&lt;/p&gt;&gt;
 
 $iliza &lt;span id=&quot;add&quot;&gt;Iliza&lt;/span&gt;. Not miss. Look, I&#39;m sorry but I don&#39;t think I can help you much. Only place where you might find something is that pile of junk at the edge of town; Vera&#39;s there and she has her finger on the pulse of any oddity you can think of.
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;td &#39;Junk?&#39; iliza-junk&gt;&gt;
 	&lt;&lt;td &#39;Thank you.&#39; iliza-thanks&gt;&gt;
-&lt;&lt;/te&gt;&gt;&lt;&lt;met Iliza&gt;&gt;&lt;&lt;flag &#39;knowIliza&#39; u&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="iliza-please" tags="Iliza" position="1225,475" size="100,100">&lt;&lt;p&gt;&gt;Iliza takes a deep breath.&lt;&lt;/p&gt;&gt;
+&lt;&lt;/te&gt;&gt;&lt;&lt;met Iliza&gt;&gt;&lt;&lt;flag &#39;knowIliza&#39; u&gt;&gt;</tw-passagedata><tw-passagedata pid="28" name="iliza-please" tags="Iliza" position="975,350" size="100,100">&lt;&lt;p&gt;&gt;Iliza takes a deep breath.&lt;&lt;/p&gt;&gt;
 
 &lt;&lt;n&gt;&gt;Just outside of the bar, a pair of children, twin boys, run past. Their giggling floats through the air of the bar. They sound ethereal.&lt;&lt;/n&gt;&gt;
 
@@ -2336,106 +2723,154 @@ $iliza Look, I&#39;m sorry but I don&#39;t think I can help you much. Only place
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;td &#39;Junk?&#39; iliza-junk&gt;&gt;
 	&lt;&lt;td &#39;Thank you.&#39; iliza-thanks&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="iliza-familiar" tags="Iliza" position="100,600" size="100,100">$iliza I feel like I saw her near that pile of junk some time ago.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="29" name="iliza-familiar" tags="Iliza" position="1100,350" size="100,100">$iliza I feel like I saw her near that pile of junk some time ago.
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;td &#39;So did you see her or do you just think you did?&#39; iliza-yes-or-no&gt;&gt;
 	&lt;&lt;td &#39;What junk?&#39; iliza-junk&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="iliza-yes-or-no" tags="Iliza" position="225,600" size="100,100">$iliza I&#39;m not going to help you if you&#39;re going to be rude.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="30" name="iliza-yes-or-no" tags="Iliza" position="1225,350" size="100,100">$iliza I&#39;m not going to help you if you&#39;re going to be rude.
 
 ?iliza returns to her drink.
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;ql &#39;Return&#39; at-bar&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="iliza-junk" tags="Iliza" position="350,600" size="100,100">$iliza Keep going down Main Street, you&#39;ll find it eventually. Can&#39;t miss that heap of broken screens.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="31" name="iliza-junk" tags="Iliza" position="100,475" size="100,100">$iliza Keep going down Main Street, you&#39;ll find it eventually. Can&#39;t miss that heap of broken screens.
 
 &lt;&lt;p&gt;&gt;?iliza takes another sip of her drink.&lt;&lt;/p&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;if Flag(&#39;heapVisited&#39;)&gt;&gt;&lt;&lt;td &#39;What\&#39;s the deal with that place anyway?&#39; iliza-whats-the-deal&gt;&gt;&lt;&lt;/if&gt;&gt;
 	&lt;&lt;td &#39;Thank you.&#39; iliza-thanks&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="iliza-not-yet" tags="Iliza" position="475,600" size="100,100">&lt;&lt;p&gt;&gt;?iliza turns away in mild annoyance. His smile fades into a frown.&lt;&lt;/p&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="32" name="iliza-not-yet" tags="Iliza" position="225,475" size="100,100">&lt;&lt;p&gt;&gt;?iliza turns away in mild annoyance. His smile fades into a frown.&lt;&lt;/p&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;tc &#39;&quot;Have you seen this girl?&quot; (Present flyer)&#39;|iliza-flyer&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="45" name="iliza-thanks" tags="Iliza" position="600,600" size="100,100">$iliza Don&#39;t mention it.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="33" name="iliza-thanks" tags="Iliza" position="350,475" size="100,100">$iliza Don&#39;t mention it.
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;ql &#39;Return&#39; at-bar&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="46" name="trash-heap" tags="" position="725,600" size="100,100">&lt;&lt;n&gt;&gt;He stares at the insurmountably high pile of broken screens. The withered structure of ancient computer monitors litter the sprawling mass, dotted intermittently with the remains of broken keyboards and similar accessories.&lt;&lt;/n&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="34" name="docks-arrive" tags="" position="475,475" size="100,100">&lt;&lt;set $inVoid = false&gt;&gt;&lt;&lt;n&gt;&gt;A cool breeze caresses His face. He stands on a desolate dock with an endless expanse of ocean in front of Him. The wooden planks beneath His feet creak under His weight.&lt;&lt;/n&gt;&gt;
+
+&lt;&lt;p&gt;&gt;He opens His eyes.&lt;&lt;/p&gt;&gt;
+
+&lt;&lt;n&gt;&gt;A lone figure leans against the corrugated metal walls of a nearby shack.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
-	&lt;&lt;tc &#39;Lie down on screens&#39; lie-on-screens true&gt;&gt;
-    &lt;&lt;if Flag(&#39;knowVera&#39;)&gt;&gt;&lt;&lt;ql &#39;Talk to Vera&#39; vera-talk&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;ql &#39;Examine protruding mass of screens&#39; vera-meet&gt;&gt;&lt;&lt;/if&gt;&gt;
+	&lt;&lt;ql &#39;Confront the figure&#39; confront-luna&gt;&gt;
+&lt;&lt;/te&gt;&gt;
+\&lt;&lt;set $loc = &quot;The Docks&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="35" name="confront-luna" tags="Luna" position="600,475" size="100,100">\&lt;&lt;p&gt;&gt;He approaches the figure.&lt;&lt;/p&gt;&gt;
+
+&lt;&lt;n&gt;&gt;A bright pair of eyes peer out at Him from under a dark shawl. Catlike irises give Him a once-over.&lt;&lt;/n&gt;&gt;
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;Who are you?&#39; luna-who&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="36" name="luna-who" tags="Luna" position="725,475" size="100,100">$unknown My name is &lt;span id=&quot;add&quot;&gt;Luna&lt;/span&gt;. We&#39;ve met before.
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;I don\&#39;t remember you.&#39; luna-remember&gt;&gt;
+	&lt;&lt;td &#39;Ah yes, of course.&#39; luna-yes&gt;&gt;
+&lt;&lt;/te&gt;&gt;
+\&lt;&lt;met Luna&gt;&gt;&lt;&lt;flag &#39;knowLuna&#39; u&gt;&gt;</tw-passagedata><tw-passagedata pid="37" name="luna-remember" tags="Luna" position="850,475" size="100,100">$luna &lt;&lt;p i&gt;&gt;scoffing&lt;&lt;/p&gt;&gt; Of course you don&#39;t. Are you quite done staring out at the sea?
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;I was just resting my eyes.&#39; luna-resting&gt;&gt;
+    &lt;&lt;td &#39;I was thinking about that girl.&#39; luna-thinking&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="38" name="luna-yes" tags="Luna" position="975,475" size="100,100">&lt;&lt;n&gt;&gt;Luna clicks her tongue.&lt;&lt;/n&gt;&gt;
+
+$luna You should get going soon.
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;I was just on my way.&#39; luna-on-my-way&gt;&gt;
+    &lt;&lt;tc &#39;Have you seen this girl?&#39; &#39;Present flyer&#39; luna-flyer&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="39" name="luna-guess-not" tags="Luna" position="1100,475" size="100,100">&lt;&lt;n&gt;&gt;He puts the flyer away and heads up the stairs. Luna&#39;s eyes follow Him as He saunters away.&lt;&lt;/n&gt;&gt;
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;ql &#39;Go to the city&#39; to-the-city&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="40" name="luna-resting" tags="Luna" position="1225,475" size="100,100">&lt;&lt;n&gt;&gt;The slighest smile creeps onto Luna&#39;s face.&lt;&lt;/n&gt;&gt;
+
+$luna Of course you were. You should get going soon.
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;I suppose so.&#39; luna-suppose&gt;&gt;
+    &lt;&lt;td &#39;Have you seen this girl?&#39; &#39;Present flyer&#39; luna-flyer&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="41" name="luna-thinking" tags="Luna" position="100,600" size="100,100">$luna You&#39;ve been thinking about her for a while now.
+
+&lt;&lt;te&gt;&gt;
+    &lt;&lt;td &#39;Have you seen her?&#39; &#39;Present flyer&#39; luna-flyer&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="42" name="luna-flyer" tags="Luna" position="225,600" size="100,100">&lt;&lt;n&gt;&gt;Luna glances dismissively at the flyer in His hand.&lt;&lt;/n&gt;&gt;
+
+$luna I know what she looks like, And no,  I haven&#39;t seen her. You&#39;re not going to find her loitering around a dock.
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;I guess not.&#39; luna-guess-not&gt;&gt;
+    &lt;&lt;td &#39;You\&#39;re loitering on a dock.&#39; luna-loitering&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="43" name="luna-loitering" tags="Luna" position="350,600" size="100,100">$luna And I&#39;m not the girl you&#39;re looking for. So get going.
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;Alright, alright.&#39; luna-guess-not&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="44" name="luna-on-my-way" tags="Luna" position="475,600" size="100,100">$luna The way you were standing there, I didn&#39;t think you&#39;d ever start moving,
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;I was just resting my eyes.&#39; luna-resting&gt;&gt;
+    &lt;&lt;ql &#39;Go to the city&#39; to-the-city&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="45" name="luna-suppose" tags="Luna" position="600,600" size="100,100">&lt;&lt;n&gt;&gt;He heads up the stairs, still seemingly lost in His own world. Luna&#39;s eyes follow Him as He saunters away.&lt;&lt;/n&gt;&gt;
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;ql &#39;Go to the city&#39; to-the-city&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="46" name="docks-return" tags="" position="725,600" size="100,100">He lumbers down the stairs back to the dock. Luna is leaning against a concrete wall.
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;ql &#39;Talk to Luna&#39; docks-luna&gt;&gt;
 	&lt;&lt;ql &#39;Leave&#39; main-street&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="47" name="lie-on-screens" tags="" position="850,600" size="100,100">&lt;&lt;p&gt;&gt;He carefully lowers Himself onto the broken mass.&lt;&lt;/p&gt;&gt;
-
-&lt;&lt;n&gt;&gt;The edges of various electronics jab into His back. He finds the discomfort quiets His disquiet.&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="48" name="vera-meet" tags="Vera" position="975,600" size="100,100">&lt;&lt;n&gt;&gt;He stumbles upon a makeshift hideout tucked into the back of the Trash Heap. A startled yelp rings out. A young woman dressed in rags presses herself against the back of the hideout.&lt;&lt;/n&gt;&gt;
-
-&lt;span class=&#39;char&#39;&gt;Woman&lt;/span&gt; What are you doing here?
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="47" name="docks-luna" tags="Luna" position="850,600" size="100,100">$luna You&#39;re back. No luck finding the girl?
 
 &lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;Who are you?&#39; vera-who&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="vera-who" tags="Vera" position="1100,600" size="100,100">&lt;&lt;n&gt;&gt;The woman hesitates before answering.&lt;&lt;/n&gt;&gt;
+	&lt;&lt;td &#39;What are you doing here?&#39; luna-why-are-you-here&gt;&gt;
+    &lt;&lt;td &#39;Remind me who you are again.&#39; luna-who-again&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="48" name="luna-why-are-you-here" tags="Luna" position="975,600" size="100,100">$luna I&#39;m just making sure you don&#39;t do anything brash. You asked me to. Though I doubt you remember, all things considered.
 
-&lt;span class=&#39;char&#39;&gt;Woman&lt;/span&gt; Name&#39;s &lt;span id=&quot;add&quot;&gt;Vera&lt;/span&gt;. How did you find me?
+&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="49" name="luna-who-again" tags="Luna" position="1100,600" size="100,100">$luna A source of trust, as far as you&#39;re concerned. A source of comfort. But not a source of answers. Are you going to get a move on or not?
 
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;I was just poking around.&#39; vera-poking-around&gt;&gt;
-	&lt;&lt;tc &#39;&quot;Have you seen this girl?&quot; (Present flyer)&#39; vera-flyer&gt;&gt;
-&lt;&lt;/te&gt;&gt;
-\&lt;&lt;met Vera&gt;&gt;&lt;&lt;flag &#39;knowVera&#39; u&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="vera-poking-around" tags="Vera" position="1225,600" size="100,100">$vera I&#39;d appreciate it if you didn&#39;t poke around any further. I live here ya see. And I don&#39;t take kindly to people barging into my home. You following me?
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;ql &#39;(Nod and leave)&#39; vera-wait&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="vera-flyer" tags="Vera" position="100,725" size="100,100">&lt;&lt;n&gt;&gt;Vera tuts at His rudeness. Nonetheless, she peers at the flyer in His hand. A noise of familiarity emnantes from her closed mouth.&lt;&lt;/n&gt;&gt;
-
-$vera I think I&#39;ve seen her before. Recently too.
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;Where?!&#39; vera-where&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="vera-where" tags="Vera" position="225,725" size="100,100">$vera I was digging around town and I ran into her. Can&#39;t recall how long ago that was though.
-
-&lt;&lt;n&gt;&gt;Her unclear answer proves annoying.&lt;&lt;/n&gt;&gt;
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;I see. Thanks anyway.&#39; vera-wait&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="vera-wait" tags="Vera" position="350,725" size="100,100">$vera Wait!
-
-&lt;&lt;p&gt;&gt;He pauses.&lt;&lt;/p&gt;&gt;
-
-$vera I&#39;ve got some things you might find interesting. If you&#39;ve got something I find interesting, maybe we can make some kind of trade.
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;What are you getting at?&#39; vera-what-are-you-getting-at&gt;&gt;
-	&lt;&lt;ql &#39;&quot;I don\&#39;t think so.&quot; (Leave)&#39; trash-heap &gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="vera-what-are-you-getting-at" tags="Vera" position="475,725" size="100,100">$vera I&#39;ve got pills. Pretty popular with the folks around here. Interested?
-
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;ql &#39;&quot;I am.&quot;&#39; vera-pills&gt;&gt;
-	&lt;&lt;ql &#39;&quot;Not really&quot; (Leave)&#39; trash-heap &gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="55" name="vera-pills" tags="Vera" position="600,725" size="100,100">$vera This is what I&#39;ve got.
-
-&lt;&lt;p&gt;&gt;She pulls a bag from the depths of her hideout and withdraws a number of pills.&lt;&lt;/p&gt;&gt;
-
-$vera I&#39;ll warn ya, these things are potent. I&#39;ll sell ya however many you want, but &lt;span id=&quot;important&quot;&gt;your body can&#39;t handle more than one&lt;/span&gt;. So be careful when you take one.
-
-&lt;&lt;include vera-store&gt;&gt;\
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;ql &#39;Return&#39; trash-heap&gt;&gt;
-&lt;&lt;/te&gt;&gt;
-\&lt;&lt;flag &#39;veraOpen&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="vera-talk" tags="Vera" position="725,725" size="100,100">&lt;&lt;fc &#39;veraOpen&#39;&gt;&gt;\
-	$vera Hey there. Got something for me?
-	\&lt;&lt;include vera-store&gt;&gt;\
-\&lt;&lt;else&gt;&gt;\
-&lt;&lt;n&gt;&gt;Vera emerges from her hideaway as He approaches.&lt;&lt;/n&gt;&gt;
-
-$vera You&#39;re back. Like I said, I&#39;ve got some things you might find interesting. If you&#39;ve got something I find interesting, maybe we can make some kind of trade.&lt;&lt;/fc&gt;&gt;
+&lt;&lt;return&gt;&gt;
+\&lt;&lt;flag &#39;knowLuna2&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="50" name="main-street-intros" tags="nobr" position="1225,600" size="100,100">&lt;&lt;n&gt;&gt;
+&lt;&lt;switch previous()&gt;&gt;
+    &lt;&lt;case &#39;docks-return&#39; &#39;to-the-city&#39;&gt;&gt;
+        He walks the path away from the docks; they fall to darkness as a small town comes into view.
+    &lt;&lt;case &#39;bar&#39; &#39;at-bar&#39;&gt;&gt;
+        He emerges from the bar.
+    &lt;&lt;case &#39;trash-heap&#39;&gt;&gt;
+        He makes his way back to Main Street.
+    &lt;&lt;case &#39;mine&#39;&gt;&gt;
+        He returns to Main Street.
+    &lt;&lt;case &#39;memory-center&#39;&gt;&gt;
+        The sliding door of the Memory Center closes behind Him.
+    &lt;&lt;default&gt;&gt;
+        He stands in the middle of Main Street.
+&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="51" name="bar-extras" tags="nobr" position="100,725" size="100,100">&lt;&lt;n&gt;&gt;
+    &lt;&lt;if Flag(&#39;gin&#39;) is true &amp;&amp; Flag(&#39;ginDrunk&#39;) is false&gt;&gt;
+        A gin &amp; tonic sits on the bar, unattended. 
+    &lt;&lt;/if&gt;&gt;
+    &lt;&lt;if Flag(&#39;beer&#39;) is true &amp;&amp; Flag(&#39;beerTaken&#39;) is false&gt;&gt;
+        A beer sits on the bar, condesation building on its surface.
+    &lt;&lt;/if&gt;&gt;
+&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="52" name="mine-extras" tags="nobr" position="225,725" size="100,100">&lt;&lt;n&gt;&gt;
+    &lt;&lt;fx &#39;mineVisited&#39;&gt;&gt;
+        Jagged ridges spiral dowards into the eternal darkness. A vague sense inside of Him fantasizes about jumping in.
+    &lt;&lt;/fx&gt;&gt;
+&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="53" name="memory-center" tags="" position="350,725" size="100,100">&lt;&lt;n&gt;&gt;The Memory Center is a small, bare clinic. White paint peels from its walls. Behind a counter and a thin sheet of glass stands &lt;&lt;if Flag(&#39;knowTerayama&#39;)&gt;&gt;Terayama&lt;&lt;else&gt;&gt;someone in a flowing white coat&lt;&lt;/if&gt;&gt;.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
-	&lt;&lt;fx &#39;veraOpen&#39;&gt;&gt;&lt;&lt;td &#39;What are you getting at?&#39; vera-what-are-you-getting-at&gt;&gt;&lt;&lt;/fx&gt;&gt;
-    &lt;&lt;fx &#39;veraOpen&#39;&gt;&gt;&lt;&lt;ql &#39;&quot;I don\&#39;t think so.&quot; (Leave)&#39; trash-heap&gt;&gt;&lt;&lt;/fx&gt;&gt;
-	&lt;&lt;ql &#39;Return&#39; trash-heap&gt;&gt;
+    &lt;&lt;if Flag(&#39;knowTerayama&#39;)&gt;&gt;&lt;&lt;ql &#39;Talk to Terayama&#39; talk-terayama&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;ql &#39;Talk to person behind counter&#39; talk-person-behind-counter&gt;&gt;&lt;&lt;/if&gt;&gt;
+    &lt;&lt;ql &#39;Leave&#39; main-street&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="54" name="talk-terayama" tags="" position="475,725" size="100,100"></tw-passagedata><tw-passagedata pid="55" name="talk-person-behind-counter" tags="" position="600,725" size="100,100">$unknown Welcome to the Phar— err, Memory Center. Memory Center Pharmacy? No, I think it&#39;s just Memory Center now. Anyway, hello.
+
+&lt;&lt;te&gt;&gt;
+    &lt;&lt;td &#39;What is this place?&#39; what-is-memory-center true&gt;&gt;
+    &lt;&lt;ql &#39;(Return) &quot;Nevermind&quot;&#39; memory-center&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="56" name="what-is-memory-center" tags="" position="725,725" size="100,100">$unknown We provide services related to memory. We help you forget what you want to remember. We help you remember what you want to forget. Or, if it would make you happier, we can just give you memories wholecloth. Reinvent &quot;you&quot;, so to speak.
+
+&lt;&lt;te&gt;&gt;
 &lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="57" name="mine" tags="" position="850,725" size="100,100">&lt;&lt;n&gt;&gt;A hole the size of a house is situated by Main Street.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;p&gt;&gt;He approaches the lip of the colossal abyss.&lt;&lt;/p&gt;&gt;&lt;&lt;fe &#39;mineVisited&#39; &#39;mine&#39; &#39;false&#39;&gt;&gt;
@@ -2535,15 +2970,13 @@ $ciara We all have to take the plunge eventually. But don&#39;t be morbid. It is
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;ql &#39;Return&#39; mine&gt;&gt;
-&lt;&lt;/te&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="cant-jump" tags="" position="975,850" size="100,100">&lt;&lt;cont&gt;&gt;
-&lt;&lt;p&gt;&gt;He closes His eyes and aligns Himself along the precipice.&lt;&lt;/p&gt;&gt;
+&lt;&lt;/te&gt;&gt;&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="68" name="cant-jump" tags="" position="975,850" size="100,100">&lt;&lt;p&gt;&gt;He closes His eyes and aligns Himself along the precipice.&lt;&lt;/p&gt;&gt;
 
 &lt;&lt;n&gt;&gt;The feeling of wind blows over His body, though He is unable to determine where the wind is coming from.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;p&gt;&gt;He streches His arms outwards and prepares for the fall.&lt;&lt;/p&gt;&gt;
 
-&lt;&lt;c t8n&gt;&gt;
-
+&lt;&lt;continuelink &#39;Continue&#39;&gt;&gt;\
 &lt;&lt;n&gt;&gt;But He can&#39;t. Something tethers His feet to the ground. Indecision rages inside of Him; His will lacks.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;n&gt;&gt;Ciara&#39;s smile persists, cruelly in His eyes.&lt;&lt;/n&gt;&gt;
@@ -2552,8 +2985,7 @@ $ciara I thought as much.
 
 &lt;&lt;p&gt;&gt;She approaches Him in measured steps and wraps one arm around His waist.&lt;&lt;/p&gt;&gt;
 
-&lt;&lt;c t8n&gt;&gt;
-
+&lt;&lt;continuelink &#39;Continue&#39;&gt;&gt;\
 $ciara Follow me.
 
 &lt;&lt;n&gt;&gt;Her voice drawls like honey to His ears.&lt;&lt;/n&gt;&gt;
@@ -2562,8 +2994,7 @@ $ciara Follow me.
 
 $ciara Perhaps the slower way down is what you need.
 
-&lt;&lt;c t8n&gt;&gt;
-
+&lt;&lt;continuelink &#39;Continue&#39;&gt;&gt;\
 &lt;&lt;p&gt;&gt;He lowers Himself onto the ladder with Ciara&#39;s gentle help.&lt;&lt;/p&gt;&gt;
 
 &lt;&lt;n&gt;&gt;The cold metal sears into His hands. He looks up at her face one last time; Despite her actions, Ciara&#39;s expression is singularly of baleful spite.&lt;&lt;/n&gt;&gt;
@@ -2572,7 +3003,7 @@ $ciara Perhaps the slower way down is what you need.
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;ql &#39;Descend&#39; descend&gt;&gt;
-&lt;&lt;/te&gt;&gt;&lt;&lt;/cont&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="descend" tags="" position="1100,850" size="100,100">&lt;&lt;n&gt;&gt;Metallic clangs ring out each time one of His feet descend another rung of the ladder.&lt;&lt;/n&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="69" name="descend" tags="" position="1100,850" size="100,100">&lt;&lt;n&gt;&gt;Metallic clangs ring out each time one of His feet descend another rung of the ladder.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;n&gt;&gt;The clangs stop. His foot falls just too far. He realizes, all too late, that the ladder has run out of rungs. His other foot slips, a hand soon follows. His other hand, the silent, melancholy resistance, struggles to keep a grip. He proves too heavy.&lt;&lt;/n&gt;&gt;
 
@@ -2582,32 +3013,87 @@ $ciara Perhaps the slower way down is what you need.
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;ql &#39;-- end Act I --&#39; quote-2&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="docks-return" tags="" position="1225,850" size="100,100">He lumbers down the stairs back to the dock. Luna is leaning against a concrete wall.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="70" name="trash-heap" tags="" position="1225,850" size="100,100">&lt;&lt;p&gt;&gt;He stares at the insurmountably high pile of broken screens.&lt;&lt;/p&gt;&gt;
+
+&lt;&lt;n&gt;&gt;The withered structure of ancient computer monitors litter the sprawling mass, dotted intermittently with the remains of broken keyboards and similar accessories.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;te&gt;&gt;
-	&lt;&lt;ql &#39;Talk to Luna&#39; docks-luna&gt;&gt;
+	&lt;&lt;tc &#39;Lie down on screens&#39; lie-on-screens true&gt;&gt;
+    &lt;&lt;if Flag(&#39;knowVera&#39;)&gt;&gt;&lt;&lt;ql &#39;Talk to Vera&#39; vera-talk&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;ql &#39;Examine protruding mass of screens&#39; vera-meet&gt;&gt;&lt;&lt;/if&gt;&gt;
 	&lt;&lt;ql &#39;Leave&#39; main-street&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="docks-luna" tags="Luna" position="100,975" size="100,100">$luna You&#39;re back. No luck finding the girl?
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="71" name="lie-on-screens" tags="" position="100,975" size="100,100">&lt;&lt;p&gt;&gt;He carefully lowers Himself onto the broken mass.&lt;&lt;/p&gt;&gt;
+
+&lt;&lt;n&gt;&gt;The edges of various electronics jab into His back. He finds the discomfort quiets His disquiet.&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="vera-meet" tags="Vera" position="225,975" size="100,100">&lt;&lt;n&gt;&gt;He stumbles upon a makeshift hideout tucked into the back of the Trash Heap. A startled yelp rings out. A young woman dressed in rags presses herself against the back of the hideout.&lt;&lt;/n&gt;&gt;
+
+&lt;span class=&#39;char&#39;&gt;Woman&lt;/span&gt; What are you doing here?
 
 &lt;&lt;te&gt;&gt;
-	&lt;&lt;td &#39;What are you doing here?&#39; luna-why-are-you-here&gt;&gt;
-    &lt;&lt;td &#39;Remind me who you are again.&#39; luna-who-again&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="72" name="luna-why-are-you-here" tags="Luna" position="225,975" size="100,100">$luna I&#39;m just making sure you don&#39;t do anything brash. You asked me to. Though I doubt you remember, all things considered.
+	&lt;&lt;td &#39;Who are you?&#39; vera-who&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="vera-who" tags="Vera" position="350,975" size="100,100">&lt;&lt;n&gt;&gt;The woman hesitates before answering.&lt;&lt;/n&gt;&gt;
 
-&lt;&lt;return&gt;&gt;</tw-passagedata><tw-passagedata pid="73" name="luna-who-again" tags="Luna" position="350,975" size="100,100">$luna A source of trust, as far as you&#39;re concerned. A source of comfort. But not a source of answers. Are you going to get a move on or not?
+&lt;span class=&#39;char&#39;&gt;Woman&lt;/span&gt; Name&#39;s &lt;span id=&quot;add&quot;&gt;Vera&lt;/span&gt;. How did you find me?
 
-&lt;&lt;return&gt;&gt;
-\&lt;&lt;flag &#39;knowLuna2&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="quote-2" tags="" position="475,975" size="100,100">&lt;&lt;run memorize(&#39;Act II&#39;, true)&gt;&gt;&lt;&lt;timedinsert 1.4s&gt;&gt;//&quot;Detesting both, I choose neither;//&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;timedinsert 4.2s&gt;&gt;// but since I must on occasion either dream or act,//&lt;&lt;/timedinsert&gt;&gt; &lt;&lt;timedinsert 7s&gt;&gt;// I mix the two things together.&quot;//&lt;&lt;/timedinsert&gt;&gt;
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;I was just poking around.&#39; vera-poking-around&gt;&gt;
+	&lt;&lt;tc &#39;&quot;Have you seen this girl?&quot; (Present flyer)&#39; vera-flyer&gt;&gt;
+&lt;&lt;/te&gt;&gt;
+\&lt;&lt;met Vera&gt;&gt;&lt;&lt;flag &#39;knowVera&#39; u&gt;&gt;</tw-passagedata><tw-passagedata pid="74" name="vera-poking-around" tags="Vera" position="475,975" size="100,100">$vera I&#39;d appreciate it if you didn&#39;t poke around any further. I live here ya see. And I don&#39;t take kindly to people barging into my home. You following me?
 
-&lt;&lt;timedinsert 9.8s t8n&gt;&gt;-Fernando Pessoa&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;timedinsert 12.6s&gt;&gt;
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;ql &#39;(Nod and leave)&#39; vera-wait&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="vera-flyer" tags="Vera" position="600,975" size="100,100">&lt;&lt;n&gt;&gt;Vera tuts at His rudeness. Nonetheless, she peers at the flyer in His hand. A noise of familiarity emnantes from her closed mouth.&lt;&lt;/n&gt;&gt;
 
-[[Begin|gate2]]
-&lt;&lt;/timedinsert&gt;&gt;</tw-passagedata><tw-passagedata pid="75" name="gate-2" tags="Gate" position="600,975" size="100,100">&lt;&lt;nobr&gt;&gt;&lt;&lt;run Save.autosave.save(&#39;Act II: The Inner Ring&#39;)&gt;&gt;
+$vera I think I&#39;ve seen her before. Recently too.
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;Where?!&#39; vera-where&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="76" name="vera-where" tags="Vera" position="725,975" size="100,100">$vera I was digging around town and I ran into her. Can&#39;t recall how long ago that was though.
+
+&lt;&lt;n&gt;&gt;Her unclear answer proves annoying.&lt;&lt;/n&gt;&gt;
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;I see. Thanks anyway.&#39; vera-wait&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="vera-wait" tags="Vera" position="850,975" size="100,100">$vera Wait!
+
+&lt;&lt;p&gt;&gt;He pauses.&lt;&lt;/p&gt;&gt;
+
+$vera I&#39;ve got some things you might find interesting. If you&#39;ve got something I find interesting, maybe we can make some kind of trade.
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;td &#39;What are you getting at?&#39; vera-what-are-you-getting-at&gt;&gt;
+	&lt;&lt;ql &#39;&quot;I don\&#39;t think so.&quot; (Leave)&#39; trash-heap &gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="vera-what-are-you-getting-at" tags="Vera" position="975,975" size="100,100">$vera I&#39;ve got pills. Pretty popular with the folks around here. Interested?
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;ql &#39;&quot;I am.&quot;&#39; vera-pills&gt;&gt;
+	&lt;&lt;ql &#39;&quot;Not really&quot; (Leave)&#39; trash-heap &gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="79" name="vera-pills" tags="Vera" position="1100,975" size="100,100">$vera This is what I&#39;ve got.
+
+&lt;&lt;p&gt;&gt;She pulls a bag from the depths of her hideout and withdraws a number of pills.&lt;&lt;/p&gt;&gt;
+
+$vera I&#39;ll warn ya, these things are potent. I&#39;ll sell ya however many you want, but &lt;span class=&quot;important&quot;&gt;your body can&#39;t handle more than one&lt;/span&gt;. So be careful when you take one.
+
+&lt;&lt;include vera-store&gt;&gt;\
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;ql &#39;Return&#39; trash-heap&gt;&gt;
+&lt;&lt;/te&gt;&gt;
+\&lt;&lt;flag &#39;veraOpen&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="vera-talk" tags="Vera" position="1225,975" size="100,100">&lt;&lt;fc &#39;veraOpen&#39;&gt;&gt;\
+	&lt;&lt;include vera-store&gt;&gt;\
+\&lt;&lt;else&gt;&gt;\
+&lt;&lt;n&gt;&gt;Vera emerges from her hideaway as He approaches.&lt;&lt;/n&gt;&gt;
+
+$vera You&#39;re back. Like I said, I&#39;ve got some things you might find interesting. If you&#39;ve got something I find interesting, maybe we can make some kind of trade.&lt;&lt;/fc&gt;&gt;
+
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;fx &#39;veraOpen&#39;&gt;&gt;&lt;&lt;td &#39;What are you getting at?&#39; vera-what-are-you-getting-at&gt;&gt;&lt;&lt;/fx&gt;&gt;
+    &lt;&lt;fx &#39;veraOpen&#39;&gt;&gt;&lt;&lt;ql &#39;&quot;I don\&#39;t think so.&quot; (Leave)&#39; trash-heap&gt;&gt;&lt;&lt;/fx&gt;&gt;
+	&lt;&lt;ql &#39;Return&#39; trash-heap&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="gate-2" tags="Gate" position="100,1100" size="100,100">&lt;&lt;nobr&gt;&gt;&lt;&lt;run Save.autosave.save(&#39;Act II: The Inner Ring&#39;)&gt;&gt;
 &lt;&lt;script&gt;&gt;
 jQuery(&quot;.titlecard&quot;).fitText();
 &lt;&lt;/script&gt;&gt;&lt;&lt;/nobr&gt;&gt;\
 &lt;span class=&#39;titlecard&#39;&gt;THE&lt;br \&gt;INNER RING&lt;/span&gt;
-&lt;h2&gt;[[Continue|airship-wake]]&lt;/h2&gt;</tw-passagedata><tw-passagedata pid="76" name="airship-wake" tags="" position="725,975" size="100,100">&lt;&lt;p&gt;&gt;He stirs.&lt;&lt;/p&gt;&gt;
+&lt;h2&gt;[[Continue|airship-wake]]&lt;/h2&gt;</tw-passagedata><tw-passagedata pid="82" name="airship-wake" tags="" position="225,1100" size="100,100">&lt;&lt;p&gt;&gt;He stirs.&lt;&lt;/p&gt;&gt;
 
 &lt;&lt;continuelink &#39;Wake up&#39;&gt;&gt;\
 He turns over. A warmth swaddles Him. In the back of His mind, He realizes that He&#39;s in a bed.
@@ -2623,17 +3109,12 @@ A familiar voice surprises Him.
 
 &lt;&lt;te&gt;&gt;
     &lt;&lt;ql &#39;Find source of voice&#39; luna-react&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="77" name="quote-3" tags="" position="850,975" size="100,100">&lt;&lt;run memorize(&#39;Act III&#39;, true)&gt;&gt;&lt;&lt;timedinsert 1.4s&gt;&gt;//&quot;The bird fights its way out of the egg.//&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;timedinsert 4.2s&gt;&gt;// The egg is the world.//&lt;&lt;/timedinsert&gt;&gt; &lt;&lt;timedinsert 7s&gt;&gt;// Who would be born must first destroy a world.&quot;//&lt;&lt;/timedinsert&gt;&gt;
-
-&lt;&lt;timedinsert 9.8s t8n&gt;&gt;-Hermann Hesse&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;timedinsert 12.6s&gt;&gt;
-
-[[Begin|gate3-2]]
-&lt;&lt;/timedinsert&gt;&gt;</tw-passagedata><tw-passagedata pid="78" name="gate-3" tags="Gate" position="975,975" size="100,100">&lt;&lt;nobr&gt;&gt;&lt;&lt;run Save.autosave.save(&#39;Act III: The Lowest Point&#39;)&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="gate-3" tags="Gate" position="350,1100" size="100,100">&lt;&lt;nobr&gt;&gt;&lt;&lt;run Save.autosave.save(&#39;Act III: The Lowest Point&#39;)&gt;&gt;
 &lt;&lt;script&gt;&gt;
 jQuery(&quot;.titlecard&quot;).fitText();
 &lt;&lt;/script&gt;&gt;&lt;&lt;/nobr&gt;&gt;\
 &lt;span class=&#39;titlecard&#39;&gt;THE&lt;br \&gt;LOWEST POINT&lt;/span&gt;
-&lt;h2&gt;[[Continue|girl-meet]]&lt;/h2&gt;</tw-passagedata><tw-passagedata pid="79" name="girl-meet" tags="" position="1100,975" size="100,100">&lt;&lt;n&gt;&gt;Warm light envelops Him and solely Him. A spotlight.
+&lt;h2&gt;[[Continue|girl-meet]]&lt;/h2&gt;</tw-passagedata><tw-passagedata pid="84" name="girl-meet" tags="" position="475,1100" size="100,100">&lt;&lt;n&gt;&gt;Warm light envelops Him and solely Him. A spotlight.
 A second spotlight appears opposite Him. Beneath the light&#39;s gentle glow is the visage of a wide-eyed girl.&lt;&lt;/n&gt;&gt;
 
 $girl &lt;&lt;reviselink who &#39;Who are you?&#39;&gt;&gt;&lt;&lt;revision who&gt;&gt;&lt;&lt;becomes&gt;&gt;May I introduce myself?&lt;&lt;timedinsert 2.1s&gt;&gt;
@@ -2652,39 +3133,115 @@ $girl &lt;&lt;reviselink who &#39;Who are you?&#39;&gt;&gt;&lt;&lt;revision who&
 
 &lt;&lt;timedinsert 2.1s&gt;&gt;$girl &lt;&lt;p i&gt;&gt;begging&lt;&lt;/p&gt;&gt;&lt;&lt;shake&gt;&gt;&lt;&lt;reviselink please2 &#39;Please.&#39;&gt;&gt;&lt;&lt;/shake&gt;&gt;&lt;&lt;revision please2&gt;&gt;&lt;&lt;becomes&gt;&gt;May I introduce myself?&quot; she asks.
 
-&lt;&lt;timedinsert 3.5s&gt;&gt;[[&quot;Yes, you may.&quot;]]&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;/revision&gt;&gt;&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;/revision&gt;&gt;&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;/revision&gt;&gt;&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;/revision&gt;&gt;&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;/revision&gt;&gt;</tw-passagedata><tw-passagedata pid="80" name="quote-4" tags="" position="1225,975" size="100,100">&lt;&lt;run memorize(&#39;Act IV&#39;, true)&gt;&gt;&lt;&lt;timedinsert 1.4s&gt;&gt;//&quot;In an immediate way man is subject to his own king, who reigns within him;//&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;timedinsert 4.2s&gt;&gt;// but he is then subject in an intermediate way to the kingdom of the world. //&lt;&lt;/timedinsert&gt;&gt; &lt;&lt;timedinsert 7s&gt;&gt;//But when he does not yet have a king or when he has ceased to be, he is subject to the kingdom of the world immediately.&quot;//&lt;&lt;/timedinsert&gt;&gt;
+&lt;&lt;timedinsert 3.5s&gt;&gt;[[&quot;Yes, you may.&quot;]]&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;/revision&gt;&gt;&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;/revision&gt;&gt;&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;/revision&gt;&gt;&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;/revision&gt;&gt;&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;/revision&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="quote-4" tags="" position="600,1100" size="100,100">&lt;&lt;run memorize(&#39;Act IV&#39;, true)&gt;&gt;&lt;&lt;timedinsert 1.4s&gt;&gt;//&quot;In an immediate way man is subject to his own king, who reigns within him;//&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;timedinsert 4.2s&gt;&gt;// but he is then subject in an intermediate way to the kingdom of the world. //&lt;&lt;/timedinsert&gt;&gt; &lt;&lt;timedinsert 7s&gt;&gt;//But when he does not yet have a king or when he has ceased to be, he is subject to the kingdom of the world immediately.&quot;//&lt;&lt;/timedinsert&gt;&gt;
 
 &lt;&lt;timedinsert 9.8s t8n&gt;&gt;-Nicolaus Cusanus&lt;&lt;/timedinsert&gt;&gt;&lt;&lt;timedinsert 12.6s&gt;&gt;
 
 [[Begin|gate-4]]
-&lt;&lt;/timedinsert&gt;&gt;</tw-passagedata><tw-passagedata pid="81" name="main-street-intros" tags="nobr" position="100,1100" size="100,100">&lt;&lt;n&gt;&gt;
-&lt;&lt;switch previous()&gt;&gt;
-    &lt;&lt;case &#39;docks-return&#39; &#39;to-the-city&#39;&gt;&gt;
-        He walks the path away from the docks; they fall to darkness as a small town comes into view.
-    &lt;&lt;case &#39;bar&#39; &#39;at-bar&#39;&gt;&gt;
-        He emerges from the bar.
-    &lt;&lt;case &#39;trash-heap&#39;&gt;&gt;
-        He makes his way back to Main Street.
-    &lt;&lt;case &#39;mine&#39;&gt;&gt;
-        He returns to Main Street.
-    &lt;&lt;default&gt;&gt;
-        He stands in the middle of Main Street.
+&lt;&lt;/timedinsert&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="Chara Bar" tags="nobr" position="725,1100" size="100,100">&lt;&lt;ou &#39;charaBar&#39;&gt;&gt;
+&lt;&lt;switch $charaBar&gt;&gt;
+&lt;&lt;case &#39;meeting&#39;&gt;&gt;
+    &lt;&lt;include chara-meeting&gt;&gt;
+&lt;&lt;case &#39;luna-met-before&#39;&gt;&gt;
+    &lt;&lt;include chara-luna-met-before&gt;&gt;
+&lt;&lt;default&gt;&gt;
 &lt;&lt;/switch&gt;&gt;
-&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="82" name="bar-extras" tags="nobr" position="225,1100" size="100,100">&lt;&lt;n&gt;&gt;
-    &lt;&lt;if Flag(&#39;gin&#39;) is true &amp;&amp; Flag(&#39;ginDrunk&#39;) is false&gt;&gt;
-        A gin &amp; tonic sits on the bar, unattended. 
-    &lt;&lt;/if&gt;&gt;
-    &lt;&lt;if Flag(&#39;beer&#39;) is true &amp;&amp; Flag(&#39;beerTaken&#39;) is false&gt;&gt;
-        A beer sits on the bar, condesation building on its surface.
-    &lt;&lt;/if&gt;&gt;
-&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="83" name="mine-extras" tags="nobr" position="350,1100" size="100,100">&lt;&lt;n&gt;&gt;
-    &lt;&lt;fx &#39;mineVisited&#39;&gt;&gt;
-        Jagged ridges spiral dowards into the eternal darkness. A vague sense inside of Him fantasizes about jumping in.
-    &lt;&lt;/fx&gt;&gt;
-&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="84" name="Images" tags="" position="475,1100" size="100,100">&lt;&lt;preload
+&lt;&lt;/ou&gt;&gt;</tw-passagedata><tw-passagedata pid="87" name="chara-meeting" tags="" position="850,1100" size="100,100">$unknown You&#39;re not planning on leaving me here, are you?
+
+&lt;&lt;n&gt;&gt;Chara, a tattered black umbrella, hangs from a small hook beside the maze of yarn.&lt;&lt;/n&gt;&gt;
+
+&lt;&lt;linkreplace &quot;Take Chara&quot; t8n&gt;&gt;\
+&lt;&lt;p&gt;&gt;He grabs the &lt;span class=&#39;add&#39;&gt;umbrella&lt;/span&gt;&#39;s handle and slings it over His shoulder.&lt;&lt;/p&gt;&gt;
+
+$chara Thank you. I&#39;m not trying to gather any more dust. Now, shall we?\
+&lt;&lt;add &#39;Chara&#39;&gt;&gt;&lt;&lt;update&gt;&gt;
+&lt;&lt;/linkreplace&gt;&gt;</tw-passagedata><tw-passagedata pid="88" name="chara-luna-met-before" tags="" position="975,1100" size="100,100">$chara She says we but she means you. I&#39;ve never seen this girl before.
+
+&lt;&lt;ce&gt;&gt;
+    &lt;&lt;cd &#39;Should I test?&#39; chara-should-i-test&gt;&gt;
+&lt;&lt;/ce&gt;&gt;</tw-passagedata><tw-passagedata pid="89" name="chara-thinking" tags="" position="1100,1100" size="100,100">$chara We haven&#39;t thought about her for that long.</tw-passagedata><tw-passagedata pid="90" name="violence-test" tags="" position="1225,1100" size="100,100">&lt;&lt;nobr&gt;&gt;
+	&lt;&lt;set _vioTest to scUtils.pickUnique([
+	&#39;violence&#39;,
+	]);&gt;&gt;
+&lt;&lt;switch _vioTest&gt;&gt;
+	&lt;&lt;case &#39;violence&#39;&gt;&gt;
+		&lt;&lt;include video-violence&gt;&gt;
+&lt;&lt;/switch&gt;&gt;
+&lt;&lt;css &#39;#passagesContainer&#39; &#39;display&#39; &#39;none&#39;&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="91" name="video-violence" tags="" position="100,1225" size="100,100">&lt;&lt;append &#39;#videoPassage&#39;&gt;&gt;
+&lt;html&gt;
+ &lt;video autoplay muted&gt;
+  &lt;source src=&quot;videos/violence-without-a-cause.mp4&quot; type=&quot;video/mp4&quot;&gt;
+Your browser does not support the video tag.
+&lt;/video&gt; 
+&lt;/html&gt;
+&lt;&lt;/append&gt;&gt;</tw-passagedata><tw-passagedata pid="92" name="to-the-void" tags="Void" position="225,1225" size="100,100">&lt;&lt;set $inVoid = true&gt;&gt;&lt;&lt;audio &quot;void&quot; volume 0.1 play&gt;&gt;&lt;&lt;n&gt;&gt;He closes his eyes. When He opens them, He is back in [[the Void|the-void]].&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="93" name="leave-the-void" tags="Void" position="350,1225" size="100,100">&lt;&lt;n&gt;&gt;He closes his eyes once again. When he opens them, he finds &lt;&lt;link &quot;the Void is gone&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;&lt;/n&gt;&gt;
+&lt;&lt;set $inVoid = false&gt;&gt;</tw-passagedata><tw-passagedata pid="94" name="the-void" tags="Void" position="475,1225" size="100,100">&lt;&lt;intros void&gt;&gt;\
+&lt;&lt;te&gt;&gt;
+	&lt;&lt;ql &#39;Examine web of yarn&#39; examine-web-of-yarn&gt;&gt;
+    &lt;&lt;ql &#39;Examine trash&#39; examine-trash&gt;&gt;
+    &lt;&lt;ql &#39;Examine the vacant desk&#39; examine-desk&gt;&gt;
+    &lt;&lt;ql &#39;Examine the kitchen&#39; examine-kitchen&gt;&gt;
+    &lt;&lt;ql &#39;Examine the bedroom&#39; examine-bedroom&gt;&gt;
+	&lt;&lt;ql &#39;Leave the Void&#39; leave-the-void&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="95" name="void-intros" tags="nobr" position="600,1225" size="100,100">&lt;&lt;n&gt;&gt;
+&lt;&lt;switch $voidLevel&gt;&gt;
+    &lt;&lt;case 1&gt;&gt;
+        The Void&#39;s only light illuminates the maze of red yarn. A pin with the tiniest bit of torn paper is at its center.
+    &lt;&lt;case 2&gt;&gt;
+        The Void&#39;s spotlights split their attention between the maze of red yarn and a vacant office desk.
+    &lt;&lt;case 3&gt;&gt;
+        The Void&#39;s spotlights shine brightly on the maze of red yarn, a vacant office desk, a kitchen, and a makeshift bedroom.
+&lt;&lt;/switch&gt;&gt;
+&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="96" name="examine-web-of-yarn" tags="Void" position="725,1225" size="100,100">Red yarn crisscrosses the entire wall. He has already been at this investigation for some time.
+
+&lt;&lt;te&gt;&gt;
+    &lt;&lt;tc &#39;Examine torn paper&#39; examine-torn-paper&gt;&gt;
+    &lt;&lt;tc &#39;Examine photograph labeled &quot;Her Apartment&quot;&#39; examine-apartment-photograph&gt;&gt;
+    &lt;&lt;tc &#39;Examine photograph labeled &quot;Her&quot;&#39; examine-her-photograph&gt;&gt;
+    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="97" name="examine-trash" tags="Void" position="850,1225" size="100,100">&lt;&lt;if Flag(&#39;ballTrash&#39;)&gt;&gt;\
+    &lt;&lt;n&gt;&gt;The rubber ball lies alone at the bottom of the trash can.&lt;&lt;/n&gt;&gt;\
+&lt;&lt;else&gt;&gt;\
+    &lt;&lt;n&gt;&gt;The trash can is empty.&lt;&lt;/n&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;te&gt;&gt;
+    &lt;&lt;if Flag(&#39;ballTrash&#39;)&gt;&gt;&lt;&lt;tc &#39;Take Ball&#39; ball-pocket true&gt;&gt;&lt;&lt;/if&gt;&gt;
+    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="98" name="examine-desk" tags="Void" position="975,1225" size="100,100">&lt;&lt;n&gt;&gt;He stares at the empty workstation. The unvarnished wooden desktop reflects nothing back at Him.&lt;&lt;/n&gt;&gt;
+
+&lt;&lt;te&gt;&gt;
+    &lt;&lt;tc &#39;Open drawer&#39; open-desk-drawer&gt;&gt;
+    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="99" name="open-desk-drawer" tags="Void" position="1100,1225" size="100,100">&lt;&lt;if $inventory.has(&#39;Pack of Cigarettes&#39;) is false&gt;&gt;\
+    &lt;&lt;p&gt;&gt;He opens the desk drawer.&lt;&lt;/p&gt;&gt;
+
+    &lt;&lt;n&gt;&gt;There&#39;s a pack of cigarettes inside. The box is slightly crumpled; the faded logo reads &quot;Jamie Lee.&quot;&lt;&lt;/n&gt;&gt;\
+&lt;&lt;else&gt;&gt;\
+    &lt;&lt;n&gt;&gt;The drawer is empty.&lt;&lt;/n&gt;&gt;\
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;te&gt;&gt;
+    &lt;&lt;tx &#39;Pack of Cigarettes&#39; &#39;Take cigarettes&#39; take-cigarettes true&gt;&gt;
+    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="take-cigarettes" tags="Void" position="1225,1225" size="100,100">&lt;&lt;p&gt;&gt;He takes the &lt;span id=&quot;add&quot;&gt;cigarettes&lt;/span&gt;.&lt;&lt;/p&gt;&gt;
+&lt;&lt;add Cigarettes&gt;&gt;&lt;&lt;flag &#39;cigTaken&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="examine-kitchen" tags="Void" position="100,1350" size="100,100">He walks into the cramped kitchen space, its counters littered with various cooking tools.
+
+&lt;&lt;te&gt;&gt;
+    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="examine-bedroom" tags="Void" position="225,1350" size="100,100">He enters the bedroom. It&#39;s sparse, save for some &quot;questionable&quot; tools strapped to the side of a queen-sized bed.
+&lt;&lt;te&gt;&gt;
+    &lt;&lt;tx &#39;Phone&#39; &#39;Check beneath bed&#39; check-under-bed&gt;&gt;
+    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="103" name="check-under-bed" tags="Void" position="350,1350" size="100,100">His crouches down and reaches His hand beneath the bed. He fumbles around for several seconds before His fingers find a sleek yet broken &lt;span id=&quot;add&quot;&gt;smartphone&lt;/span&gt;.
+
+&lt;&lt;te&gt;&gt;
+    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
+&lt;&lt;/te&gt;&gt;&lt;&lt;add Phone&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="Images" tags="" position="475,1350" size="100,100">&lt;&lt;preload
     &#39;img/blank.png&#39;
     &#39;img/chara.png&#39;
-    &#39;img/luna.png&#39;
+    &#39;img/psd/luna-pxl.png&#39;
     &#39;img/iliza.png&#39;
     &#39;img/ciara.png&#39;
     &#39;img/vera.png&#39;
@@ -2693,12 +3250,14 @@ $girl &lt;&lt;reviselink who &#39;Who are you?&#39;&gt;&gt;&lt;&lt;revision who&
 &lt;&lt;set $gif      = &#39;[img[img/blank.png]]&#39;&gt;&gt;
 &lt;&lt;set $imgInv   = &#39;[img[img/inventory.png]]&#39;&gt;&gt;
 &lt;&lt;set $imgChara = &#39;[img[img/chara.png]]&#39;&gt;&gt;
-&lt;&lt;set $imgLuna  = &#39;[img[img/luna.png]]&#39;&gt;&gt;
+&lt;&lt;set $imgLuna  = &#39;[img[img/psd/luna-pxl.png]]&#39;&gt;&gt;
 &lt;&lt;set $imgIliza = &#39;[img[img/iliza.png]]&#39;&gt;&gt;
 &lt;&lt;set $imgCiara = &#39;[img[img/ciara.png]]&#39;&gt;&gt;
 &lt;&lt;set $imgVera  = &#39;[img[img/vera.png]]&#39;&gt;&gt;
-&lt;&lt;set $imgAlice = &#39;[img[img/alice.png]]&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="85" name="Items" tags="nobr" position="600,1100" size="100,100">&lt;&lt;item &quot;Ball&quot;&gt;&gt;&lt;&lt;unique&gt;&gt;&lt;&lt;/item&gt;&gt;
+&lt;&lt;set $imgAlice = &#39;[img[img/alice.png]]&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="Items" tags="nobr" position="600,1350" size="100,100">&lt;&lt;item &quot;Ball&quot;&gt;&gt;&lt;&lt;unique&gt;&gt;&lt;&lt;/item&gt;&gt;
 &lt;&lt;item &quot;Beer&quot;&gt;&gt;&lt;&lt;unique&gt;&gt;&lt;&lt;/item&gt;&gt;
+&lt;&lt;item &quot;Broken Drill&quot;&gt;&gt;&lt;&lt;unique&gt;&gt;&lt;&lt;/item&gt;&gt;
+&lt;&lt;item &quot;Chara&quot;&gt;&gt;&lt;&lt;unique&gt;&gt;&lt;&lt;/item&gt;&gt;
 &lt;&lt;item &quot;Pack of Cigarettes&quot;&gt;&gt;&lt;&lt;unique&gt;&gt;&lt;&lt;/item&gt;&gt;
 &lt;&lt;item &quot;Phone&quot;&gt;&gt;&lt;&lt;unique&gt;&gt;&lt;&lt;/item&gt;&gt;
 &lt;&lt;item &quot;Dreams&quot;&gt;&gt;&lt;&lt;unique&gt;&gt;&lt;&lt;/item&gt;&gt;
@@ -2725,7 +3284,7 @@ $girl &lt;&lt;reviselink who &#39;Who are you?&#39;&gt;&gt;&lt;&lt;revision who&
 	&lt;&lt;flag &#39;drugTaken&#39;&gt;&gt;&lt;&lt;flag &#39;drug&#39; &#39;Jealousy&#39;&gt;&gt;
 	&lt;&lt;popup take-jealousy &#39;Inventory&#39;&gt;&gt;
   	&lt;&lt;unique&gt;&gt;
-&lt;&lt;/consumable&gt;&gt;</tw-passagedata><tw-passagedata pid="86" name="Ball" tags="Item" position="725,1100" size="100,100">&lt;span class=&#39;description&#39;&gt;A dark-green rubber ball. It&#39;s smooth to the touch.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="87" name="Beer" tags="Item" position="850,1100" size="100,100">&lt;span class=&#39;description&#39;&gt;A cold bottle of beer. The label is faded and indistinct.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="88" name="Dreams" tags="Item" position="975,1100" size="100,100">&lt;span class=&#39;description&#39;&gt;A thin, white strand of ethereal energy. It is slick to the touch.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="89" name="Flyer for Missing Girl" tags="Item" position="1100,1100" size="100,100">&lt;span style=&quot;font-size:28px;&quot;&gt;&lt;b&gt;Missing&lt;/b&gt;
+&lt;&lt;/consumable&gt;&gt;</tw-passagedata><tw-passagedata pid="106" name="Ball" tags="Item" position="725,1350" size="100,100">&lt;span class=&#39;description&#39;&gt;A dark-green rubber ball. It&#39;s smooth to the touch.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="107" name="Beer" tags="Item" position="850,1350" size="100,100">&lt;span class=&#39;description&#39;&gt;A cold bottle of beer. The label is faded and indistinct.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="108" name="Broken Drill" tags="Item" position="975,1350" size="100,100">&lt;span class=&#39;description&#39;&gt;The remnants of a drill that was once used to mine dreams.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="109" name="Chara" tags="Item" position="1100,1350" size="100,100">&lt;span class=&#39;description&#39;&gt;A tattered black umbrella. The gaping holes have rendered it incapable of an umbrella&#39;s typical use.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="110" name="Dreams" tags="Item" position="1225,1350" size="100,100">&lt;span class=&#39;description&#39;&gt;A thin, white strand of ethereal energy. It is slick to the touch.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="111" name="Flyer for Missing Girl" tags="Item" position="100,1475" size="100,100">&lt;span style=&quot;font-size:28px;&quot;&gt;&lt;b&gt;Missing&lt;/b&gt;
 &lt;b&gt;HAVE YOU SEEN HER?&lt;/b&gt;&lt;/span&gt;
 
 Name: K████ ████
@@ -2736,27 +3295,27 @@ Height: █&#39;█&quot;
 Hair: ████ █████
 Eyes: █████
 
-Last seen: October 4, 2███</tw-passagedata><tw-passagedata pid="90" name="Pack of Cigarettes" tags="Item" position="1225,1100" size="100,100">&lt;span class=&#39;description&#39;&gt;A pack of cigarettes. The label reads &quot;Jamie Lee.&quot;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="91" name="Phone" tags="Item" position="100,1225" size="100,100">&lt;span class=&#39;description&#39;&gt;A broken smartphone. A spiderweb of cracks cover its screen.&lt;/span&gt;
+Last seen: October 4, 2███</tw-passagedata><tw-passagedata pid="112" name="Pack of Cigarettes" tags="Item" position="225,1475" size="100,100">&lt;span class=&#39;description&#39;&gt;A pack of cigarettes. The label reads &quot;Jamie Lee.&quot;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="113" name="Phone" tags="Item" position="350,1475" size="100,100">&lt;span class=&#39;description&#39;&gt;A broken smartphone. A spiderweb of cracks cover its screen.&lt;/span&gt;
 
 
-/* Drugs */</tw-passagedata><tw-passagedata pid="92" name="Joy" tags="Item Menu" position="225,1225" size="100,100">&lt;span class=&#39;description&#39;&gt;A bifurcated white pill. Vera describes it as &quot;elation incarnate.&quot;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="93" name="Isolation" tags="Item Menu" position="350,1225" size="100,100">&lt;span class=&#39;description&#39;&gt;A small blue pill. Vera describes it as a &quot;hug from a close friend.&quot;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="94" name="Madness" tags="Item Menu" position="475,1225" size="100,100">&lt;span class=&#39;description&#39;&gt;A large red pill. Vera says it makes one feel &quot;wonky.&quot;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="95" name="Jealousy" tags="Item Menu" position="600,1225" size="100,100">&lt;span class=&#39;description&#39;&gt;An elliptical green pill. Vera says the high is &quot;like nothing else.&quot;&lt;/span&gt;
+/* Drugs */</tw-passagedata><tw-passagedata pid="114" name="Joy" tags="Item Menu" position="475,1475" size="100,100">&lt;span class=&#39;description&#39;&gt;A bifurcated white pill. Vera describes it as &quot;elation incarnate.&quot;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="115" name="Isolation" tags="Item Menu" position="600,1475" size="100,100">&lt;span class=&#39;description&#39;&gt;A small blue pill. Vera describes it as a &quot;hug from a close friend.&quot;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="116" name="Madness" tags="Item Menu" position="725,1475" size="100,100">&lt;span class=&#39;description&#39;&gt;A large red pill. Vera says it makes one feel &quot;wonky.&quot;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="117" name="Jealousy" tags="Item Menu" position="850,1475" size="100,100">&lt;span class=&#39;description&#39;&gt;An elliptical green pill. Vera says the high is &quot;like nothing else.&quot;&lt;/span&gt;
 
 
-/* Essence */</tw-passagedata><tw-passagedata pid="96" name="Iliza&#39;s Essence" tags="Item" position="725,1225" size="100,100">&lt;span class=&#39;description&#39;&gt;A vibrant purple light. It is the human essence of Iliza.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="97" name="Luna&#39;s Essence" tags="Item" position="850,1225" size="100,100">&lt;span class=&#39;description&#39;&gt;A pale orange light. It is the human essence of Luna.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="98" name="Vera&#39;s Essence" tags="Item" position="975,1225" size="100,100">&lt;span class=&#39;description&#39;&gt;A bright green light. It is the human essence of Vera.&lt;/span&gt;
+/* Essence */</tw-passagedata><tw-passagedata pid="118" name="Iliza&#39;s Essence" tags="Item" position="975,1475" size="100,100">&lt;span class=&#39;description&#39;&gt;A vibrant purple light. It is the human essence of Iliza.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="119" name="Luna&#39;s Essence" tags="Item" position="1100,1475" size="100,100">&lt;span class=&#39;description&#39;&gt;A pale orange light. It is the human essence of Luna.&lt;/span&gt;</tw-passagedata><tw-passagedata pid="120" name="Vera&#39;s Essence" tags="Item" position="1225,1475" size="100,100">&lt;span class=&#39;description&#39;&gt;A bright green light. It is the human essence of Vera.&lt;/span&gt;
 
 
-/* Actions */</tw-passagedata><tw-passagedata pid="99" name="take-joy" tags="Menu" position="1100,1225" size="100,100">&lt;span class=&#39;description&#39;&gt;He throws His head back and downs the pill. It feels smooth going down His throat. A faint smile creeps onto His face.&lt;/span&gt;
+/* Actions */</tw-passagedata><tw-passagedata pid="121" name="take-joy" tags="Menu" position="100,1600" size="100,100">&lt;span class=&#39;description&#39;&gt;He throws His head back and downs the pill. It feels smooth going down His throat. A faint smile creeps onto His face.&lt;/span&gt;
 
-&lt;&lt;link &#39;Back&#39;&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="100" name="take-isolation" tags="Menu" position="1225,1225" size="100,100">&lt;span class=&#39;description&#39;&gt;He throws His head back and downs the pill. He barely notices it sliding down His throat. He begins to feel as if the Void is present. In truth, it isn&#39;t.&lt;/span&gt;
+&lt;&lt;link &#39;Back&#39;&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="122" name="take-isolation" tags="Menu" position="225,1600" size="100,100">&lt;span class=&#39;description&#39;&gt;He throws His head back and downs the pill. He barely notices it sliding down His throat. He begins to feel as if the Void is present. In truth, it isn&#39;t.&lt;/span&gt;
 
-&lt;&lt;link &#39;Back&#39;&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="101" name="take-madness" tags="Menu" position="100,1350" size="100,100">&lt;span class=&#39;description&#39;&gt;He throws His head back and downs the pill. It nearly lodges itself in His throat as it goes down. A feeling takes root in the back of His mind. He can&#39;t tell if it&#39;s rage or insanity.&lt;/span&gt;
+&lt;&lt;link &#39;Back&#39;&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="take-madness" tags="Menu" position="350,1600" size="100,100">&lt;span class=&#39;description&#39;&gt;He throws His head back and downs the pill. It nearly lodges itself in His throat as it goes down. A feeling takes root in the back of His mind. He can&#39;t tell if it&#39;s rage or insanity.&lt;/span&gt;
 
-&lt;&lt;link &#39;Back&#39;&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="102" name="take-jealousy" tags="Menu" position="225,1350" size="100,100">&lt;span class=&#39;description&#39;&gt;He throws His head back and downs the pill. It falls down His throat with familiar ease. A faint sense of irritation takes root in the back of His mind.&lt;/span&gt;
+&lt;&lt;link &#39;Back&#39;&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="124" name="take-jealousy" tags="Menu" position="475,1600" size="100,100">&lt;span class=&#39;description&#39;&gt;He throws His head back and downs the pill. It falls down His throat with familiar ease. A faint sense of irritation takes root in the back of His mind.&lt;/span&gt;
 
 &lt;&lt;link &#39;Back&#39;&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;
 
 
-/* Store */</tw-passagedata><tw-passagedata pid="103" name="vera-store" tags="Vera" position="350,1350" size="100,100">&lt;&lt;if Flag(&#39;boughtJoy&#39;) and Flag(&#39;boughtMadness&#39;) and Flag(&#39;boughtIsolation&#39;) and Flag(&#39;boughtJealousy&#39;)&gt;&gt;&quot;I already gave you everything I got. Sorry bud,&quot; Vera says.&lt;&lt;/if&gt;&gt;\
+/* Store */</tw-passagedata><tw-passagedata pid="125" name="vera-store" tags="Vera" position="600,1600" size="100,100">&lt;&lt;if Flag(&#39;boughtJoy&#39;) and Flag(&#39;boughtMadness&#39;) and Flag(&#39;boughtIsolation&#39;) and Flag(&#39;boughtJealousy&#39;)&gt;&gt;$vera I already gave you everything I got. Sorry bud.&lt;&lt;else&gt;&gt;$vera Got something for me?&lt;&lt;/if&gt;&gt;\
 \
 &lt;&lt;te&gt;&gt;&lt;&lt;liveblock&gt;&gt;
 	&lt;&lt;if Flag(&#39;knowJoy&#39;) is false&gt;&gt;\
@@ -2787,16 +3346,16 @@ Last seen: October 4, 2███</tw-passagedata><tw-passagedata pid="90" name="
     		&lt;&lt;td &#39;I need some Jealousy.&#39; vera-store-jealousy&gt;&gt;
         &lt;&lt;/if&gt;&gt;\
     &lt;&lt;/if&gt;&gt;\
-&lt;&lt;/liveblock&gt;&gt;&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="104" name="vera-store-isolation" tags="Vera" position="475,1350" size="100,100">$vera We all do from time to time. I think I get too much of it out here. Not that I can complain. I&#39;m what they call an introvert; I thrive off of being alone. Being around y&#39;all for too long tires me out. That&#39;s why I can&#39;t go to bars, ya know. And I&#39;ve really been craving a drink. Think you can get me one?
+&lt;&lt;/liveblock&gt;&gt;&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="vera-store-isolation" tags="Vera" position="725,1600" size="100,100">$vera We all do from time to time. I think I get too much of it out here. Not that I can complain. I&#39;m what they call an introvert; I thrive off of being alone. Being around y&#39;all for too long tires me out. That&#39;s why I can&#39;t go to bars, ya know. And I&#39;ve really been craving a drink. Think you can get me one?
 
 &lt;&lt;te&gt;&gt;
-	&lt;&lt;want &#39;Beer&#39; vera-store-joy&gt;&gt;
+	&lt;&lt;want &#39;Beer&#39; vera-store-isolation&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="105" name="vera-store-isolation-fail" tags="Vera Menu" position="600,1350" size="100,100">$vera Sorry, but I don&#39;t think that&#39;ll be much help.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="127" name="vera-store-isolation-fail" tags="Vera Menu" position="850,1600" size="100,100">$vera Sorry, but I don&#39;t think that&#39;ll be much help.
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="106" name="vera-store-isolation-get" tags="Vera Menu" position="725,1350" size="100,100">$vera Thanks.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="128" name="vera-store-isolation-get" tags="Vera Menu" position="975,1600" size="100,100">$vera Thanks.
 
 &lt;&lt;n&gt;&gt;She takes the beer from Him and pulls a bar key from her bag. She pops open the bottle and downs the beer in a single swig.&lt;&lt;/n&gt;&gt;
 
@@ -2805,18 +3364,17 @@ $vera Refreshing. Anyway, here&#39;s some &lt;span id=&quot;add&quot;&gt;Isolati
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/te&gt;&gt;
-\&lt;&lt;add Isolation&gt;&gt;&lt;&lt;rem Beer&gt;&gt;&lt;&lt;flag &#39;boughtIsolation&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="107" name="vera-store-jealousy" tags="Vera" position="850,1350" size="100,100">$vera &lt;i&gt;Need&lt;/i&gt; is an interesting word to use. Let me tell ya a story.
-
+\&lt;&lt;add Isolation&gt;&gt;&lt;&lt;rem Beer&gt;&gt;&lt;&lt;flag &#39;boughtIsolation&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="129" name="vera-store-jealousy" tags="Vera" position="1100,1600" size="100,100">$vera &lt;i&gt;Need&lt;/i&gt; is an interesting word to use. Let me tell ya a story.
 A long time ago, I was dating someone. They could shift into this amorphous smog and they&#39;d fill my lungs. I loved the feeling of sucking them down, feeling their overwhelming presence dry out my throat. Weird, huh? Anyway, I don&#39;t talk to them anymore. But I&#39;d love it if I could feel that sensation again. Think you could help me with that?
 
 &lt;&lt;te&gt;&gt;
-	&lt;&lt;want &#39;Pack of Cigarettes&#39; vera-store-joy&gt;&gt;
+	&lt;&lt;want &#39;Pack of Cigarettes&#39; vera-store-jealousy&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="108" name="vera-store-jealousy-fail" tags="Vera Menu" position="975,1350" size="100,100">$vera Sorry, but I don&#39;t think that&#39;ll be much help.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="130" name="vera-store-jealousy-fail" tags="Vera Menu" position="1225,1600" size="100,100">$vera Sorry, but I don&#39;t think that&#39;ll be much help.
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="109" name="vera-store-jealousy-get" tags="Vera Menu" position="1100,1350" size="100,100">$vera Holy cow, I never would&#39;ve guessed.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="131" name="vera-store-jealousy-get" tags="Vera Menu" position="100,1725" size="100,100">$vera Holy cow, I never would&#39;ve guessed.
 
 &lt;&lt;n&gt;&gt;She pops open the box of cigarettes and pulls one out. She takes a lighter from her bag and lights the cigarette. She takes a deep pull, letting the smoke slowly waft out from her mouth.&lt;&lt;/n&gt;&gt;
 
@@ -2825,16 +3383,16 @@ $vera That takes me back. Big time. Anyway, thank you. Here&#39;s some &lt;span 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/te&gt;&gt;
-\&lt;&lt;add Jealousy&gt;&gt;&lt;&lt;rem &#39;Pack of Cigarettes&#39;&gt;&gt;&lt;&lt;flag &#39;boughtJealousy&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="110" name="vera-store-joy" tags="Vera" position="1225,1350" size="100,100">&lt;span class=&#39;typed&#39;&gt;$vera Ain&#39;t that a rarity. Tell you what. My cat&#39;s been needing a new toy. Chewed the last one to bits and now she won&#39;t play with me. If you&#39;ve got something that can help with that, I&#39;ll get you some Joy.&lt;/span&gt;
+\&lt;&lt;add Jealousy&gt;&gt;&lt;&lt;rem &#39;Pack of Cigarettes&#39;&gt;&gt;&lt;&lt;flag &#39;boughtJealousy&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="132" name="vera-store-joy" tags="Vera" position="225,1725" size="100,100">&lt;span class=&#39;typed&#39;&gt;$vera Ain&#39;t that a rarity. Tell you what. My cat&#39;s been needing a new toy. Chewed the last one to bits and now she won&#39;t play with me. If you&#39;ve got something that can help with that, I&#39;ll get you some Joy.&lt;/span&gt;
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;want &#39;Ball&#39; vera-store-joy&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="111" name="vera-store-joy-fail" tags="Vera Menu" position="100,1475" size="100,100">$vera Sorry, but I don&#39;t think that&#39;ll be much help.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="133" name="vera-store-joy-fail" tags="Vera Menu" position="350,1725" size="100,100">$vera Sorry, but I don&#39;t think that&#39;ll be much help.
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="112" name="vera-store-joy-get" tags="Vera Menu" position="225,1475" size="100,100">$vera This might work!
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="134" name="vera-store-joy-get" tags="Vera Menu" position="475,1725" size="100,100">$vera This might work!
 
 &lt;&lt;n&gt;&gt;She takes the ball from Him and lightly tosses it in the air. Satisfied with its quality, Vera tucks the ball away in her bag.&lt;&lt;/n&gt;&gt;
 
@@ -2843,16 +3401,16 @@ $vera Some &lt;span id=&quot;add&quot;&gt;Joy&lt;/span&gt; for ya.
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/te&gt;&gt;
-\&lt;&lt;add Joy&gt;&gt;&lt;&lt;rem Ball&gt;&gt;&lt;&lt;flag &#39;boughtJoy&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="113" name="vera-store-madness" tags="Vera" position="350,1475" size="100,100">$vera If you ask me, you&#39;ve got a little bit of that swimming in your head already. Anyway, I&#39;m a bit of a screens type of girl. You mighta gleamed that. But all the screens I&#39;ve seen recently are pretty big and I&#39;m hunting for something small. Pocket-sized you know? Got something like that?
+\&lt;&lt;add Joy&gt;&gt;&lt;&lt;rem Ball&gt;&gt;&lt;&lt;flag &#39;boughtJoy&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="135" name="vera-store-madness" tags="Vera" position="600,1725" size="100,100">$vera If you ask me, you&#39;ve got a little bit of that swimming in your head already. Anyway, I&#39;m a bit of a screens type of girl. You mighta gleamed that. But all the screens I&#39;ve seen recently are pretty big and I&#39;m hunting for something small. Pocket-sized you know? Got something like that?
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;want &#39;Phone&#39; vera-store-madness&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="114" name="vera-store-madness-fail" tags="Vera Menu" position="475,1475" size="100,100">$vera Sorry, but I don&#39;t think that&#39;ll be much help.
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="136" name="vera-store-madness-fail" tags="Vera Menu" position="725,1725" size="100,100">$vera Sorry, but I don&#39;t think that&#39;ll be much help.
 
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="115" name="vera-store-madness-get" tags="Vera Menu" position="600,1475" size="100,100">$vera That&#39;s the ticket!
+&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="137" name="vera-store-madness-get" tags="Vera Menu" position="850,1725" size="100,100">$vera That&#39;s the ticket!
 
 &lt;&lt;n&gt;&gt;Vera takes the phone and slides her finger all across the screen, feelings its cracks and contours.&lt;&lt;/n&gt;&gt;
 
@@ -2861,23 +3419,23 @@ $vera This will do nicely. And here&#39;s your &lt;span id=&quot;add&quot;&gt;Ma
 &lt;&lt;te&gt;&gt;
 	&lt;&lt;link &quot;Return&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/te&gt;&gt;
-\&lt;&lt;add Madness&gt;&gt;&lt;&lt;rem Phone&gt;&gt;&lt;&lt;flag &#39;boughtMadness&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="116" name="Ask about the blue pill" tags="Vera" position="725,1475" size="100,100">&lt;&lt;p&gt;&gt;He asks about the blue pill.&lt;&lt;/p&gt;&gt;
+\&lt;&lt;add Madness&gt;&gt;&lt;&lt;rem Phone&gt;&gt;&lt;&lt;flag &#39;boughtMadness&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="138" name="Ask about the blue pill" tags="Vera" position="975,1725" size="100,100">&lt;&lt;p&gt;&gt;He asks about the blue pill.&lt;&lt;/p&gt;&gt;
 
 $vera I call that one Isolation. The high on that one is warm and cuddly. Like a hug from a close friend.
 
-\&lt;&lt;flag &#39;knowIsolation&#39;&gt;&gt;&lt;&lt;update&gt;&gt;</tw-passagedata><tw-passagedata pid="117" name="Ask about the green pill" tags="Vera" position="850,1475" size="100,100">&lt;&lt;p&gt;&gt;He asks about the green pill.&lt;&lt;/p&gt;&gt;
+\&lt;&lt;flag &#39;knowIsolation&#39;&gt;&gt;&lt;&lt;update&gt;&gt;</tw-passagedata><tw-passagedata pid="139" name="Ask about the green pill" tags="Vera" position="1100,1725" size="100,100">&lt;&lt;p&gt;&gt;He asks about the green pill.&lt;&lt;/p&gt;&gt;
 
 $vera Classic Jealousy. The high is like nothing else. Almost overwhelming if I&#39;m being honest with you.
 
-\&lt;&lt;flag &#39;knowJealousy&#39;&gt;&gt;&lt;&lt;update&gt;&gt;</tw-passagedata><tw-passagedata pid="118" name="Ask about the red pill" tags="Vera" position="975,1475" size="100,100">&lt;&lt;p&gt;&gt;He asks about the red pill.&lt;&lt;/p&gt;&gt;
+\&lt;&lt;flag &#39;knowJealousy&#39;&gt;&gt;&lt;&lt;update&gt;&gt;</tw-passagedata><tw-passagedata pid="140" name="Ask about the red pill" tags="Vera" position="1225,1725" size="100,100">&lt;&lt;p&gt;&gt;He asks about the red pill.&lt;&lt;/p&gt;&gt;
 
 $vera Ah, that&#39;s Madness. It activates a lotta neurotrasmitters. Makes ya feel all wonky. It can be fun in the right doses. And you&#39;ll have to trust I&#39;m giving you the right dose.
 
-\&lt;&lt;flag &#39;knowMadness&#39;&gt;&gt;&lt;&lt;update&gt;&gt;</tw-passagedata><tw-passagedata pid="119" name="Ask about the white pill" tags="Vera" position="1100,1475" size="100,100">&lt;&lt;p&gt;&gt;He asks about the white pill.&lt;&lt;/p&gt;&gt;
+\&lt;&lt;flag &#39;knowMadness&#39;&gt;&gt;&lt;&lt;update&gt;&gt;</tw-passagedata><tw-passagedata pid="141" name="Ask about the white pill" tags="Vera" position="100,1850" size="100,100">&lt;&lt;p&gt;&gt;He asks about the white pill.&lt;&lt;/p&gt;&gt;
 
 $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re ailing.
 
-\&lt;&lt;flag &#39;knowJoy&#39;&gt;&gt;&lt;&lt;update&gt;&gt;</tw-passagedata><tw-passagedata pid="120" name="Luna" tags="People" position="1225,1475" size="100,100">&lt;&lt;nobr&gt;&gt;
+\&lt;&lt;flag &#39;knowJoy&#39;&gt;&gt;&lt;&lt;update&gt;&gt;</tw-passagedata><tw-passagedata pid="142" name="Luna" tags="People" position="225,1850" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;span style=&#39;font-style:italic&#39;&gt;
 &lt;&lt;if Flag(&#39;knowLuna&#39;)&gt;&gt;
 	A mysterious girl draped in black. She claims to have met Him at some point in the past. 
@@ -2889,7 +3447,7 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 	Somehow, she survived the descent into the Inner Ring.
 &lt;&lt;/if&gt;&gt;
 &lt;/span&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="121" name="Ciara" tags="People" position="100,1600" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="143" name="Ciara" tags="People" position="350,1850" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;span style=&#39;font-style:italic&#39;&gt;
 &lt;&lt;if Flag(&#39;knowCiara&#39;) is false&gt;&gt;
 	Whispers around town tell of a &quot;twin.&quot; He knows for a fact that &lt;i&gt;she&lt;/i&gt; doesn&#39;t have a twin. Nonetheless, the rumors of this girl&#39;s existence have piqued His interest. 
@@ -2897,13 +3455,13 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 	The so-called twin. He admits the physical resemblance is uncanny. However, Ciara is nothing like HER. 
 &lt;&lt;/if&gt;&gt;
 &lt;/span&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="122" name="Iliza" tags="People" position="225,1600" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="144" name="Iliza" tags="People" position="475,1850" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;span style=&#39;font-style:italic&#39;&gt;
 &lt;&lt;if Flag(&#39;knowIliza&#39;)&gt;&gt;
 	A woman He met at a bar. 
 &lt;&lt;/if&gt;&gt;
 &lt;/span&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="123" name="Vera" tags="People" position="350,1600" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="145" name="Vera" tags="People" position="600,1850" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;span style=&#39;font-style:italic&#39;&gt;
 &lt;&lt;if Flag(&#39;knowVera&#39;)&gt;&gt;
 	Some kind of merchant. She sells Him emotions in exchange for various goods. She&#39;s made her home among the refuse of broken screens. 
@@ -2913,7 +3471,7 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 	&lt;&lt;if Flag(&#39;knowVeraFog&#39;)&gt;&gt;She claims to have dated an amorphous fog some time in the past.
 &lt;&lt;/if&gt;&gt;
 &lt;/span&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="124" name="Alice" tags="People" position="475,1600" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="146" name="Alice" tags="People" position="725,1850" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;span style=&#39;font-style:italic&#39;&gt;
 &lt;&lt;if Flag(&#39;knowGirl&#39;)&gt;&gt;
 	A somewhat annoying girl. 
@@ -2928,7 +3486,55 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 	Ciara&#39;s words haven&#39;t been helpful. Perhaps &lt;i&gt;she&lt;/i&gt; doesn&#39;t want to be found after all. 
 &lt;&lt;/if&gt;&gt;
 &lt;/span&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="125" name="StoryInit" tags="" position="600,1600" size="100,100">&lt;&lt;include &quot;Variables&quot;&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="147" name="quote-1" tags="Gate no-transition" position="850,1850" size="100,100">&lt;&lt;run memorize(&#39;Act I&#39;, true)&gt;&gt;\
+&lt;div id=&#39;blackBackground&#39;&gt;
+&lt;div id=&#39;quoteScreen&#39;&gt;\
+&lt;span class=&#39;quote1&#39;&gt;&lt;span class=&#39;quote2&#39;&gt;How mysterious is the Lord, that He amuses Himself with such strange creatures?&lt;/span&gt;&lt;/span&gt;
+&lt;&lt;timed 4.2s t8n&gt;&gt;&lt;span class=&#39;quote1&#39; style=&#39;float:right&#39;&gt;&lt;span class=&#39;quote2&#39;&gt;János Valuska&lt;/span&gt;&lt;/span&gt;
+
+&lt;&lt;next 4.2s&gt;&gt;
+&lt;&lt;css &#39;#transitionBackground&#39; &#39;visibility&#39; &#39;hidden&#39;&gt;&gt;\
+        &lt;&lt;set $black to false&gt;&gt;\
+&lt;div style=&#39;text-align:center&#39;&gt;\
+    &lt;&lt;link &#39;(Continue)&#39;&gt;&gt;\
+        &lt;&lt;css &#39;#quoteScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;\
+        &lt;&lt;timed 2.1s&gt;&gt;&lt;&lt;css &#39;#blackBackground&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;\
+        &lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;intro&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;\
+    &lt;&lt;/link&gt;&gt;&lt;/div&gt;&lt;&lt;/timed&gt;&gt;
+&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="148" name="quote-2" tags="Gate no-transition" position="975,1850" size="100,100">&lt;&lt;run memorize(&#39;Act II&#39;, true)&gt;&gt;\
+&lt;div id=&#39;blackBackground&#39;&gt;
+&lt;div id=&#39;quoteScreen&#39;&gt;\
+&lt;span class=&#39;quote1&#39;&gt;&lt;span class=&#39;quote2&#39;&gt;Detesting both, I choose neither; but since I must on occasion either dream or act, I mix the two things together.&lt;/span&gt;&lt;/span&gt;
+&lt;&lt;timed 4.2s t8n&gt;&gt;&lt;span class=&#39;quote1&#39; style=&#39;float:right&#39;&gt;&lt;span class=&#39;quote2&#39;&gt;Fernando Pessoa&lt;/span&gt;&lt;/span&gt;
+
+&lt;&lt;next 4.2s&gt;&gt;
+&lt;&lt;css &#39;#transitionBackground&#39; &#39;visibility&#39; &#39;hidden&#39;&gt;&gt;\
+        &lt;&lt;set $black to false&gt;&gt;\
+&lt;div style=&#39;text-align:center&#39;&gt;\
+    &lt;&lt;link &#39;(Continue)&#39;&gt;&gt;\
+        &lt;&lt;css &#39;#quoteScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;\
+        &lt;&lt;timed 2.1s&gt;&gt;&lt;&lt;css &#39;#blackBackground&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;\
+        &lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;airship-wake&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;\
+    &lt;&lt;/link&gt;&gt;&lt;/div&gt;&lt;&lt;/timed&gt;&gt;
+&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="149" name="quote-3" tags="Gate no-transition" position="1100,1850" size="100,100">&lt;&lt;run memorize(&#39;Act III&#39;, true)&gt;&gt;\
+&lt;div id=&#39;blackBackground&#39;&gt;
+&lt;div id=&#39;quoteScreen&#39;&gt;\
+&lt;span class=&#39;quote1&#39;&gt;&lt;span class=&#39;quote2&#39;&gt;The bird fights its way out of the egg. The egg is the world. Who would be born must first destroy a world.&lt;/span&gt;&lt;/span&gt;
+&lt;&lt;timed 4.2s t8n&gt;&gt;&lt;span class=&#39;quote1&#39; style=&#39;float:right&#39;&gt;&lt;span class=&#39;quote2&#39;&gt;Hermann Hesse&lt;/span&gt;&lt;/span&gt;
+
+&lt;&lt;next 4.2s&gt;&gt;
+&lt;&lt;css &#39;#transitionBackground&#39; &#39;visibility&#39; &#39;hidden&#39;&gt;&gt;\
+        &lt;&lt;set $black to false&gt;&gt;\
+&lt;div style=&#39;text-align:center&#39;&gt;\
+    &lt;&lt;link &#39;(Continue)&#39;&gt;&gt;\
+        &lt;&lt;css &#39;#quoteScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;\
+        &lt;&lt;timed 2.1s&gt;&gt;&lt;&lt;css &#39;#blackBackground&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;\
+        &lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;girl-meet&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;\
+    &lt;&lt;/link&gt;&gt;&lt;/div&gt;&lt;&lt;/timed&gt;&gt;
+&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="150" name="StoryInit" tags="" position="1225,1850" size="100,100">&lt;&lt;include &quot;Variables&quot;&gt;&gt;
 &lt;&lt;include &quot;Images&quot;&gt;&gt;
 &lt;&lt;include &quot;Items&quot;&gt;&gt;
 &lt;&lt;include &quot;Audio&quot;&gt;&gt;
@@ -2941,7 +3547,7 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 		&lt;&lt;popup &#39;Inventory&#39; &#39;Inventory&#39; &#39;inventoryMenu&#39;&gt;&gt;
 	&lt;&lt;which 80&gt;&gt;
 		&lt;&lt;popup &#39;People of Interest&#39; &#39;People of Interest&#39; &#39;peopleMenu&#39;&gt;&gt;
-&lt;&lt;/on&gt;&gt;</tw-passagedata><tw-passagedata pid="126" name="StoryMenu" tags="nobr" position="725,1600" size="100,100">&lt;div id=&quot;menuBar&quot;&gt;
+&lt;&lt;/on&gt;&gt;</tw-passagedata><tw-passagedata pid="151" name="StoryMenu" tags="nobr" position="100,1975" size="100,100">&lt;div id=&quot;menuBar&quot;&gt;
 &lt;span class=&quot;menuButton&quot;&gt;
 	&lt;&lt;link &quot;Inventory&quot;&gt;&gt;
     	&lt;&lt;popup &#39;Inventory&#39; &#39;Inventory&#39; &#39;inventoryMenu&#39;&gt;&gt;
@@ -2959,20 +3565,29 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 		&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;;
 	&lt;&lt;/link&gt;&gt;
 &lt;/span&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="127" name="StoryInterface" tags="" position="25,25" size="200,100">&lt;div id=&quot;content-column&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="152" name="StoryInterface" tags="" position="25,25" size="200,100">&lt;div id=&quot;content-column&quot;&gt;
 	&lt;div id=&quot;menu-story&quot;&gt;&lt;/div&gt;
 	&lt;div id=&quot;story&quot;&gt;
     	&lt;div id=&quot;Sidebar&quot; style=&quot;max-width:273.5px !important;&quot;&gt;
 			&lt;div class=&quot;extra&quot; data-passage=&quot;Sidebar&quot;&gt;&lt;/div&gt;
         	&lt;div class=&quot;extra&quot; data-passage=&quot;Devbar&quot; style=&quot;margin-top:1em;&quot;&gt;&lt;/div&gt;
         &lt;/div&gt;
-		&lt;div id=&quot;passagesContainer&quot;&gt;
+		&lt;div id=&quot;gameContainer&quot;&gt;
         	&lt;span class=&quot;shadow&quot;&gt;&lt;/span&gt;
-            	&lt;div id=&quot;passages&quot;&gt;&lt;/div&gt;
-            	&lt;div id=&#39;choice&#39;&gt;&lt;/div&gt;
+				&lt;div id=&quot;videoPassage&quot;&gt;&lt;/div&gt;
+				&lt;div id=&quot;passagesContainer&quot;&gt;
+					&lt;div id=&quot;passages&quot;&gt;&lt;/div&gt;
+					&lt;div id=&#39;choice&#39;&gt;&lt;/div&gt;
+				&lt;/div&gt;
+		&lt;/div&gt;
+		&lt;div id=&quot;charaContainer&quot;&gt;
+			&lt;div id=&quot;charaText&quot;&gt;
+			&lt;div id=&quot;charaPassage&quot; data-passage=&quot;Chara Bar&quot;&gt;&lt;/div&gt;
+			&lt;div id=&quot;charaChoice&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
 		&lt;/div&gt;
 	&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="128" name="PassageHeader" tags="nobr" position="975,1600" size="100,100">/* Clears choice menu between passages */
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="153" name="PassageHeader" tags="nobr" position="350,1975" size="100,100">/* Clears choice menu between passages */
 &lt;&lt;replace &#39;#choice&#39;&gt;&gt;&lt;&lt;/replace&gt;&gt;
 /* Changes font to dyslexic if necessary */
 &lt;&lt;liveblock&gt;&gt;
@@ -2985,7 +3600,11 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 &lt;&lt;if tags().includes(&quot;Void&quot;) || tags(previous()).includes(&quot;Void&quot;)&gt;&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;set $previous to previous()&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="129" name="Settings Screen" tags="nobr" position="1100,1600" size="100,100">&lt;div class=&#39;settingsScreen&#39;&gt;
+&lt;&lt;/if&gt;&gt;
+/* Reset Chara box */
+&lt;&lt;css &#39;#charaContainer&#39; $charaHide&gt;&gt;
+&lt;&lt;css &#39;#charaText&#39; &#39;opacity&#39; &#39;0%&#39;&gt;&gt;
+&lt;&lt;set $charaBar to &#39;none&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="154" name="Settings Screen" tags="nobr" position="475,1975" size="100,100">&lt;div class=&#39;settingsScreen&#39;&gt;
 &lt;div style=&quot;display:flex; flex-direction:column; flex-grow:1&quot;&gt;
 &lt;h2 class=&quot;settingsTitle&quot;&gt;&lt;span style=&quot;text-align:center&quot;&gt;System&lt;/span&gt;&lt;/h2&gt;
 	&lt;span style=&quot;flex-shrink:1&quot;&gt;&lt;&lt;link &#39;Save&#39;&gt;&gt;
@@ -2993,6 +3612,9 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 	&lt;&lt;/link&gt;&gt;&lt;/span&gt;
 	&lt;span style=&quot;flex-shrink:1&quot;&gt;&lt;&lt;link &#39;Load&#39;&gt;&gt;
 		&lt;&lt;popup &#39;Load Screen&#39; &#39;Load&#39;&gt;&gt;
+	&lt;&lt;/link&gt;&gt;&lt;/span&gt;
+	&lt;span style=&quot;flex-shrink:1&quot;&gt;&lt;&lt;link &#39;Help&#39;&gt;&gt;
+		&lt;&lt;popup &#39;Help Screen&#39; &#39;Help&#39;&gt;&gt;
 	&lt;&lt;/link&gt;&gt;&lt;/span&gt;
 	&lt;span style=&quot;flex-shrink:1&quot;&gt;&lt;&lt;link &#39;Restart&#39;&gt;&gt;
 		&lt;&lt;popup &#39;Restart Screen&#39; &#39;Restart&#39;&gt;&gt;
@@ -3015,7 +3637,7 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 	&lt;&lt;update&gt;&gt;
 	&lt;&lt;dialogclose&gt;&gt;
 &lt;&lt;/link&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="130" name="Settings" tags="nobr" position="1225,1600" size="100,100">&lt;table class=&quot;settingsTable&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="155" name="Settings" tags="nobr" position="600,1975" size="100,100">&lt;table class=&quot;settingsTable&quot;&gt;
 &lt;tr&gt;
 	&lt;td style=&quot;padding-right:1em&quot;&gt;Display&lt;/td&gt;
 	&lt;td&gt;&lt;&lt;liveblock&gt;&gt;
@@ -3043,7 +3665,7 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 	&lt;td style=&quot;padding-right:1em&quot;&gt;Master Volume&lt;/td&gt;
 	&lt;td&gt;[][][][][]&lt;/td&gt;
 &lt;/tr&gt;
-&lt;/table&gt;</tw-passagedata><tw-passagedata pid="131" name="Save Screen" tags="nobr" position="100,1725" size="100,100">&lt;button id=&quot;settingsBack&quot;&gt;&lt;&lt;button &#39;[&lt;]&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/button&gt;
+&lt;/table&gt;</tw-passagedata><tw-passagedata pid="156" name="Save Screen" tags="nobr" position="725,1975" size="100,100">&lt;button id=&quot;settingsBack&quot;&gt;&lt;&lt;button &#39;[&lt;]&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/button&gt;
 &lt;&lt;include &#39;Save UI&#39;&gt;&gt;
 &lt;ul class=&quot;saveFooter&quot;&gt;
 &lt;li&gt;
@@ -3061,7 +3683,7 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 		&lt;&lt;/script&gt;&gt;
 	&lt;&lt;/button&gt;&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="132" name="Save UI" tags="nobr" position="225,1725" size="100,100">&lt;&lt;liveblock&gt;&gt;&lt;table id=&quot;savesList&quot;&gt;
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="157" name="Save UI" tags="nobr" position="850,1975" size="100,100">&lt;&lt;liveblock&gt;&gt;&lt;table id=&quot;savesList&quot;&gt;
 &lt;colgroup&gt;
 	&lt;col style=&quot;width:1em&quot;&gt;
 &lt;/colgroup&gt;
@@ -3096,7 +3718,7 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 &lt;&lt;/capture&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="133" name="Load Screen" tags="nobr" position="350,1725" size="100,100">&lt;button id=&quot;settingsBack&quot;&gt;&lt;&lt;button &#39;[&lt;]&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/button&gt;
+&lt;/table&gt;&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="158" name="Load Screen" tags="nobr" position="975,1975" size="100,100">&lt;button id=&quot;settingsBack&quot;&gt;&lt;&lt;button &#39;[&lt;]&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/button&gt;
 &lt;&lt;include &#39;Load UI&#39;&gt;&gt;
 &lt;ul class=&quot;saveFooter&quot;&gt;
 &lt;li&gt;
@@ -3114,7 +3736,7 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 		&lt;&lt;/script&gt;&gt;
 	&lt;&lt;/button&gt;&gt;
 &lt;/li&gt;
-&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="134" name="Load UI" tags="nobr" position="475,1725" size="100,100">&lt;&lt;liveblock&gt;&gt;&lt;table id=&quot;savesList&quot;&gt;
+&lt;/ul&gt;</tw-passagedata><tw-passagedata pid="159" name="Load UI" tags="nobr" position="1100,1975" size="100,100">&lt;&lt;liveblock&gt;&gt;&lt;table id=&quot;savesList&quot;&gt;
 &lt;tbody&gt;
 	&lt;tr&gt;
     	&lt;td&gt;A&lt;/td&gt;
@@ -3181,127 +3803,20 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 &lt;&lt;/capture&gt;&gt;
 &lt;&lt;/for&gt;&gt;
 &lt;/tbody&gt;
-&lt;/table&gt;&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="135" name="Restart Screen" tags="nobr" position="1525,825" size="100,100">&lt;button id=&quot;settingsBack&quot;&gt;&lt;&lt;button &#39;[&lt;]&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/button&gt;
+&lt;/table&gt;&lt;&lt;/liveblock&gt;&gt;</tw-passagedata><tw-passagedata pid="160" name="Restart Screen" tags="nobr" position="1225,1975" size="100,100">&lt;button id=&quot;settingsBack&quot;&gt;&lt;&lt;button &#39;[&lt;]&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/button&gt;
 Are you sure that you want to restart? Unsaved progress will be lost.
 &lt;br \&gt;&lt;br \&gt;
 &lt;span style=&quot;padding:0.4em&quot;&gt;&lt;&lt;link &#39;OK&#39;&gt;&gt;&lt;&lt;run memorize(&#39;restart&#39;, true)&gt;&gt;&lt;&lt;run Engine.restart()&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
-&lt;span style=&quot;padding:0.4em&quot;&gt;&lt;&lt;link &#39;Cancel&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="136" name="Return to Title Screen" tags="nobr" position="725,1725" size="100,100">&lt;button id=&quot;settingsBack&quot;&gt;&lt;&lt;button &#39;[&lt;]&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/button&gt;
+&lt;span style=&quot;padding:0.4em&quot;&gt;&lt;&lt;link &#39;Cancel&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="161" name="Help Screen" tags="nobr" position="100,2100" size="100,100">&lt;button id=&quot;settingsBack&quot;&gt;&lt;&lt;button &#39;[&lt;]&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/button&gt;
+If some aspect of the game is confusing to you, consult below.
+&lt;ul&gt;
+&lt;li&gt;It is possible to miss certain conversations with Chara, as advancing the text will deactivate un-clicked links. This should be clear in most browsers, however some browsers, notably Firefox, will not fade-out previously read text. &lt;/li&gt;
+&lt;/ul&gt;
+&lt;span style=&quot;padding:0.4em&quot;&gt;&lt;&lt;link &#39;OK&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="162" name="Return to Title Screen" tags="nobr" position="225,2100" size="100,100">&lt;button id=&quot;settingsBack&quot;&gt;&lt;&lt;button &#39;[&lt;]&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/button&gt;&gt;&lt;/button&gt;
 Are you sure that you want to return to the title screen? Unsaved progress will be lost.
 &lt;br \&gt;&lt;br \&gt;
 &lt;span style=&quot;padding:0.4em&quot;&gt;&lt;&lt;link &#39;OK&#39;&gt;&gt;&lt;&lt;run Engine.restart()&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;
-&lt;span style=&quot;padding:0.4em&quot;&gt;&lt;&lt;link &#39;Cancel&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="137" name="Title Screen" tags="Menu nobr" position="850,1725" size="100,100">&lt;&lt;if recall(&#39;restart&#39;) is true&gt;&gt;&lt;&lt;run forget(&#39;restart&#39;)&gt;&gt;&lt;&lt;goto &#39;intro&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;
-&lt;&lt;script&gt;&gt;
-jQuery(&quot;.title&quot;).fitText();
-jQuery(&quot;.titleOption&quot;).fitText();
-&lt;&lt;/script&gt;&gt;
-&lt;div  id=&quot;titleScreen&quot;&gt;
-	&lt;span class=&quot;title&quot;&gt;Such Strange Creatures&lt;/span&gt;
-	&lt;div  class=&quot;titleOptionList&quot;&gt;
-		&lt;span class=&quot;titleOption titleOption1&quot;&gt;&lt;&lt;button &#39;Begin&#39;&gt;&gt;
-			&lt;&lt;css &#39;#titleScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;
-			&lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;quote-1&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;
-				&lt;&lt;/button&gt;&gt;&lt;/span&gt;
-		&lt;span class=&quot;titleOption titleOption2&quot;&gt;&lt;&lt;button &#39;Load&#39;&gt;&gt;
-			&lt;&lt;css &#39;.titleOption1&#39; $hide&gt;&gt;
-			&lt;&lt;css &#39;.titleOption2&#39; $showTitle&gt;&gt;
-			&lt;&lt;css &#39;.titleOption3&#39; $hide&gt;&gt;
-			&lt;&lt;css &#39;.titleOption4&#39; $hide&gt;&gt;
-			&lt;&lt;css &#39;.titleContentLoad&#39; $showContent&gt;&gt;
-			&lt;&lt;toggleclass &quot;.titleOption2 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
-				&lt;&lt;/button&gt;&gt;&lt;/span&gt;
-			&lt;div class=&quot;titleContentLoad&quot;&gt;&lt;&lt;include &#39;Title Screen/Load&#39;&gt;&gt;&lt;/div&gt;
-		&lt;&lt;if recall(&#39;Act II&#39;) is true&gt;&gt;&lt;span class=&quot;titleOption titleOption3&quot;&gt;&lt;&lt;button &#39;Chapter Select&#39;&gt;&gt;
-			&lt;&lt;css &#39;.titleOption1&#39; $hide&gt;&gt;
-			&lt;&lt;css &#39;.titleOption2&#39; $hide&gt;&gt;
-			&lt;&lt;css &#39;.titleOption3&#39; $showTitle&gt;&gt;
-			&lt;&lt;css &#39;.titleOption4&#39; $hide&gt;&gt;
-			&lt;&lt;css &#39;.titleContentChapter&#39; $showContent&gt;&gt;
-			&lt;&lt;toggleclass &quot;.titleOption3 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
-				&lt;&lt;/button&gt;&gt;&lt;/span&gt;&lt;&lt;/if&gt;&gt;
-			&lt;div class=&quot;titleContentChapter&quot;&gt;&lt;&lt;include &#39;Title Screen/Chapter Select&#39;&gt;&gt;&lt;/div&gt;
-		&lt;span class=&quot;titleOption titleOption4&quot;&gt;&lt;&lt;button &#39;Settings&#39;&gt;&gt;
-			&lt;&lt;css &#39;.titleOption1&#39; $hide&gt;&gt;
-			&lt;&lt;css &#39;.titleOption2&#39; $hide&gt;&gt;
-			&lt;&lt;css &#39;.titleOption3&#39; $hide&gt;&gt;
-			&lt;&lt;css &#39;.titleOption4&#39; $showTitle&gt;&gt;
-			&lt;&lt;css &#39;.titleContentSettings&#39; $showContent&gt;&gt;
-			&lt;&lt;toggleclass &quot;.titleOption4 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
-				&lt;&lt;/button&gt;&gt;&lt;/span&gt;
-			&lt;div class=&quot;titleContentSettings&quot;&gt;&lt;&lt;include &#39;Title Screen/Settings&#39;&gt;&gt;&lt;/div&gt;
-	&lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&quot;titleBack&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="138" name="Title Screen/Settings" tags="Menu nobr" position="975,1725" size="100,100">&lt;&lt;script&gt;&gt;
-jQuery(&quot;.titleSettings&quot;).fitText();
-&lt;&lt;/script&gt;&gt;
-&lt;div class=&quot;titleSettings&quot;&gt;
-/*&lt;span style=&quot;font-family:var(--gameTitleFont); font-size:210%&quot;&gt;Font&lt;/span&gt;*/
-&lt;&lt;include &#39;Settings&#39;&gt;&gt;
-&lt;div class=&#39;settingsFooter&#39; style=&#39;align-self: flex-end&#39;&gt;
-&lt;&lt;link &#39;OK&#39;&gt;&gt;
-	&lt;&lt;update&gt;&gt;
-	&lt;&lt;css &#39;.titleOption1&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption2&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption3&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption4&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleContentSettings&#39; $hide&gt;&gt;
-	&lt;&lt;toggleclass &quot;.titleOption4 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &#39;Default&#39;&gt;&gt;
-	&lt;&lt;run Fullscreen.exit()&gt;&gt;
-	&lt;&lt;set $font to &#39;Default&#39;&gt;&gt;
-	&lt;&lt;update&gt;&gt;
-	&lt;&lt;css &#39;.titleOption1&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption2&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption3&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption4&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleContentSettings&#39; $hide&gt;&gt;
-	&lt;&lt;toggleclass &quot;.titleOption4 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="139" name="Title Screen/Load" tags="Menu nobr" position="1100,1725" size="100,100">&lt;&lt;script&gt;&gt;
-jQuery(&quot;.titleSaveLoad&quot;).fitText();
-&lt;&lt;/script&gt;&gt;
-&lt;div class=&quot;titleSaveLoad&quot;&gt;
-&lt;&lt;include &#39;Load UI&#39;&gt;&gt;
-&lt;div class=&#39;settingsFooter&#39; style=&#39;align-self: flex-end&#39;&gt;
-&lt;&lt;link &#39;Back&#39;&gt;&gt;
-	&lt;&lt;css &#39;.titleOption1&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption2&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption3&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption4&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleContentLoad&#39; $hide&gt;&gt;
-	&lt;&lt;toggleclass &quot;.titleOption2 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="140" name="Title Screen/Chapter Select" tags="Menu nobr" position="1225,1725" size="100,100">&lt;&lt;script&gt;&gt;
-jQuery(&quot;.titleChaperSelect&quot;).fitText();
-&lt;&lt;/script&gt;&gt;
-&lt;div class=&#39;titleChapterSelect&#39;&gt;
-	&lt;&lt;if recall(&#39;Act I&#39;) is true&gt;&gt;&lt;&lt;button &#39;Act I&#39;&gt;&gt;
-		&lt;&lt;css &#39;#titleScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;
-		&lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;quote-1&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;
-	&lt;&lt;/button&gt;&gt;&lt;&lt;/if&gt;&gt;
-	&lt;&lt;if recall(&#39;Act II&#39;) is true&gt;&gt;&lt;&lt;button &#39;Act II&#39;&gt;&gt;
-		&lt;&lt;css &#39;#titleScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;
-		&lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;quote-2&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;
-	&lt;&lt;/button&gt;&gt;&lt;&lt;/if&gt;&gt;
-	&lt;&lt;if recall(&#39;Act III&#39;) is true&gt;&gt;&lt;&lt;button &#39;Act III&#39;&gt;&gt;
-		&lt;&lt;css &#39;#titleScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;
-		&lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;quote-3&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;
-	&lt;&lt;/button&gt;&gt;&lt;&lt;/if&gt;&gt;
-	&lt;&lt;if recall(&#39;Act IV&#39;) is true&gt;&gt;&lt;&lt;button &#39;Act IV&#39;&gt;&gt;
-		&lt;&lt;css &#39;#titleScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;
-		&lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;quote-4&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;
-	&lt;&lt;/button&gt;&gt;&lt;&lt;/if&gt;&gt;
-	&lt;&lt;link &#39;Back&#39;&gt;&gt;
-	&lt;&lt;css &#39;.titleOption1&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption2&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption3&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleOption4&#39; $showTitle&gt;&gt;
-	&lt;&lt;css &#39;.titleContentChapter&#39; $hide&gt;&gt;
-	&lt;&lt;toggleclass &quot;.titleOption3 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
-&lt;&lt;/link&gt;&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="141" name="Sidebar" tags="" position="100,1850" size="100,100">&lt;&lt;set $currTags to tags()&gt;&gt;\
+&lt;span style=&quot;padding:0.4em&quot;&gt;&lt;&lt;link &#39;Cancel&#39;&gt;&gt;&lt;&lt;popup &#39;Settings Screen&#39; &#39;Settings&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/span&gt;</tw-passagedata><tw-passagedata pid="163" name="Sidebar" tags="" position="350,2100" size="100,100">&lt;&lt;set $currTags to tags()&gt;&gt;\
 &lt;&lt;liveblock&gt;&gt;&lt;&lt;switch $currTags[0]&gt;&gt;
 	&lt;&lt;case &#39;Chara&#39;&gt;&gt;
 		&lt;p&gt;&lt;&lt;= $currTags[0]&gt;&gt;&lt;/p&gt;\
@@ -3365,7 +3880,7 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 .extra{
 	display:none;
 }
-&lt;/style&gt;&lt;&lt;/if&gt;&gt;*/</tw-passagedata><tw-passagedata pid="142" name="Devbar" tags="" position="1250,650" size="100,100">&lt;div style=&quot;padding:0.21em; font-family:&#39;Inconsolata&#39;; margin:auto; padding-bottom:1em;&quot;&gt;
+&lt;/style&gt;&lt;&lt;/if&gt;&gt;*/</tw-passagedata><tw-passagedata pid="164" name="Devbar" tags="" position="1250,650" size="100,100">&lt;div style=&quot;padding:0.21em; font-family:&#39;Inconsolata&#39;; margin:auto; padding-bottom:1em;&quot;&gt;
 &lt;center&gt;variables&lt;/center&gt;
 | wanted  | &lt;&lt;= $wanted&gt;&gt; |
 | current | &lt;&lt;= passage()&gt;&gt; |
@@ -3374,11 +3889,24 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 | void level | &lt;&lt;= $voidLevel&gt;&gt; |
 | test | &lt;&lt;= $previous&gt;&gt; |
 
-&lt;center&gt;&lt;&lt;link &quot;console&quot;&gt;&gt;&lt;&lt;popup &#39;DevConsole&#39; &#39;Console&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/center&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="143" name="DevConsole" tags="" position="350,1850" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;center&gt;\
+&lt;&lt;link &quot;open&quot;&gt;&gt;
+	&lt;&lt;css &#39;#charaContainer&#39; $charaShow&gt;&gt;
+	&lt;&lt;css &#39;#charaText&#39; &#39;opacity&#39; &#39;100%&#39;&gt;&gt;
+&lt;&lt;/link&gt;&gt;\
+ / \
+&lt;&lt;link &quot;close&quot;&gt;&gt;
+	&lt;&lt;css &#39;#charaContainer&#39; $charaHide&gt;&gt;
+	&lt;&lt;css &#39;#charaText&#39; &#39;opacity&#39; &#39;0%&#39;&gt;&gt;
+&lt;&lt;/link&gt;&gt;\
+&lt;/center&gt;
+&lt;center&gt;&lt;&lt;link &quot;console&quot;&gt;&gt;&lt;&lt;popup &#39;DevConsole&#39; &#39;Console&#39;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/center&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="165" name="DevConsole" tags="" position="600,2100" size="100,100">&lt;&lt;nobr&gt;&gt;
 	&lt;&lt;set _itemOptions to
 	[
 		&#39;Ball&#39;,
 		&#39;Beer&#39;,
+		&#39;Broken Drill&#39;,
+		&#39;Chara&#39;,
 		&#39;Flyer for Missing Girl&#39;,
 		&#39;Dreams&#39;,
 		&#39;Phone&#39;,
@@ -3469,10 +3997,10 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 &lt;hr style = &#39;margin:auto;width:50%&#39;&gt;
 &lt;div style=&quot;text-align:center; display:flex; flex-direction:column; justify-content:center; flex-wrap:wrap&quot;&gt;\
 &lt;div&gt;Jump To:&lt;/div&gt;\
-&lt;div&gt;&lt;&lt;link &#39;The Outer Ring&#39; gate-1&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &#39;The Inner Ring&#39; gate-2&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &#39;The Lowest Point&#39; gate-3&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="144" name="Inventory" tags="Menu" position="275,550" size="200,100">&lt;&lt;nobr&gt;&gt;
+&lt;div&gt;&lt;&lt;link &#39;The Outer Ring&#39; &#39;quote-1&#39;&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &#39;The Inner Ring&#39; &#39;quote-2&#39;&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &#39;The Lowest Point&#39; &#39;quote-3&#39;&gt;&gt;&lt;&lt;dialogclose&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="166" name="Inventory" tags="Menu" position="275,550" size="200,100">&lt;&lt;nobr&gt;&gt;
 &lt;div class=&quot;inventoryContainer&quot;&gt;
 &lt;div class=&quot;altMenuContainer&quot;&gt;
 &lt;div class=&quot;inventorySide&quot;&gt;
@@ -3506,7 +4034,7 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="145" name="Inventory Side Default" tags="" position="600,1850" size="100,100">&lt;&lt;p i&gt;&gt;He thinks about the things He&#39;s found.&lt;&lt;/p&gt;&gt;</tw-passagedata><tw-passagedata pid="146" name="inventory-give" tags="Menu" position="725,1850" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="167" name="Inventory Side Default" tags="" position="850,2100" size="100,100">&lt;&lt;p i&gt;&gt;He thinks about the things He&#39;s found.&lt;&lt;/p&gt;&gt;</tw-passagedata><tw-passagedata pid="168" name="inventory-give" tags="Menu" position="975,2100" size="100,100">&lt;&lt;nobr&gt;&gt;
 &lt;div class=&quot;inventoryContainer&quot;&gt;
 &lt;div class=&quot;altMenuContainer&quot;&gt;
 &lt;div class=&quot;inventorySide&quot;&gt;
@@ -3546,7 +4074,7 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="147" name="People of Interest" tags="Menu" position="25,550" size="200,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="169" name="People of Interest" tags="Menu" position="25,550" size="200,100">&lt;&lt;nobr&gt;&gt;
 &lt;div class=&quot;peopleContainer&quot;&gt;
 &lt;div class=&quot;altMenuContainer&quot;&gt;
 &lt;div class=&quot;peopleSide&quot;&gt;
@@ -3576,77 +4104,127 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="148" name="People of Interest Side Default" tags="" position="975,1850" size="100,100">&lt;&lt;p i&gt;&gt;He thinks about the people He&#39;s met.&lt;&lt;/p&gt;&gt;</tw-passagedata><tw-passagedata pid="149" name="Audio" tags="" position="1100,1850" size="100,100">&lt;&lt;cacheaudio &quot;bounce&quot; &quot;audio/sfx/bounce and catch.mp3&quot;&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="170" name="People of Interest Side Default" tags="" position="1225,2100" size="100,100">&lt;&lt;p i&gt;&gt;He thinks about the people He&#39;s met.&lt;&lt;/p&gt;&gt;</tw-passagedata><tw-passagedata pid="171" name="Audio" tags="" position="100,2225" size="100,100">&lt;&lt;cacheaudio &quot;bounce&quot; &quot;audio/sfx/bounce and catch.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;missed&quot; &quot;audio/sfx/missed bounce.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;addToInv&quot; &quot;audio/sfx/add to inv.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;ring&quot; &quot;audio/sfx/ring.mp3&quot;&gt;&gt;
 &lt;&lt;cacheaudio &quot;void&quot; &quot;audio/sfx/teleport_1.wav&quot;&gt;&gt;
-&lt;&lt;cacheaudio &quot;hit&quot; &quot;audio/sfx/hit_long.mp3&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="150" name="to-the-void" tags="Void" position="1225,1850" size="100,100">&lt;&lt;set $inVoid = true&gt;&gt;&lt;&lt;audio &quot;void&quot; volume 0.1 play&gt;&gt;&lt;&lt;n&gt;&gt;He closes his eyes. When He opens them, He is back in [[the Void|the-void]].&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="151" name="leave-the-void" tags="Void" position="100,1975" size="100,100">&lt;&lt;n&gt;&gt;He closes his eyes once again. When he opens them, he finds &lt;&lt;link &quot;the Void is gone&quot; $return&gt;&gt;&lt;&lt;/link&gt;&gt;.&lt;&lt;/n&gt;&gt;
-&lt;&lt;set $inVoid = false&gt;&gt;</tw-passagedata><tw-passagedata pid="152" name="the-void" tags="Void" position="225,1975" size="100,100">&lt;&lt;intros void&gt;&gt;\
-&lt;&lt;te&gt;&gt;
-	&lt;&lt;ql &#39;Examine web of yarn&#39; examine-web-of-yarn&gt;&gt;
-    &lt;&lt;ql &#39;Examine trash&#39; examine-trash&gt;&gt;
-    &lt;&lt;ql &#39;Examine the vacant desk&#39; examine-desk&gt;&gt;
-    &lt;&lt;ql &#39;Examine the kitchen&#39; examine-kitchen&gt;&gt;
-    &lt;&lt;ql &#39;Examine the bedroom&#39; examine-bedroom&gt;&gt;
-	&lt;&lt;ql &#39;Leave the Void&#39; leave-the-void&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="153" name="void-intros" tags="nobr" position="350,1975" size="100,100">&lt;&lt;n&gt;&gt;
-&lt;&lt;switch $voidLevel&gt;&gt;
-    &lt;&lt;case 1&gt;&gt;
-        The Void&#39;s only light illuminates the maze of red yarn. A pin with the tiniest bit of torn paper is at its center.
-    &lt;&lt;case 2&gt;&gt;
-        The Void&#39;s spotlights split their attention between the maze of red yarn and a vacant office desk.
-    &lt;&lt;case 3&gt;&gt;
-        The Void&#39;s spotlights shine brightly on the maze of red yarn, a vacant office desk, a kitchen, and a makeshift bedroom.
-&lt;&lt;/switch&gt;&gt;
-&lt;&lt;/n&gt;&gt;</tw-passagedata><tw-passagedata pid="154" name="examine-web-of-yarn" tags="Void" position="475,1975" size="100,100">Red yarn crisscrosses the entire wall. He has already been at this investigation for some time.
-
-&lt;&lt;te&gt;&gt;
-    &lt;&lt;tc &#39;Examine torn paper&#39; examine-torn-paper&gt;&gt;
-    &lt;&lt;tc &#39;Examine photograph labeled &quot;Her Apartment&quot;&#39; examine-apartment-photograph&gt;&gt;
-    &lt;&lt;tc &#39;Examine photograph labeled &quot;Her&quot;&#39; examine-her-photograph&gt;&gt;
-    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="155" name="examine-trash" tags="Void" position="600,1975" size="100,100">&lt;&lt;if Flag(&#39;ballTrash&#39;)&gt;&gt;\
-    &lt;&lt;n&gt;&gt;The rubber ball lies alone at the bottom of the trash can.&lt;&lt;/n&gt;&gt;\
-&lt;&lt;else&gt;&gt;\
-    &lt;&lt;n&gt;&gt;The trash can is empty.&lt;&lt;/n&gt;&gt;\
-&lt;&lt;/if&gt;&gt;
-
-&lt;&lt;te&gt;&gt;
-    &lt;&lt;if Flag(&#39;ballTrash&#39;)&gt;&gt;&lt;&lt;tc &#39;Take Ball&#39; ball-pocket true&gt;&gt;&lt;&lt;/if&gt;&gt;
-    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="156" name="examine-desk" tags="Void" position="725,1975" size="100,100">&lt;&lt;n&gt;&gt;He stares at the empty workstation. The unvarnished wooden desktop reflects nothing back at Him.&lt;&lt;/n&gt;&gt;
-
-&lt;&lt;te&gt;&gt;
-    &lt;&lt;tc &#39;Open drawer&#39; open-desk-drawer&gt;&gt;
-    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="157" name="open-desk-drawer" tags="Void" position="850,1975" size="100,100">&lt;&lt;if $inventory.has(&#39;Pack of Cigarettes&#39;) is false&gt;&gt;\
-    &lt;&lt;p&gt;&gt;He opens the desk drawer.&lt;&lt;/p&gt;&gt;
-
-    &lt;&lt;n&gt;&gt;There&#39;s a pack of cigarettes inside. The box is slightly crumpled; the faded logo reads &quot;Jamie Lee.&quot;&lt;&lt;/n&gt;&gt;\
-&lt;&lt;else&gt;&gt;\
-    &lt;&lt;n&gt;&gt;The drawer is empty.&lt;&lt;/n&gt;&gt;\
-&lt;&lt;/if&gt;&gt;
-
-&lt;&lt;te&gt;&gt;
-    &lt;&lt;tx &#39;Pack of Cigarettes&#39; &#39;Take cigarettes&#39; take-cigarettes true&gt;&gt;
-    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="158" name="take-cigarettes" tags="Void" position="975,1975" size="100,100">&lt;&lt;p&gt;&gt;He takes the &lt;span id=&quot;add&quot;&gt;cigarettes&lt;/span&gt;.&lt;&lt;/p&gt;&gt;
-&lt;&lt;add Cigarettes&gt;&gt;&lt;&lt;flag &#39;cigTaken&#39;&gt;&gt;</tw-passagedata><tw-passagedata pid="159" name="examine-kitchen" tags="Void" position="1100,1975" size="100,100">He walks into the cramped kitchen space, its counters littered with various cooking tools.
-
-&lt;&lt;te&gt;&gt;
-    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="160" name="examine-bedroom" tags="Void" position="1225,1975" size="100,100">He enters the bedroom. It&#39;s sparse, save for some &quot;questionable&quot; tools strapped to the side of a queen-sized bed.
-&lt;&lt;te&gt;&gt;
-    &lt;&lt;tx &#39;Phone&#39; &#39;Check beneath bed&#39; check-under-bed&gt;&gt;
-    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
-&lt;&lt;/te&gt;&gt;</tw-passagedata><tw-passagedata pid="161" name="check-under-bed" tags="Void" position="100,2100" size="100,100">His crouches down and reaches His hand beneath the bed. He fumbles around for several seconds before His fingers find a sleek yet broken &lt;span id=&quot;add&quot;&gt;smartphone&lt;/span&gt;.
-
-&lt;&lt;te&gt;&gt;
-    &lt;&lt;ql &#39;Return&#39; &#39;the-void&#39;&gt;&gt;
-&lt;&lt;/te&gt;&gt;&lt;&lt;add Phone&gt;&gt;</tw-passagedata><tw-passagedata pid="162" name="Variables" tags="" position="225,2100" size="100,100">&lt;&lt;set $inVoid          = true&gt;&gt;
+&lt;&lt;cacheaudio &quot;hit&quot; &quot;audio/sfx/hit_long.mp3&quot;&gt;&gt;</tw-passagedata><tw-passagedata pid="172" name="Title Screen" tags="Menu nobr no-transition" position="225,2225" size="100,100">&lt;&lt;if recall(&#39;restart&#39;) is true&gt;&gt;&lt;&lt;run forget(&#39;restart&#39;)&gt;&gt;&lt;&lt;goto &#39;intro&#39;&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;script&gt;&gt;
+jQuery(&quot;.title&quot;).fitText();
+jQuery(&quot;.titleOption&quot;).fitText(14);
+&lt;&lt;/script&gt;&gt;
+&lt;div  id=&quot;titleScreen&quot;&gt;
+	&lt;span class=&quot;title&quot;&gt;Such Strange Creatures&lt;/span&gt;
+	&lt;div  class=&quot;titleOptionList&quot;&gt;
+		&lt;span class=&quot;titleOption titleOption1&quot;&gt;&lt;&lt;button &#39;Begin&#39;&gt;&gt;
+			&lt;&lt;css &#39;#titleScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;
+			&lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;quote-1&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;
+				&lt;&lt;/button&gt;&gt;&lt;/span&gt;
+		&lt;span class=&quot;titleOption titleOption2&quot;&gt;&lt;&lt;button &#39;Load&#39;&gt;&gt;
+			&lt;&lt;css &#39;.titleOption1&#39; $hide&gt;&gt;
+			&lt;&lt;css &#39;.titleOption2&#39; $showTitle&gt;&gt;
+			&lt;&lt;css &#39;.titleOption3&#39; $hide&gt;&gt;
+			&lt;&lt;css &#39;.titleOption4&#39; $hide&gt;&gt;
+			&lt;&lt;css &#39;.titleContentLoad&#39; $showContent&gt;&gt;
+			&lt;&lt;toggleclass &quot;.titleOption2 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
+				&lt;&lt;/button&gt;&gt;&lt;/span&gt;
+			&lt;div class=&quot;titleContentLoad&quot;&gt;&lt;&lt;include &#39;Title Screen/Load&#39;&gt;&gt;&lt;/div&gt;
+		&lt;&lt;if recall(&#39;Act II&#39;) is true&gt;&gt;&lt;span class=&quot;titleOption titleOption3&quot;&gt;&lt;&lt;button &#39;Chapter Select&#39;&gt;&gt;
+			&lt;&lt;css &#39;.titleOption1&#39; $hide&gt;&gt;
+			&lt;&lt;css &#39;.titleOption2&#39; $hide&gt;&gt;
+			&lt;&lt;css &#39;.titleOption3&#39; $showTitle&gt;&gt;
+			&lt;&lt;css &#39;.titleOption4&#39; $hide&gt;&gt;
+			&lt;&lt;css &#39;.titleContentChapter&#39; $showContent&gt;&gt;
+			&lt;&lt;toggleclass &quot;.titleOption3 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
+				&lt;&lt;/button&gt;&gt;&lt;/span&gt;&lt;&lt;/if&gt;&gt;
+			&lt;div class=&quot;titleContentChapter&quot;&gt;&lt;&lt;include &#39;Title Screen/Chapter Select&#39;&gt;&gt;&lt;/div&gt;
+		&lt;span class=&quot;titleOption titleOption4&quot;&gt;&lt;&lt;button &#39;Settings&#39;&gt;&gt;
+			&lt;&lt;css &#39;.titleOption1&#39; $hide&gt;&gt;
+			&lt;&lt;css &#39;.titleOption2&#39; $hide&gt;&gt;
+			&lt;&lt;css &#39;.titleOption3&#39; $hide&gt;&gt;
+			&lt;&lt;css &#39;.titleOption4&#39; $showTitle&gt;&gt;
+			&lt;&lt;css &#39;.titleContentSettings&#39; $showContent&gt;&gt;
+			&lt;&lt;toggleclass &quot;.titleOption4 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
+				&lt;&lt;/button&gt;&gt;&lt;/span&gt;
+			&lt;div class=&quot;titleContentSettings&quot;&gt;&lt;&lt;include &#39;Title Screen/Settings&#39;&gt;&gt;&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&quot;blackBackground&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="173" name="Title Screen/Settings" tags="Menu nobr" position="350,2225" size="100,100">&lt;&lt;script&gt;&gt;
+jQuery(&quot;.titleSettings&quot;).fitText();
+&lt;&lt;/script&gt;&gt;
+&lt;div class=&quot;titleSettings titleSubScreen&quot;&gt;
+/*&lt;span style=&quot;font-family:var(--gameTitleFont); font-size:210%&quot;&gt;Font&lt;/span&gt;*/
+&lt;&lt;include &#39;Settings&#39;&gt;&gt;
+&lt;div class=&#39;settingsFooter&#39; style=&#39;align-self: flex-end&#39;&gt;
+&lt;&lt;link &#39;OK&#39;&gt;&gt;
+	&lt;&lt;update&gt;&gt;
+	&lt;&lt;css &#39;.titleOption1&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption2&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption3&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption4&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleContentSettings&#39; $hide&gt;&gt;
+	&lt;&lt;toggleclass &quot;.titleOption4 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &#39;Default&#39;&gt;&gt;
+	&lt;&lt;run Fullscreen.exit()&gt;&gt;
+	&lt;&lt;set $font to &#39;Default&#39;&gt;&gt;
+	&lt;&lt;update&gt;&gt;
+	&lt;&lt;css &#39;.titleOption1&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption2&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption3&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption4&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleContentSettings&#39; $hide&gt;&gt;
+	&lt;&lt;toggleclass &quot;.titleOption4 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="174" name="Title Screen/Load" tags="Menu nobr" position="475,2225" size="100,100">&lt;&lt;script&gt;&gt;
+jQuery(&quot;.titleSaveLoad&quot;).fitText();
+&lt;&lt;/script&gt;&gt;
+&lt;div class=&quot;titleSaveLoad titleSubScreen&quot;&gt;
+&lt;&lt;include &#39;Load UI&#39;&gt;&gt;
+&lt;div class=&#39;settingsFooter&#39; style=&#39;align-self: flex-end&#39;&gt;
+&lt;&lt;link &#39;Back&#39;&gt;&gt;
+	&lt;&lt;css &#39;.titleOption1&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption2&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption3&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption4&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleContentLoad&#39; $hide&gt;&gt;
+	&lt;&lt;toggleclass &quot;.titleOption2 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="175" name="Title Screen/Chapter Select" tags="Menu nobr" position="600,2225" size="100,100">&lt;&lt;script&gt;&gt;
+jQuery(&quot;.titleChaperSelect&quot;).fitText();
+&lt;&lt;/script&gt;&gt;
+&lt;div class=&#39;titleChapterSelect titleSubScreen&#39;&gt;
+	&lt;&lt;if recall(&#39;Act I&#39;) is true&gt;&gt;&lt;&lt;button &#39;Act I&#39;&gt;&gt;
+		&lt;&lt;css &#39;#titleScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;
+		&lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;quote-1&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;
+	&lt;&lt;/button&gt;&gt;&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if recall(&#39;Act II&#39;) is true&gt;&gt;&lt;&lt;button &#39;Act II&#39;&gt;&gt;
+		&lt;&lt;css &#39;#titleScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;
+		&lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;quote-2&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;
+	&lt;&lt;/button&gt;&gt;&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if recall(&#39;Act III&#39;) is true&gt;&gt;&lt;&lt;button &#39;Act III&#39;&gt;&gt;
+		&lt;&lt;css &#39;#titleScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;
+		&lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;quote-3&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;
+	&lt;&lt;/button&gt;&gt;&lt;&lt;/if&gt;&gt;
+	&lt;&lt;if recall(&#39;Act IV&#39;) is true&gt;&gt;&lt;&lt;button &#39;Act IV&#39;&gt;&gt;
+		&lt;&lt;css &#39;#titleScreen&#39; &#39;pointer-events&#39; &#39;none&#39; &#39;opacity&#39; &#39;0&#39;&gt;&gt;
+		&lt;&lt;timed 3.5s&gt;&gt;&lt;&lt;goto &#39;quote-4&#39;&gt;&gt;&lt;&lt;/timed&gt;&gt;
+	&lt;&lt;/button&gt;&gt;&lt;&lt;/if&gt;&gt;
+	&lt;&lt;link &#39;Back&#39;&gt;&gt;
+	&lt;&lt;css &#39;.titleOption1&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption2&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption3&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleOption4&#39; $showTitle&gt;&gt;
+	&lt;&lt;css &#39;.titleContentChapter&#39; $hide&gt;&gt;
+	&lt;&lt;toggleclass &quot;.titleOption3 button&quot; &quot;titleButtonPressed&quot;&gt;&gt;
+&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="176" name="Variables" tags="" position="725,2225" size="100,100">&lt;&lt;set $inVoid          = true&gt;&gt;
 &lt;&lt;set $voidLevel       = 1&gt;&gt;
 &lt;&lt;set $loc             = &quot;The Void&quot;&gt;&gt;
+&lt;&lt;set $charaBar        = &#39;none&#39;&gt;&gt;
 
 /*** SYSTEM ****/
 &lt;&lt;set $font       = &#39;Default&#39;&gt;&gt;
@@ -3665,6 +4243,18 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
     &#39;opacity&#39;        : &#39;100%&#39;,
     &#39;pointer-events&#39; : &#39;auto&#39;
 }&gt;&gt;
+&lt;&lt;set $charaHide to {
+    &#39;min-width&#39;      : &#39;0%&#39;,
+    &#39;max-width&#39;      : &#39;0%&#39;,
+    &#39;border-width&#39;   : &#39;0px&#39;,
+    &#39;pointer-events&#39; : &#39;none&#39;
+}&gt;&gt;
+&lt;&lt;set $charaShow to {
+    &#39;min-width&#39;      : &#39;var(--charaWidth)&#39;,
+    &#39;max-width&#39;      : &#39;var(--charaWidth)&#39;,
+    &#39;border-width&#39;   : &#39;1px&#39;,
+    &#39;pointer-events&#39; : &#39;auto&#39;
+}&gt;&gt;
 
 /*** CHARACTERS ***/
 &lt;&lt;set $he              = &quot;&lt;span class =&#39;char him&#39;&gt;Him&lt;/span&gt;&quot;&gt;&gt;
@@ -3677,6 +4267,7 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 &lt;&lt;set $girl            = &quot;&lt;span class =&#39;char&#39;&gt;Girl&lt;/span&gt;&quot;&gt;&gt;
 &lt;&lt;set $bartender       = &quot;&lt;span class =&#39;char&#39;&gt;Bartender&lt;/span&gt;&quot;&gt;&gt;
 &lt;&lt;set $patron          = &quot;&lt;span class =&#39;char&#39;&gt;Patron&lt;/span&gt;&quot;&gt;&gt;
+&lt;&lt;set $unknown         = &quot;&lt;span class =&#39;char&#39;&gt;????&lt;/span&gt;&quot;&gt;&gt;
 
 
 /*** FLAGS ***/
@@ -3735,15 +4326,15 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
     boughtIsolation = Whether the player has bought Isolation.
     boughtMadness   = Whether the player has bought Madness.
     boughtJealousy  = Whether the player has bought Jealousy.
-*/</tw-passagedata><tw-passagedata pid="163" name="Narration" tags="widget nobr" position="850,275" size="100,100">&lt;&lt;widget &#39;n&#39; container&gt;&gt;
+*/</tw-passagedata><tw-passagedata pid="177" name="Narration" tags="widget nobr" position="850,275" size="100,100">&lt;&lt;widget &#39;n&#39; container&gt;&gt;
 	&lt;span class=&quot;narration&quot;&gt;_contents&lt;/span&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="164" name="( ) Widget" tags="widget nobr" position="725,150" size="100,100">&lt;&lt;widget &quot;p&quot; container&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="178" name="( ) Widget" tags="widget nobr" position="725,150" size="100,100">&lt;&lt;widget &quot;p&quot; container&gt;&gt;
 	&lt;&lt;if _args[0] is &#39;i&#39;&gt;&gt;
 		&lt;span class=&quot;parenthetical&quot;&gt;(_contents)&lt;/span&gt;
 	&lt;&lt;else&gt;&gt;
 		&lt;p class=&quot;parenthetical direction&quot;&gt;(_contents)&lt;/p&gt;
 	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="165" name="Ch Widget Choice" tags="widget nobr" position="1100,25" size="100,100">&lt;&lt;widget &#39;tc&#39;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="179" name="Ch Widget Choice" tags="widget nobr" position="1100,25" size="100,100">&lt;&lt;widget &#39;tc&#39;&gt;&gt;
 	&lt;span class=&quot;choice-item&quot;&gt;
 	&lt;&lt;if _args[(_args.length - 1)] is true&gt;&gt;
 		&lt;&lt;if _args[2]&gt;&gt;
@@ -3779,19 +4370,19 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	&lt;/span&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="166" name="Ch Widget Dialogue" tags="widget nobr" position="1225,25" size="100,100">&lt;&lt;widget &#39;td&#39;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="180" name="Ch Widget Dialogue" tags="widget nobr" position="1225,25" size="100,100">&lt;&lt;widget &#39;td&#39;&gt;&gt;
 	&lt;span class=&quot;choice-item&quot;&gt;
 	&lt;&lt;if _args[(_args.length - 1)] is true&gt;&gt;
 		&lt;&lt;if _args[2]&gt;&gt;
 			&lt;&lt;linkreplace `&#39;&quot;&#39; + _args[0] + &#39;&quot;&#39;`&gt;&gt;
 				&lt;&lt;append &quot;#passages&quot; t8n&gt;&gt;
-					&lt;span style=&#39;display:block; color:var(--hisDialogue)&#39;&gt;&lt;span class=&#39;char him&#39;&gt;Him&lt;/span&gt; _args[0]&lt;/span&gt;&lt;br \&gt;&lt;br \&gt;&lt;&lt;include _args[1]&gt;&gt;&lt;br \&gt;&lt;br \&gt;
+					&lt;span style=&#39;display:block; color:var(--hisDialogue)&#39;&gt;&lt;span class=&#39;char him&#39;&gt;Him&lt;/span&gt; _args[0]&lt;/span&gt;&lt;br \&gt;&lt;&lt;include _args[1]&gt;&gt;
 				&lt;&lt;/append&gt;&gt;
 			&lt;&lt;/linkreplace&gt;&gt;
 		&lt;&lt;else&gt;&gt;
 			&lt;&lt;linkreplace `&#39;&quot;&#39; + _args[0] + &#39;&quot;&#39;`&gt;&gt;
 				&lt;&lt;append &quot;#passages&quot; t8n&gt;&gt;
-					&lt;span style=&#39;display:block; color:var(--hisDialogue)&#39;&gt;&lt;span class=&#39;char him&#39;&gt;Him&lt;/span&gt; _args[0]&lt;/span&gt;&lt;br \&gt;&lt;br \&gt;&lt;&lt;include _args[0]&gt;&gt;&lt;br \&gt;&lt;br \&gt;
+					&lt;span style=&#39;display:block; color:var(--hisDialogue)&#39;&gt;&lt;span class=&#39;char him&#39;&gt;Him&lt;/span&gt; _args[0]&lt;/span&gt;&lt;br \&gt;&lt;&lt;include _args[0]&gt;&gt;
 				&lt;&lt;/append&gt;&gt;
 			&lt;&lt;/linkreplace&gt;&gt;
 		&lt;&lt;/if&gt;&gt;
@@ -3819,7 +4410,7 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	&lt;/span&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="167" name="Ch Widget Inv" tags="widget nobr" position="1100,150" size="100,100">&lt;&lt;widget &#39;ti&#39;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="181" name="Ch Widget Inv" tags="widget nobr" position="1100,150" size="100,100">&lt;&lt;widget &#39;ti&#39;&gt;&gt;
 	&lt;span class=&quot;choice-item&quot;&gt;
 	&lt;&lt;if _args[(_args.length - 1)] is true&gt;&gt;
 		&lt;&lt;if $inventory.has(_args[0]) is true&gt;&gt;
@@ -3867,7 +4458,7 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	&lt;/span&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="168" name="Ch Widget NoInv" tags="widget nobr" position="1225,150" size="100,100">&lt;&lt;widget &#39;tx&#39;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="182" name="Ch Widget NoInv" tags="widget nobr" position="1225,150" size="100,100">&lt;&lt;widget &#39;tx&#39;&gt;&gt;
 	&lt;span class=&quot;choice-item&quot;&gt;
 	&lt;&lt;if _args[(_args.length - 1)] is true&gt;&gt;
 		&lt;&lt;if $inventory.has(_args[0]) is false&gt;&gt;
@@ -3915,7 +4506,7 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
 	&lt;/span&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="169" name="Ch Widget Wrapper" tags="widget nobr" position="975,25" size="100,100">&lt;&lt;widget &#39;te&#39; container&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="183" name="Ch Widget Wrapper" tags="widget nobr" position="975,25" size="100,100">&lt;&lt;widget &#39;te&#39; container&gt;&gt;
 	&lt;&lt;if _args[0] is false&gt;&gt;
     	&lt;&lt;append &#39;#choice&#39;&gt;&gt;
         	_contents
@@ -3925,11 +4516,13 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
     		_contents
     	&lt;&lt;/append&gt;&gt;
     &lt;&lt;/if&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="170" name="Continue Widget" tags="widget nobr" position="850,525" size="100,100">&lt;&lt;widget &#39;x&#39; container&gt;&gt;
-	&lt;&lt;linkreplace &quot;...&quot; t8n&gt;&gt;_contents&lt;&lt;/linkreplace&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="171" name="His Dialogue" tags="widget nobr" position="100,2225" size="100,100">&lt;&lt;widget &#39;he&#39; container&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="184" name="Continue Widget" tags="widget nobr" position="850,525" size="100,100">&lt;&lt;widget &#39;x&#39;&gt;&gt;
+	&lt;&lt;=
+		`&lt;&lt;continuelink &#39;Continue&#39;&gt;&gt;\\`
+	&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="185" name="His Dialogue" tags="widget nobr" position="600,2350" size="100,100">&lt;&lt;widget &#39;he&#39; container&gt;&gt;
 	&lt;span class=&#39;him&#39;&gt;&lt;span class=&#39;char him&#39;&gt;Him&lt;/span&gt; _contents&lt;/span&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="172" name="Inv Widgets" tags="widget nobr" position="725,525" size="100,100">&lt;&lt;widget &#39;add&#39;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="186" name="Inv Widgets" tags="widget nobr" position="725,525" size="100,100">&lt;&lt;widget &#39;add&#39;&gt;&gt;
 	&lt;&lt;audio &quot;addToInv&quot; play&gt;&gt;
 	&lt;&lt;pickup $inventory _args[0] 1&gt;&gt;
 &lt;&lt;/widget&gt;&gt;
@@ -3940,7 +4533,7 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 
 &lt;&lt;widget &#39;met&#39;&gt;&gt;
 	&lt;&lt;pickup $people _args[0] 1&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="173" name="Quick Actions" tags="widget nobr" position="725,650" size="100,100">/* Quick Append */
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="187" name="Quick Actions" tags="widget nobr" position="725,650" size="100,100">/* Quick Append */
 &lt;&lt;widget &#39;al&#39;&gt;&gt;
 	&lt;&lt;append &#39;#choice&#39; t8n&gt;&gt;
     	&lt;&lt;if _args[1]&gt;&gt;
@@ -3981,23 +4574,23 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 	&lt;&lt;else&gt;&gt;
 		&lt;&lt;linkreplace _args[0] t8n&gt;&gt;&lt;&lt;include _args[0]&gt;&gt;&lt;&lt;/linkreplace&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="174" name="Refresh Widget" tags="widget nobr" position="850,400" size="100,100">&lt;&lt;widget &#39;ref&#39;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="188" name="Refresh Widget" tags="widget nobr" position="850,400" size="100,100">&lt;&lt;widget &#39;ref&#39;&gt;&gt;
 	&lt;&lt;script&gt;&gt;
 		state.display(state.active.title, null, &quot;back&quot;)
 	&lt;&lt;/script&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="175" name="Replace Widget" tags="widget nobr" position="850,150" size="100,100">&lt;&lt;widget &#39;lr&#39; container&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="189" name="Replace Widget" tags="widget nobr" position="850,150" size="100,100">&lt;&lt;widget &#39;lr&#39; container&gt;&gt;
     &lt;&lt;if _args[1] is &#39;p&#39;&gt;&gt;
     	&lt;&lt;linkreplace _args[0] t8n&gt;&gt;&lt;span class=&quot;parenthetical&quot;&gt;_contents&lt;/span&gt;&lt;&lt;/linkreplace&gt;&gt;
     &lt;&lt;else&gt;&gt;
     	&lt;&lt;linkreplace _args[0] t8n&gt;&gt;_contents&lt;&lt;/linkreplace&gt;&gt;
     &lt;&lt;/if&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="176" name="Want Widget" tags="widget nobr" position="7250,325" size="100,100">&lt;&lt;widget &#39;want&#39;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="190" name="Want Widget" tags="widget nobr" position="7250,325" size="100,100">&lt;&lt;widget &#39;want&#39;&gt;&gt;
 &lt;div class=&quot;choice-item&quot;&gt;&lt;&lt;link &#39;Open Inventory&#39;&gt;&gt;
 	&lt;&lt;set $wanted to _args[0]&gt;&gt;
 	&lt;&lt;set $outcome to _args[1]&gt;&gt;
     &lt;&lt;popup &#39;inventory-give&#39; &#39;Inventory&#39; &#39;inventoryMenu&#39;&gt;&gt;
 &lt;&lt;/link&gt;&gt;&lt;/div&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="177" name="Flag Widgets" tags="widget nobr" position="850,2225" size="100,100">&lt;&lt;widget &quot;flag&quot;&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="191" name="Flag Widgets" tags="widget nobr" position="100,2475" size="100,100">&lt;&lt;widget &quot;flag&quot;&gt;&gt;
 	&lt;&lt;set _Fnam = $args[0].toLowerCase()&gt;&gt;
 	&lt;&lt;if ndef $Flags&gt;&gt;
 		&lt;&lt;set $Flags = {}&gt;&gt;
@@ -4039,7 +4632,7 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 			&lt;&lt;set $Flags[_Nnam] += 1&gt;&gt;
 		&lt;&lt;/if&gt;&gt;
 	&lt;&lt;/if&gt;&gt;
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="178" name="Extras Widget" tags="widget" position="975,2225" size="100,100">&lt;&lt;widget &#39;extras&#39;&gt;&gt;\
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="192" name="Extras Widget" tags="widget" position="225,2475" size="100,100">&lt;&lt;widget &#39;extras&#39;&gt;&gt;\
 	&lt;&lt;set _extra = _args[0] + &#39;-extras&#39;&gt;&gt;\
 	&lt;&lt;if Flag(_extra)&gt;&gt;\
 		&lt;br \&gt;
@@ -4067,7 +4660,7 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 			&lt;&lt;include _extra&gt;&gt;\
 		&lt;&lt;/if&gt;&gt;\
 	&lt;&lt;/if&gt;&gt;\
-&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="179" name="Flag Check Widgets" tags="widget nobr" position="1100,2225" size="100,100">/*&lt;&lt;widget &#39;fc&#39; container&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="193" name="Flag Check Widgets" tags="widget nobr" position="350,2475" size="100,100">/*&lt;&lt;widget &#39;fc&#39; container&gt;&gt;
 	&lt;&lt;if Flag(_args[0]) is true&gt;&gt;
 		_contents
 	&lt;&lt;/if&gt;&gt;
@@ -4078,6 +4671,80 @@ jQuery(&quot;.titleChaperSelect&quot;).fitText();
 	&lt;&lt;if Flag(_args[0]) is false&gt;&gt;
 		_contents
 	&lt;&lt;/if&gt;&gt;
+&lt;&lt;/widget&gt;&gt;</tw-passagedata><tw-passagedata pid="194" name="Footnote Widgets" tags="widget nobr" position="475,2475" size="100,100">/* For establishing a Chara link */
+&lt;&lt;widget &#39;fn&#39; container&gt;&gt;
+	&lt;&lt;set $charaBar to _args[0]&gt;&gt;
+	&lt;&lt;ou-trig &#39;charaBar&#39;&gt;&gt;
+	&lt;span class=&#39;charaLink&#39;&gt;
+	&lt;&lt;linkappend _contents t8n&gt;&gt;
+		&lt;&lt;css &#39;#charaContainer&#39; $charaShow&gt;&gt;
+		&lt;&lt;css &#39;#charaText&#39; &#39;opacity&#39; &#39;100%&#39;&gt;&gt;
+	&lt;&lt;/linkappend&gt;&gt;
+	&lt;/span&gt;
+&lt;&lt;/widget&gt;&gt;
+
+/* Appends new Chara thoughts based on conversation in main box while also clearing Chara choices, if they are present */
+&lt;&lt;widget &#39;char&#39;&gt;&gt;
+	&lt;&lt;replace &#39;#charaChoice&#39;&gt;&gt;&lt;&lt;/replace&gt;&gt;
+	&lt;&lt;append &#39;#charaPassage&#39;&gt;&gt;
+		&lt;&lt;include `&#39;chara-&#39; + _args[0]`&gt;&gt;
+	&lt;&lt;/append&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+/* An adaptation of the choice wrapper widget but for the Chara box */
+&lt;&lt;widget &#39;ce&#39; container&gt;&gt;
+	&lt;&lt;if _args[0] is false&gt;&gt;
+    	&lt;&lt;append &#39;#charaChoice&#39;&gt;&gt;
+        	_contents
+        &lt;&lt;/append&gt;&gt;
+    &lt;&lt;else&gt;&gt;
+		&lt;&lt;append &#39;#charaChoice&#39; t8n&gt;&gt;
+    		_contents
+    	&lt;&lt;/append&gt;&gt;
+    &lt;&lt;/if&gt;&gt;
+&lt;&lt;/widget&gt;&gt;
+
+/* An adaptation of the choice dialogue widget but for the Chara box */
+&lt;&lt;widget &#39;cd&#39;&gt;&gt;
+	&lt;span class=&quot;choice-item&quot;&gt;
+	&lt;&lt;if _args[(_args.length - 1)] is true&gt;&gt;
+		&lt;&lt;if _args[2]&gt;&gt;
+			&lt;&lt;linkreplace `&#39;&quot;&#39; + _args[0] + &#39;&quot;&#39;`&gt;&gt;
+				&lt;&lt;append &quot;#charaText&quot; t8n&gt;&gt;
+					&lt;span style=&#39;display:block; color:var(--hisDialogue)&#39;&gt;&lt;span class=&#39;char him&#39;&gt;Him&lt;/span&gt; _args[0]&lt;/span&gt;&lt;br \&gt;&lt;&lt;include _args[1]&gt;&gt;
+				&lt;&lt;/append&gt;&gt;
+			&lt;&lt;/linkreplace&gt;&gt;
+		&lt;&lt;else&gt;&gt;
+			&lt;&lt;linkreplace `&#39;&quot;&#39; + _args[0] + &#39;&quot;&#39;`&gt;&gt;
+				&lt;&lt;append &quot;#charaText&quot; t8n&gt;&gt;
+					&lt;span style=&#39;display:block; color:var(--hisDialogue)&#39;&gt;&lt;span class=&#39;char him&#39;&gt;Him&lt;/span&gt; _args[0]&lt;/span&gt;&lt;br \&gt;&lt;&lt;include _args[0]&gt;&gt;
+				&lt;&lt;/append&gt;&gt;
+			&lt;&lt;/linkreplace&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+	&lt;&lt;else&gt;&gt;
+		&lt;&lt;if _args[2]&gt;&gt;
+			&lt;&lt;link `&#39;&quot;&#39; + _args[0] + &#39;&quot;&#39; + &#39; (&#39; + _args[1] + &#39;)&#39;`&gt;&gt;
+				&lt;&lt;replace &quot;#charaChoice&quot; t8n&gt;&gt;
+				&lt;&lt;/replace&gt;&gt;
+				&lt;&lt;append &quot;#charaText&quot; t8n&gt;&gt;
+					&lt;span style=&#39;display:block; color:var(--hisDialogue)&#39;&gt;&lt;span class=&#39;char him&#39;&gt;Him&lt;/span&gt; _args[0]&lt;/span&gt;
+                    &lt;br \&gt;
+					&lt;span style=&quot;display:block&quot;&gt;&lt;&lt;include _args[2]&gt;&gt;&lt;/span&gt;
+				&lt;&lt;/append&gt;&gt;
+			&lt;&lt;/link&gt;&gt;
+		&lt;&lt;else&gt;&gt;
+			&lt;&lt;link `&#39;&quot;&#39; + _args[0] + &#39;&quot;&#39;`&gt;&gt;
+				&lt;&lt;replace &quot;#charaChoice&quot; t8n&gt;&gt;
+				&lt;&lt;/replace&gt;&gt;
+				&lt;&lt;append &quot;#charaText&quot; t8n&gt;&gt;
+					&lt;span style=&#39;display:block; color:var(--hisDialogue)&#39;&gt;&lt;span class=&#39;char him&#39;&gt;Him&lt;/span&gt; _args[0]&lt;/span&gt;
+                    &lt;br \&gt;
+					&lt;span style=&#39;display:block;&#39;&gt;&lt;&lt;include _args[1]&gt;&gt;&lt;/span&gt;
+				&lt;&lt;/append&gt;&gt;
+			&lt;&lt;/link&gt;&gt;
+		&lt;&lt;/if&gt;&gt;
+	&lt;&lt;/if&gt;&gt;
+	&lt;/span&gt;
 &lt;&lt;/widget&gt;&gt;</tw-passagedata></tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
