@@ -1298,13 +1298,75 @@ input[type="range"]::-moz-range-thumb{
   position: absolute;
   bottom:14vh;
   left:7vw;
-  z-index: -1;
+  z-index: -14;
   mix-blend-mode: screen;
 }
 
 .eye img{
   max-width: 50vw;
   filter: sepia(100%) brightness(84%);
+}
+
+@keyframes move-background {
+  from {
+		-webkit-transform: translate3d(0px, 0px, 0px);
+	}
+	to { 
+		-webkit-transform: translate3d(1000px, 0px, 0px);
+	}
+}
+@-webkit-keyframes move-background {
+  from {
+		-webkit-transform: translate3d(0px, 0px, 0px);
+	}
+	to { 
+		-webkit-transform: translate3d(1000px, 0px, 0px);
+	}
+}
+
+@-moz-keyframes move-background {    
+	from {
+		-webkit-transform: translate3d(0px, 0px, 0px);
+	}
+	to { 
+		-webkit-transform: translate3d(1000px, 0px, 0px);
+	}
+}
+
+    @-webkit-keyframes move-background {
+	from {
+		-webkit-transform: translate3d(0px, 0px, 0px);
+	}
+	to { 
+		-webkit-transform: translate3d(1000px, 0px, 0px);
+	}
+}
+
+.clouds{
+	width:10000%;
+	height: 100%;
+  opacity: 0.35;
+	background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/clouds_repeat.png") repeat;
+	background-size: 1000px 1000px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -21;
+
+  -moz-animation:move-background 210s linear infinite;
+  -ms-animation:move-background 210s linear infinite;
+  -o-animation:move-background 210s linear infinite;
+  -webkit-animation:move-background 210s linear infinite;
+  animation:move-background 210s linear infinite;
+}
+.clouds img{
+  height: 70vh;
+  width:70vh;
+  position: absolute;
+  z-index: -21;
+  right: 20px;
+  mix-blend-mode: screen;
 }
 /* twine-user-stylesheet #4: "click-to-proceed.css" */
 .--macro-ctp-hidden {
@@ -1652,17 +1714,6 @@ $(document).on(':passagestart', function (ev) {
 	}
 });
 
-/*! <<replacelink>> macro set for SugarCube 2.x */
-!function(){"use strict";function showVer(n,notrans){n&&(n.innerHTML="",new Wikifier(n,n.tweecode),n.setAttribute("data-enabled","true"),n.style.display="inline",n.classList.remove("revision-span-out"),notrans||(n.classList.add("revision-span-in"),n.timeout&&clearTimeout(n.timeout),n.timeout=setTimeout(function(){n.classList.remove("revision-span-in"),n=null},20)))}function hideVer(n,notrans){n&&(n.setAttribute("data-enabled","false"),n.classList.remove("revision-span-in"),n.timeout&&clearTimeout(n.timeout),notrans?(n.style.display="none",n.innerHTML="",n=null):(n.classList.add("revision-span-out"),n.timeout=setTimeout(function(){"false"===n.getAttribute("data-enabled")&&(n.classList.remove("revision-span-out"),n.style.display="none",n.innerHTML=""),n=null},1e3)))}function tagcontents(b,starttags,desttags,endtags,k){function tagfound(i,e,endtag){for(var j=0;j<e.length;j++)if(a.indexOf("<<"+e[j]+(endtag?">>":""),i)===i)return e[j]}for(var tg,l=0,c="",a=b.source.slice(k),i=0;i<a.length;i++){if(tg=tagfound(i,starttags))l++;else{if((tg=tagfound(i,desttags,!0))&&0===l)return b.nextMatch=k+i+tg.length+4,[c,tg];if((tg=tagfound(i,endtags,!0))&&(l--,l<0))return null}c+=a.charAt(i)}return null}function revisionSpanHandler(g,e,f,b){function mkspan(vtype){return h=insertElement(m,"span",null,"revision-span "+vtype),h.setAttribute("data-enabled",!1),h.style.display="none",h.tweecode="",h}var becomes,c,cn,m,h,vsn,k=b.source.indexOf(">>",b.matchStart)+2,vsns=[],vtype=e,flen=f.length;if(this.shorthand&&flen)for(;f.length>0;)vsns.push([f.shift(),"insert"===this.flavour?"gains":"becomes"]);else("insert"===this.flavour||"continue"===this.flavour&&"time"===this.trigger)&&vsns.push(["","becomes"]);if("continue"===this.flavour&&flen)b.nextMatch=k+b.source.slice(k).length,vsns.push([b.source.slice(k),vtype]);else{if(becomes=["becomes","gains"],c=tagcontents(b,begintags,becomes.concat(endtags),endtags,k),c&&endtags.indexOf(c[1])===-1){for(;c;)vsns.push(c),c=tagcontents(b,begintags,becomes,endtags,b.nextMatch);c=tagcontents(b,begintags,["/"+e,"end"+e],endtags,b.nextMatch)}if(!c)return void throwError(g,"<<"+e+">>: cannot find a matching close tag");vsns.push(c),"continue"===this.flavour&&(k=b.nextMatch,b.nextMatch=k+b.source.slice(k).length,vsns.push([b.source.slice(k),""]))}for("remove"===this.flavour&&vsns.push(["","becomes"]),cn=0,m=insertElement(g,"span",null,e),m.setAttribute("data-flavour",this.flavour),h=mkspan("initial"),vsn=vsns.shift(),h.tweecode=vsn[0],showVer(h,!0);vsns.length>0;)vsn&&(vtype=vsn[1]),vsn=vsns.shift(),h=mkspan(vtype),h.tweecode=vsn[0];"function"==typeof this.setup&&this.setup(m,g,e,f)}function revisionSetup(m,g,e,f){m.className+=" "+f[0].replace(" ","_")}function keySetup(m,g,e,f){f[0];m.setEventListener("keydown",function l(e){var done=!revise("revise",m);done&&m.removeEventListener("keydown",l)})}function timeSetup(m,g,e,f){function cssTimeUnit(s){if("string"==typeof s){if("ms"===s.slice(-2).toLowerCase())return Number(s.slice(0,-2))||0;if("s"===s.slice(-1).toLowerCase())return 1e3*Number(s.slice(0,-1))||0}return throwError(g,"<<"+e+'>>: "'+s+'" is not a valid CSS time unit'),0}var tm=cssTimeUnit(f[0]),s=passage();setTimeout(function timefn(){if(passage()===s){var done=!revise("revise",m);done||setTimeout(timefn,tm)}},tm)}function hoverSetup(m){var fn,noMouseEnter=null!==document.head.onmouseenter,m1=m.children[0],m2=m.children[1],gains=m2.className.indexOf("gains")>-1;m1&&m2&&(m1.onmouseenter=function(e){for(var efp=document.elementFromPoint(e.clientX,e.clientY);efp&&efp!==this;)efp=efp.parentNode;efp&&"false"!==this.getAttribute("data-enabled")&&revise("revise",this.parentNode)},m2.onmouseleave=function(e){for(var efp=document.elementFromPoint(e.clientX,e.clientY);efp&&efp!==this;)efp=efp.parentNode;efp||"false"!==this.getAttribute("data-enabled")&&revise("revert",this.parentNode)},gains&&(m1.onmouseleave=m2.onmouseleave),noMouseEnter&&(fn=function(n){return function(e){event.relatedTarget&&(event.relatedTarget===this||this.compareDocumentPosition(event.relatedTarget)&Node.DOCUMENT_POSITION_CONTAINED_BY)||this[n]()}},m1.onmouseover=fn("onmouseenter"),m2.onmouseout=fn("onmouseleave"),gains&&(m1.onmouseout=m2.onmouseout)),m=null)}function mouseSetup(m){var evt=null===document.head.onmouseenter?"onmouseenter":"onmouseover";m[evt]=function(){var done=!revise("revise",this);done&&(this[evt]=null)},m=null}function linkSetup(m,g,e,f){var l=document.createElement("a"),p=m.parentNode;l.className="link-internal replaceLink",p.insertBefore(l,m),l.insertBefore(m,null),jQuery(l).ariaClick(function(){var done=!1;m&&m.parentNode===this&&(done=!revise("revise",m),scrollWindowTo(m)),done&&(this.parentNode.insertBefore(m,this),this.parentNode.removeChild(this))}),l=null}function visitedSetup(m,g,e,f){var done,sav=State.variables,os="once seen",d=m.firstChild&&("insert"===this.flavour?m.firstChild.nextSibling:m.firstChild).tweecode;if(sav[os]=sav[os]||{},d&&!sav[os].hasOwnProperty(d))sav[os][d]=1;else{for(var i=sav[os][d];i>0&&!done;i--)done=!revise("revise",m,!0);sav[os].hasOwnProperty(d)&&(sav[os][d]+=1)}}function insideDepartingSpan(elem){for(var r=elem.parentNode;!r.classList.contains("passage");){if(r.classList.contains("revision-span-out"))return!0;r=r.parentNode}}function reviseAll(rt,rname){for(var rall=document.querySelectorAll(".passage [data-flavour]."+rname),ret=!1,i=0;i<rall.length;i++)insideDepartingSpan(rall[i])||(ret=revise(rt,rall[i])||ret);return ret}function revise(rt,r,notrans){function doToGainerSpans(n,fn){for(var k=n-1;k>=0&&rc[k+1].classList.contains("gains");k--)fn(rc[k],notrans)}for(var ind2,curr,next,ind=-1,rev="revert"===rt,rnd=rt.indexOf("random")>-1,fl=r.getAttribute("data-flavour"),rc=r.childNodes,cyc="cycle"===fl,rcl=rc.length-1,k=0;k<=rcl;k++)"true"===rc[k].getAttribute("data-enabled")&&(ind=k);rev&&(ind-=1),curr=ind>=0?rc[ind]:cyc?rc[rcl]:null,ind2=ind,rnd&&(ind2=(ind+Math.floor(Math.random()*rcl))%rcl),next=ind2<rcl?rc[ind2+1]:cyc?rc[0]:null;var docurr=rev?showVer:hideVer,donext=rev?hideVer:showVer,currfn=function(){next&&next.classList.contains("gains")&&!rnd||(docurr(curr,notrans),doToGainerSpans(ind,docurr,notrans))},nextfn=function(){donext(next,notrans),rnd&&doToGainerSpans(ind2+1,donext,notrans)};return rev?(nextfn(),currfn()):(currfn(),nextfn()),!!cyc||(rev?ind>0:ind2<rcl-1)}if("undefined"==typeof version||"undefined"==typeof version.title||"SugarCube"!==version.title||"undefined"==typeof version.major||version.major<2)throw new Error("<<replacelink>> macro set requires SugarCube 2.0.0 or greater, aborting load");version.extensions.replacelinkMacroSet={major:1,minor:1,revision:7};var begintags=[],endtags=[];[{name:"insertlink",flavour:"insert",trigger:"link",setup:linkSetup},{name:"timedinsert",flavour:"insert",trigger:"time",setup:timeSetup},{name:"insertion",flavour:"insert",trigger:"revisemacro",setup:revisionSetup},{name:"later",flavour:"insert",trigger:"visited",setup:visitedSetup},{name:"keyinsert",flavour:"insert",trigger:"key",setup:keySetup},{name:"replacelink",flavour:"replace",trigger:"link",setup:linkSetup},{name:"timedreplace",flavour:"replace",trigger:"time",setup:timeSetup},{name:"mousereplace",flavour:"replace",trigger:"mouse",setup:mouseSetup},{name:"hoverreplace",flavour:"replace",trigger:"hover",setup:hoverSetup},{name:"revision",flavour:"replace",trigger:"revisemacro",setup:revisionSetup},{name:"keyreplace",flavour:"replace",trigger:"key",setup:keySetup},{name:"timedremove",flavour:"remove",trigger:"time",setup:timeSetup},{name:"mouseremove",flavour:"remove",trigger:"mouse",setup:mouseSetup},{name:"hoverremove",flavour:"remove",trigger:"hover",setup:hoverSetup},{name:"removal",flavour:"remove",trigger:"revisemacro",setup:revisionSetup},{name:"once",flavour:"remove",trigger:"visited",setup:visitedSetup},{name:"keyremove",flavour:"remove",trigger:"key",setup:keySetup},{name:"continuelink",flavour:"continue",trigger:"link",setup:linkSetup},{name:"timedcontinue",flavour:"continue",trigger:"time",setup:timeSetup},{name:"mousecontinue",flavour:"continue",trigger:"mouse",setup:mouseSetup},{name:"keycontinue",flavour:"continue",trigger:"key",setup:keySetup},{name:"cycle",flavour:"cycle",trigger:"revisemacro",setup:revisionSetup},{name:"mousecycle",flavour:"cycle",trigger:"mouse",setup:mouseSetup},{name:"timedcycle",flavour:"cycle",trigger:"time",setup:timeSetup},{name:"keycycle",flavour:"replace",trigger:"key",setup:keySetup}].forEach(function(e){e.handler=revisionSpanHandler,e.shorthand=["link","mouse","hover"].indexOf(e.trigger)>-1,macros[e.name]=e,Macro.tags.register(e.name),begintags.push(e.name),endtags.push("/"+e.name,"end"+e.name)}),macros.revertlink=macros.reviselink=macros.randomiselink=macros.randomizelink={handler:function(a,b,c){function disableLink(l){l.style.display="none"}function enableLink(l){l.style.display="inline"}function updateLink(l){if(l.className.indexOf("random")>-1)return void enableLink(l);for(var cannext,canprev,r,fl,rall=document.querySelectorAll(".passage [data-flavour]."+rname),i=0;i<rall.length;i++)r=rall[i],fl=r.getAttribute("data-flavour"),insideDepartingSpan(r)||("cycle"===fl?cannext=canprev=!0:("false"===r.firstChild.getAttribute("data-enabled")&&(canprev=!0),"false"===r.lastChild.getAttribute("data-enabled")&&(cannext=!0)));var can=l.classList.contains("revert")?canprev:cannext;(can?enableLink:disableLink)(l)}function toggleText(w){w.classList.toggle(rl+"Enabled"),w.classList.toggle(rl+"Disabled"),w.style.display="none"===w.style.display?"inline":"none"}if(c.length<2)return void throwError(a,"<<"+b+">>: insufficient arguments (requires at least 2)");var l,rname,actName=b.slice(0,-4),rl="reviseLink",v="",end=!1,out=!1;switch(rname=c.shift().replace(" ","_"),l=insertElement(a,"a"),l.className="link-internal "+rl+" "+rl+"_"+rname+" "+actName,c.length>1&&"$"===c[0][0]&&(v=c[0].slice(1),c.shift()),c[c.length-1]){case"end":end=!0,c.pop();break;case"out":out=!0,c.pop()}for(var h=State.variables,i=0;i<c.length;i++){var on=i===Math.max(c.indexOf(h[v]),0),d=insertElement(null,"span",null,rl+(on?"En":"Dis")+"abled");on?(h[v]=c[i],l.setAttribute("data-cycle",i)):d.style.display="none",insertText(d,c[i]),l.appendChild(d)}jQuery(l).ariaClick(function(){reviseAll(actName,rname);var lall,t=this.childNodes,u=this.getAttribute("data-cycle")-0,m=t.length;if((end||out)&&u>=m-(end?2:1)){if(!end)return void this.parentNode.removeChild(this);var n=this.removeChild(t[u+1]||t[u]);n.className=rl+"End",n.style.display="inline",this.parentNode.replaceChild(n,this)}else toggleText(t[u]),u=(u+1)%m,v&&(h[v]=c[u]),toggleText(t[u]),this.setAttribute("data-cycle",u);lall=document.getElementsByClassName(rl+"_"+rname);for(var i=0;i<lall.length;i++)updateLink(lall[i])}),disableLink(l),setTimeout(function(l){return function(){updateLink(l)}}(l),1),l=null}},macros.mouserevise=macros.hoverrevise={handler:function(a,b,c,d){var endtags=["/"+b,"end"+b],evt=null===window.onmouseenter?"onmouseenter":"onmouseover",t=tagcontents(d,[b],endtags,endtags,d.source.indexOf(">>",d.matchStart)+2);if(t){var rname=c[0].replace(" ","_"),h=insertElement(a,"span",null,"hoverrevise hoverrevise_"+rname),f=function(){var done=!reviseAll("revise",rname);"hoverrevise"!=b&&done&&(this[evt]=null)};new Wikifier(h,t[0]),"hoverrevise"===b?(h.onmouseover=f,h.onmouseout=function(){reviseAll("revert",rname)}):h[evt]=f,h=null}}},Macro.tags.register("mouserevise"),Macro.tags.register("hoverrevise"),macros.instantrevise={handler:function(a,b,c,d){reviseAll("revise",c[0].replace(" ","_"))}}}();
-
-/*! <<shake>> macro set for SugarCube 2.x */
-!function(){"use strict";if("undefined"==typeof version||"undefined"==typeof version.title||"SugarCube"!==version.title||"undefined"==typeof version.major||version.major<2||"undefined"==typeof version.minor||version.minor<5)throw new Error("<<shake>> macro requires SugarCube 2.5.0 or greater, aborting load");Macro.add("shake",{tags:null,handler:function(){var duration=this.args.length>0?this.args[0]:1/0,shakeClass="shake";if(1/0!==duration)try{duration=Math.max(Engine.minDomActionDelay,Util.fromCssTime(duration))}catch(e){return this.error(e.message)}Config.debug&&this.debugView.modes({block:!0});var $wrapper=jQuery(document.createElement("span"));$wrapper.addClass("macro-"+this.name+" "+shakeClass).wiki(this.payload[0].contents).appendTo(this.output),1/0!==duration&&setTimeout(function(){$wrapper.removeClass(shakeClass)},Engine.minDomActionDelay+duration)}}),Macro.add(["shakescreen","shaketarget"],{handler:function(){var $targets,duration,shakeClass;if("shakescreen"===this.name)$targets=jQuery("#passages"),duration=this.args.length>0?this.args[0]:1/0,shakeClass="shake-block";else{if(0===this.args.length)return this.error("no selector specified");if($targets=jQuery(this.args[0]),0===$targets.length)return this.error('no elements matched the selector "'+this.args[0]+'"');duration=this.args.length>1?this.args[1]:1/0,shakeClass="block"===jQuery($targets[0]).css("display")?"shake-block":"shake"}if("stop"===duration)return void $targets.removeClass(shakeClass);if(1/0!==duration)try{duration=Math.max(Engine.minDomActionDelay,Util.fromCssTime(duration))}catch(e){return this.error(e.message)}$targets.addClass(shakeClass),1/0!==duration&&setTimeout(function(){$targets.removeClass(shakeClass)},Engine.minDomActionDelay+duration)}})}();
-
-// Simple Inventory, for SugarCube 2, by Chapel
-// v3.0.0-beta1, 2022-07-25, 19f255d958852e55a8a3afcde5c53331f0d938e8
-;"use strict";function _typeof(t){return _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},_typeof(t)}function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function _defineProperties(t,e){for(var n=0;n<e.length;n++){var i=e[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}function _createClass(t,e,n){return e&&_defineProperties(t.prototype,e),n&&_defineProperties(t,n),Object.defineProperty(t,"prototype",{writable:!1}),t}!function(){var t={description:"",handler:null,displayName:"",consumable:!0,unique:!1,permanent:!1},e=new Map,n=function(){function n(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:clone(t),r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:[];if(_classCallCheck(this,n),!e||"string"!=typeof e)throw new Error("invalid item ID");if("object"!==_typeof(i))throw new Error("invalid item definition");Object.assign(this,Object.assign(t,i)),this.id=e,this.tags=r instanceof Array?r:"string"==typeof r?[r]:[]}return _createClass(n,[{key:"name",get:function(){return this.displayName||this.id},set:function(t){this.displayName=t}},{key:"use",value:function(){return"string"==typeof this.handler?$.wiki(this.handler):"function"==typeof this.handler&&this.handler(this),this}},{key:"inspect",value:function(){return Dialog.setup(this.name,"simple-inventory item-description"),Dialog.wiki(this.description),Dialog.open(),this}}],[{key:"is",value:function(t){return t instanceof n}},{key:"add",value:function(t,i,r){var a=new n(t,i,r);return e.set(t,a),a}},{key:"get",value:function(t){return e.get(t)}},{key:"has",value:function(t){return e.has(t)}},{key:"list",get:function(){return e}}]),n}();setup.Item=n,window.Item=window.Item||n}(),function(){var t=setup.Item,e=!1,n="&hellip;",i={inspect:"Inspect",use:"Use",drop:"Drop",stack:"stack",take:"Take",give:"Give",stackPre:"&nbsp;&times;&nbsp;",stackPost:"&nbsp;"},r={};function a(e){return t.has(e)&&t.get(e).unique}function s(e){return t.has(e)&&t.get(e).permanent}function o(t){return t&&"string"==typeof t&&t.trim()}var u=function(){function u(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:[];_classCallCheck(this,u),this.data=clone(t),this.tags=e instanceof Array?e:"string"==typeof e?[e]:[]}return _createClass(u,[{key:"emit",value:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return u.emit(t,this,e),this}},{key:"array",get:function(){var t=this,e=[];return Object.keys(this.data).forEach((function(n){if(e.push(n),t.data[n]>1)for(var i=1;i<t.data[n];i++)e.push(n)})),e}},{key:"list",get:function(){return Object.keys(this.data)}},{key:"length",get:function(){return this.array.length}},{key:"uniqueLength",get:function(){return this.list.length}},{key:"table",get:function(){return this.data}},{key:"count",value:function(t){return t?this.data[t]||0:this.length}},{key:"has",value:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:1;return this.data[t]>=e}},{key:"hasAll",value:function(){var t=this,e=[].slice.call(arguments).flat(1/0);return e.every((function(e){return t.has(e)}))}},{key:"hasAny",value:function(){var t=this,e=[].slice.call(arguments).flat(1/0);return e.some((function(e){return t.has(e)}))}},{key:"compare",value:function(t){var e=this,n=u.itemset(t);return Object.keys(n).every((function(t){return e.has(t,n[t])}))}},{key:"merge",value:function(t){var e=this,n=u.itemset(t);return Object.keys(n).forEach((function(t){u.change(e,t,n[t])})),n}},{key:"unmerge",value:function(t){var e=this,n={},i=u.itemset(t);return Object.keys(i).forEach((function(t){e.has(t,i[t])?n[t]=i[t]:e.has(t)&&(n[t]=e.count(t)),u.change(e,t,i[t],!0)})),n}},{key:"pickup",value:function(){var t=this.merge(u.parseArgList.apply(null,arguments));return this.emit("update",{delta:t}),this}},{key:"drop",value:function(){var t=this.unmerge(u.parseArgList.apply(null,arguments));return this.emit("update",{delta:t}),this}},{key:"empty",value:function(){var t=clone(this.data);return this.data={},this.emit("update",{delta:t}),this}},{key:"transfer",value:function(t){var e=u.parseArgList.apply(null,[].slice.call(arguments).slice(1));if(!u.is(t))throw new TypeError("target inventory is not an inventory instance");var n=this.unmerge(e);return t.merge(n),this.emit("update",{target:t,delta:n}),this}},{key:"isEmpty",value:function(){return 0===this.length}},{key:"iterate",value:function(t){var e=this;return"function"!=typeof t||this.list.forEach((function(n){t(n,e.data[n])})),this}},{key:"use",value:function(e){if(t.has(e)){var n=t.get(e);if(n.use(),n.consumable){u.change(this,e,1,!0);var i={};i[e]=1,this.emit("update",{delta:i})}return this.emit("use",{item:n}),this}}},{key:"clone",value:function(){return new u(this.data||{},this.tags||[])}},{key:"toJSON",value:function(){return JSON.reviveWrapper("new setup.Inventory("+JSON.stringify(this.data)+", "+JSON.stringify(this.tags)+")")}}],[{key:"confirm",get:function(){return e},set:function(t){e="string"==typeof t&&"all"===t.trim().toLowerCase()?"all":"string"==typeof t&&"stack"===t.trim().toLowerCase()?"stack":!!t}},{key:"emptyMessage",get:function(){return n},set:function(t){"string"==typeof t&&(n=t)}},{key:"strings",get:function(){return Object.assign(clone(i),r)},set:function(t){"object"===_typeof(t)&&(r=Object.assign(r,clone(t)))}},{key:"change",value:function(t,e){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:1,i=arguments.length>3&&void 0!==arguments[3]&&arguments[3];if(0!==n){if(t instanceof u&&(t=t.data),"object"!==_typeof(t)){if(t)throw new TypeError("cannot access inventory data");t={}}if(!o(e))throw new TypeError("invalid item name/id");if("number"==typeof n&&!Number.isNaN(n)&&Number.isInteger(n)||(n=1),i&&(n*=-1),n>0){if(Object.keys(t).includes(e)&&a(e))return;Object.keys(t).includes(e)||(t[e]=0),t[e]+=n}else{if(s(e))return;Object.keys(t).includes(e)&&"number"==typeof t[e]&&(t[e]+=n),t[e]<=0&&delete t[e]}return t}}},{key:"itemset",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(u.is(t)&&(t=t.data),"object"!==_typeof(t))return{};var e={};return Object.keys(t).forEach((function(n){"number"==typeof t[n]&&Number.isInteger(t[n])&&0!==t[n]&&(e[n]=t[n])})),e}},{key:"parseArgList",value:function(){var t=[].slice.call(arguments).flat(1/0);if(t.length%2!=0)throw new Error("item sets should be pairs of item IDs and numbers");var e={};return t.forEach((function(n,i){i%2==0&&(e[n]=t[i+1])})),e}},{key:"is",value:function(t){return t instanceof u}},{key:"emit",value:function(t,e){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};$(document).trigger(Object.assign({type:":inventory-"+t+".simple-inventory",inventory:e,target:null,delta:{},item:null},n))}},{key:"create",value:function(t,e){return new u(t,e)}}]),u}();setup.Inventory=u,window.Inventory=window.Inventory||u}(),function(){var t=setup.Item,e=setup.Inventory;function n(e){return t.has(e)&&t.get(e).permanent}function i(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,i=arguments.length>2&&void 0!==arguments[2]&&arguments[2],r=arguments.length>3&&void 0!==arguments[3]?arguments[3]:"Alert",a=arguments.length>4&&void 0!==arguments[4]?arguments[4]:"Are you sure?";if(!t||"function"!=typeof t)throw new Error("Invalid confirmation callback!");if(e.confirm)if("all"!==e.confirm||"all"===i)if("stack"!==e.confirm||i){var s={display:"inline-block",float:"right"},o=$(document.createElement("div")),u=$(document.createElement("p")).append(a),l=$(document.createElement("div")).addClass("confirmation-buttons"),c=$(document.createElement("button")).append("Okay").addClass("confirm-yes").css(Object.assign(s,{"margin-right":"0.5rem"})),d=$(document.createElement("button")).append("Cancel").addClass("confirm-no").css(s);t&&"function"==typeof t&&c.ariaClick(t),n&&"function"==typeof n&&d.ariaClick(n),l.append(d,c),o.append(u,l),Dialog.setup(r,"simple-inventory confirmation"),Dialog.append(o),Dialog.open()}else t();else t();else t()}function r(t){var e=$(document.createElement("span")).addClass("spacer");return t&&e.wiki(""+t),e}function a(n,i,r){var a=arguments.length>3&&void 0!==arguments[3]&&arguments[3];return r=r||e.strings.inspect,$(document.createElement(a?"button":"a")).addClass("inspect-link").wiki(""+r).ariaClick((function(){t.get(i).inspect()}))}function s(t,n,i){var r=arguments.length>3&&void 0!==arguments[3]&&arguments[3];return i=i||e.strings.use,$(document.createElement(r?"button":"a")).addClass("use-link").wiki(""+i).ariaClick((function(){t.use(n)}))}function o(t,n,r){var a=arguments.length>3&&void 0!==arguments[3]&&arguments[3],s=arguments.length>4&&void 0!==arguments[4]?arguments[4]:null;return r=r||(s?e.strings.give:e.strings.drop),$(document.createElement(a?"button":"a")).addClass("drop-link").wiki(""+r).ariaClick((function(){i((function(){s&&e.is(s)?t.transfer(s,n,1):t.drop(n,1),Dialog.close()}),(function(){Dialog.close()}))}))}function u(t,n,r){var a=arguments.length>3&&void 0!==arguments[3]&&arguments[3],s=arguments.length>4&&void 0!==arguments[4]?arguments[4]:null;return r=r||(s?e.strings.give:e.strings.drop)+"&nbsp;"+e.strings.stack,$(document.createElement(a?"button":"a")).addClass("stack-link drop-link").wiki(""+r).ariaClick((function(){i((function(){s&&e.is(s)?t.transfer(s,n,t.count(n)):t.drop(n,t.count(n)),Dialog.close()}),(function(){Dialog.close()}))}))}function l(t,n){var r=arguments.length>2&&void 0!==arguments[2]&&arguments[2],a=arguments.length>3&&void 0!==arguments[3]?arguments[3]:null;return n=n||(a?e.strings.give:e.strings.drop),$(document.createElement(r?"button":"a")).addClass("all-link drop-link").wiki(n+" all").ariaClick((function(){t.isEmpty()||i((function(){a&&e.is(a)?(a.merge(t),t.empty()):t.empty(),Dialog.close()}),(function(){Dialog.close()}),!0)}))}function c(t,n,i,r){return i=i||e.strings.stackPre,r=r||e.strings.stackPost,$(document.createElement("span")).addClass("item-count").append(""+i+(t.count(n)||0)+r)}function d(i){var d,f=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{description:!0,use:!0,transfer:null,drop:!0,all:!0,stack:!0,dropActionText:"",classes:""},p=$(document.createElement("ul")).addClass("simple-inventory-list");if(i.length){if(d=i.list.map((function(l){var d=[];return f.description&&t.has(l)&&t.get(l).description?d.push(a(i,l,t.has(l)?t.get(l).name:l)):d.push($(document.createElement("span")).append(t.has(l)?t.get(l).name:l).addClass("item-name")),d.push(c(i,l)),f.use&&t.has(l)&&t.get(l).handler?d.push(s(i,l)):d.push(r()),(f.transfer&&e.is(f.transfer)||f.drop)&&!n(l)?(d.push(o(i,l,f.dropActionText,!1,f.transfer||null)),i.count(l)>1&&f.stack?d.push(u(i,l,f.dropActionText+"&nbsp;"+e.strings.stack,!1,f.transfer||null)):d.push(r())):d.push(r()),$(document.createElement("li")).append(d).addClass("simple-inventory-listing")})),f.all){var h=$(document.createElement("li")).addClass("all-listing simple-inventory-listing").append([r("&mdash;"),r(),r(),l(i,f.dropActionText,!1,f.transfer||null)]);d.push(h)}}else d=$(document.createElement("li")).addClass("simple-inventory-listing").append($(document.createElement("span")).wiki(e.emptyMessage));return p.append(d),p}e.prototype.interface=function(){var t,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,i=this,r=$(document.createElement("div")).addClass("simple-inventory-wrapper");return r.append(d(this,e)),$(document).on(":inventory-update.simple-inventory.gui-built-in",(function(){r.length?r.empty().append(d(i,e)):$(document).off(":inventory-update.simple-inventory.gui-built-in")})),n&&n instanceof $?t=n:n&&(t=$(n)),t&&r.appendTo(t),r}}(),function(){setup.Inventory,setup.Item;var t=".simple-inventory-userland",e=":inventory-update.simple-inventory"+t,n=":inventory-use.simple-inventory"+t;function i(t){return t&&"function"==typeof t}Object.assign(setup.Inventory,{events:{update:{on:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";i(t)&&$(document).on(e+n,t)},one:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";i(t)&&$(document).one(e+n,t)},off:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";$(document).off(e+t)}},use:{on:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";i(t)&&$(document).on(n+e,t)},one:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";i(t)&&$(document).one(n+e,t)},off:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";$(document).off(n+t)}}}})}(),function(){var t=function(t){if(!Story.has(t))return{};var e,n,i,r,a=(e=Story.get(t).text,i=function(t){return t.replace(/\r+/g,"\n").replace(/\n+/,"\n").replace(/ +/g," ").trim().split(/\n/g)}(e),r={},i.forEach((function(t){var e=function(t,e){return e=e||":",t.trim().split(e)}(t,n);r[e[0].trim()]=e[1].trim()})),r);return a}("inventory.strings");t.empty&&"string"==typeof t.empty&&t.empty.trim()&&(setup.Inventory.emptyMessage=t.empty,delete t.empty),setup.Inventory.strings=t||{}}(),function(){var t=setup.Item,e=setup.Inventory;function n(t){return t&&"string"==typeof t&&t.length>2&&("$"===t[0]||"_"===t[0])}function i(t){if(n(t)&&(t=State.getVar(t)),e.is(t))return t}Macro.add(["item","consumable"],{tags:["description","tags","unique","permanent"],handler:function(){var e,n,i,r,a=null,s=!1,o=!1,u=!1;if(State.length>0)return this.error("items must be defined in `StoryInit` or story JavaScript!");if(!this.args[0]||"string"!=typeof this.args[0]||!this.args[0].trim())return this.error("invalid item ID");if(e=this.args[0].trim(),"consumable"===this.name&&(a=this.payload[0].contents||null,s=!0),this.args[1]&&(n=this.args[1]),this.payload.length>1){var l=this.payload.find((function(t){return"description"===t.name})),c=this.payload.find((function(t){return"tags"===t.name})),d=this.payload.find((function(t){return"unique"===t.name})),f=this.payload.find((function(t){return"permanent"===t.name}));l&&(i=l.contents.trim()),c&&(r=c.args.flat(1/0)),d&&(o=!0),f&&(u=!0)}t.add(e,{displayName:n||"",description:i||"",handler:a,consumable:s,unique:o,permanent:u},r)}}),Macro.add("newinv",{handler:function(){var t=this.args.raw.trim().split(" ").first().replace(/["']/g,"").trim();if(!n(t))return this.error("argument must be a story or temporary variable!");State.setVar(t,new e({},this.args.flat(1/0).slice(1)))}}),Macro.add(["pickup","drop"],{handler:function(){var t=i(this.args[0]);return t?this.args.length<3?this.error("no items to pick up were provided"):void t[this.name](this.args.slice(1)):this.error("first argument must be a valid inventory!")}}),Macro.add("dropall",{handler:function(){var t=i(this.args[0]);if(!t)return this.error("first argument must be a valid inventory!");t.empty()}}),Macro.add(["transfer","merge","unmerge"],{handler:function(){var t=i(this.args[0]);if(!t)return this.error("first argument must be a valid inventory!");var e=i(this.args[1]);if(!e)return this.error("second argument must be a valid inventory!");if("transfer"===this.name){if(this.args.length<4)return this.error("no items to transfer were provided");t.transfer(e,this.args.slice(2))}else t[this.name](e)}}),Macro.add(["inv","take","give"],{handler:function(){var t=null,n=i(this.args[0]);if(!n)return this.error("first argument must be a valid inventory!");this.args[1]&&i(this.args[1])&&(t=i(this.args[1]));var r={description:this.args.includesAny("inspect","description"),use:this.args.includes("use"),transfer:t,drop:this.args.includes("drop"),all:this.args.includes("all"),stack:this.args.includes("stack"),dropActionText:"inv"===this.name?"Drop":e.strings[this.name.trim().toLowerCase()],classes:"macro-".concat(this.name)};n.interface(r,$(this.output))}})}(),function(){var t=setup.Item,e=setup.Inventory;function n(t,e,n){if("object"!==_typeof(e))throw new TypeError("the extension should be a plain generic object holding the properties and methods you want to add");Object.keys(e).forEach((function(i){if(t[i]&&!n)throw new Error('Cannot override existing property "'+i+'"!');t[i]=e[i]}))}Object.assign(e,{extend:function(t){var i=arguments.length>1&&void 0!==arguments[1]&&arguments[1];n(e,t,i)},extendPrototype:function(t){var i=arguments.length>1&&void 0!==arguments[1]&&arguments[1];n(e.prototype,t,i)}}),Object.assign(t,{extend:function(e){var i=arguments.length>1&&void 0!==arguments[1]&&arguments[1];n(t,e,i)},extendPrototype:function(e){var i=arguments.length>1&&void 0!==arguments[1]&&arguments[1];n(t.prototype,e,i)}})}();
-// End Simple Inventory
-
 // Custom Flag Check Macro
 Macro.add('fc', {
     tags : ['else'],
@@ -1689,393 +1740,7 @@ Macro.add('fc', {
         }
     }
 });
-
-// First Macro
-// first macro, by chapel; for sugarcube 2
-// version 1.1.1
-// see the documentation: https://github.com/ChapelR/custom-macros-for-sugarcube-2#first-macro
-
-// <<first>> macro
-Macro.add('first', {
-    skipArgs : true,
-        tags : ['then', 'finally'],
-     handler : function () {
-
-        var $wrapper = $(document.createElement('span')),
-            last     = this.payload[this.payload.length - 1],
-            visits   = visited() - 1, 
-            content;
-            
-            if (visits < this.payload.length) {
-                content = this.payload[visits].contents;
-            } else {
-                content = (last.name === 'finally') ? last.contents : '';
-            }
-
-        $wrapper
-            .wiki(content)
-            .addClass('macro-' + this.name)
-            .appendTo(this.output);
-    }
-
-});
-
-//Dialog API Macros
-// dialog API macro set, by chapel; for sugarcube 2
-// version 1.3.0
-// see the documentation: https://github.com/ChapelR/custom-macros-for-sugarcube-2#dialog-api-macros
-
-// <<dialog>> macro
-Macro.add('dialog', {
-       tags : ['onopen', 'onclose'],
-    handler : function () {
-        
-        // handle args (if any)
-        var errors = [];
-        var content = '', onOpen = null, onClose = null;
-        var title = (this.args.length > 0) ? this.args[0] : '';
-        var classes = (this.args.length > 1) ? this.args.slice(1).flatten() : [];
-
-        this.payload.forEach( function (pl, idx) {
-            if (idx === 0) {
-                content = pl.contents;
-            } else {
-                if (pl.name === 'onopen') {
-                    onOpen = onOpen ? onOpen + pl.contents : pl.contents;
-                } else {
-                    onClose = onClose ? onClose + pl.contents : pl.contents;
-                }
-            }
-        });
-        
-        // add the macro- class
-        classes.push('macro-' + this.name);
-        
-        // dialog box
-        Dialog.setup(title, classes.join(' '));
-        Dialog.wiki(content);
-
-        // should these be shadowWrapper-aware?
-        if (onOpen && typeof onOpen === 'string' && onOpen.trim()) {
-            $(document).one(':dialogopened', function () {
-                $.wiki(onOpen);
-            });
-        }
-
-        if (onClose && typeof onClose === 'string' && onClose.trim()) {
-            $(document).one(':dialogclosed', function () {
-                $.wiki(onClose);
-            });
-        }
-
-        Dialog.open();
-        
-    }
-
-});
-
-// <<popup>> macro
-Macro.add('popup', {
-    handler : function () {
-        
-        // errors
-        if (this.args.length < 1) {
-            return this.error('need at least one argument; the passage to display');
-        }
-        if (!Story.has(this.args[0])) {
-            return this.error('the passage ' + this.args[0] + 'does not exist');
-        }
-        
-        // passage name and title
-        var psg   = this.args[0];
-        var title = (this.args.length > 1) ? this.args[1] : '';
-        var classes = (this.args.length > 2) ? this.args.slice(2).flatten() : [];
-        
-        // add the macro- class
-        classes.push('macro-' + this.name);
-        
-        // dialog box
-        Dialog.setup(title, classes.join(' '));
-        Dialog.wiki(Story.get(psg).processText());
-        Dialog.open();
-        
-    }
-
-});
-
-// <<dialogclose>> macro
-Macro.add('dialogclose', { 
-    skipArgs : true, 
-    handler : function () {
-        Dialog.close();
-    } 
-});
-
-// Live Update Macro by cyrusfirheir
-(function () {
-	"use strict";
-
-	$(document).on(":liveupdate", function () {
-		$(".macro-live").trigger(":liveupdateinternal");
-	});
-
-	Macro.add(['update', 'upd'], {
-		handler: function handler() {
-			$(document).trigger(":liveupdate");
-		}
-	});
-
-	Macro.add(['live', 'l', 'lh'], {
-		skipArgs: true,
-		handler: function handler() {
-			if (this.args.full.length === 0) {
-				return this.error('no expression specified');
-			}
-			try {
-				var statement = this.args.full;
-				var result = toStringOrDefault(Scripting.evalJavaScript(statement), null);
-				if (result !== null) {
-					var lh = this.name === "lh";
-					var $el = $("<span></span>").addClass("macro-live").wiki(lh ? Util.escape(result) : result).appendTo(this.output);
-					$el.on(":liveupdateinternal", this.createShadowWrapper(function (ev) {
-						var out = toStringOrDefault(Scripting.evalJavaScript(statement), null);
-						$el.empty().wiki(lh ? Util.escape(out) : out);
-					}));
-				}
-			} catch (ex) {
-				return this.error("bad evaluation: " + (_typeof(ex) === 'object' ? ex.message : ex));
-			}
-		}
-	});
-
-	Macro.add(['liveblock', 'lb'], {
-		tags: null,
-		handler: function handler() {
-			try {
-				var content = this.payload[0].contents.trim();
-				if (content) {
-					var $el = $("<span></span>").addClass("macro-live macro-live-block").wiki(content).appendTo(this.output);
-					$el.on(":liveupdateinternal", this.createShadowWrapper(function (ev) {
-						$el.empty().wiki(content);
-					}));
-				}
-			} catch (ex) {
-				return this.error("bad evaluation: " + (_typeof(ex) === 'object' ? ex.message : ex));
-			}
-		}
-	});
-})();
-
-// HubNav by hogart
-(function hubnavMacro(renderLinkWrapper) {
-    'use strict';
-    /* globals version, Story, Config, Macro, passage, Wikifier, State */
-    const macroName = 'hubnav';
-
-    if (!version || !version.title || 'SugarCube' !== version.title || !version.major || version.major < 2) {
-        throw new Error(`<<${macroName}>> macros family requires SugarCube 2.0 or greater, aborting load`);
-    }
-
-    renderLinkWrapper = renderLinkWrapper || function(link) {
-        const span = link.wrap('<span>');
-        span.append('<br/><br/>');
-        return span;
-    };
-
-    function has(obj, prop) {
-        return Object.prototype.hasOwnProperty.call(obj, prop);
-    }
-
-    function parseLinkArg(arg) {
-        let passage;
-        let $content;
-        if (arg.isImage) {
-            // Argument was in wiki image syntax.
-            $content = jQuery(document.createElement('img'))
-                .attr('src', arg.source);
-
-            if (has(arg, 'passage')) {
-                $content.attr('data-passage', arg.passage);
-            }
-
-            if (has(arg,'title')) {
-                $content.attr('title', arg.title);
-            }
-
-            if (has(arg, 'align')) {
-                $content.attr('align', arg.align);
-            }
-
-            passage = arg.link;
-        } else {
-            // Argument was in wiki link syntax.
-            $content = jQuery(document.createTextNode(arg.text));
-            passage = arg.link;
-        }
-
-        return {
-            passage,
-            $content,
-            setFn: arg.setFn,
-        };
-    }
-
-    function createLink({passage, $content, setFn}) {
-        const $link = jQuery(Wikifier.createInternalLink(
-            null,
-            passage,
-            null,
-            ((passage, fn) => () => {
-                if (typeof fn === 'function') {
-                    fn();
-                }
-            })(passage, setFn)
-        ))
-            .addClass(`macro-${macroName}`)
-            .append($content);
-
-        if (passage != null) { // lazy equality for null
-            $link.attr('data-passage', passage);
-
-            if (Story.has(passage)) {
-                $link.addClass('link-internal');
-
-                if (Config.addVisitedLinkClass && State.hasPlayed(passage)) {
-                    $link.addClass('link-visited');
-                }
-            } else {
-                $link.addClass('link-broken');
-            }
-        } else {
-            $link.addClass('link-internal');
-        }
-
-        return $link;
-    }
-
-    function isLink(arg) {
-        return arg && jQuery.isPlainObject(arg) && ('link' in arg);
-    }
-
-    Macro.add(macroName, {
-        handler() {
-            if (this.args.length === 0) {
-                return this.error(`no ${macroName} links specified`);
-            }
-
-            const currentPassage = passage();
-
-            const links = [];
-
-            if (this.args.length === 1 && typeof this.args[0] === 'string') {
-                // single string argument: find all passages with given tag and use them as navigation
-                const passages = Story.lookupWith(p => p.tags.includes(this.args[0]))
-                    .map(p => p.title);
-                for (const passageTitle of passages) {
-                    if (passageTitle !== currentPassage) {
-                        links.push({
-                            $content: jQuery(document.createTextNode(passageTitle)),
-                            passage: passageTitle,
-                        });
-                    }
-                }
-            } else {
-                for (let i = 0, len = this.args.length; i < len; i++) {
-                    const arg = this.args[i];
-                    if (isLink(arg)) {
-                        const parsed = parseLinkArg(arg);
-                        if (parsed.passage === currentPassage) {
-                            continue;
-                        }
-
-                        const nextArg = this.args[i + 1];
-
-                        if (i < len - 1 && !isLink(nextArg)) { // next is not a link
-                            if (nextArg) {
-                                links.push(parsed);
-                                i++; // skip next round
-                            }
-                        } else {
-                            links.push(parsed);
-                        }
-                    }
-                }
-            }
-
-            const $output = jQuery(this.output);
-
-            links.forEach((link) => {
-                $output.append(renderLinkWrapper(createLink(link)));
-            });
-        },
-    });
-}());
-
-/*global jQuery */
-/*!
-* FitText.js 1.2
-*
-* Copyright 2011, Dave Rupert http://daverupert.com
-* Released under the WTFPL license
-* http://sam.zoy.org/wtfpl/
-*
-* Date: Thu May 05 14:23:00 2011 -0600
-*/
-
-(function( $ ){
-
-  $.fn.fitText = function( kompressor, options ) {
-
-    // Setup options
-    var compressor = kompressor || 1,
-        settings = $.extend({
-          'minFontSize' : Number.NEGATIVE_INFINITY,
-          'maxFontSize' : Number.POSITIVE_INFINITY
-        }, options);
-
-    return this.each(function(){
-
-      // Store the object
-      var $this = $(this);
-
-      // Resizer() resizes items based on the object width divided by the compressor * 10
-      var resizer = function () {
-        $this.css('font-size', Math.max(Math.min($this.width() / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)));
-      };
-
-      // Call once to set.
-      resizer();
-
-      // Call on resize. Opera debounces their resize by default.
-      $(window).on('resize.fittext orientationchange.fittext', resizer);
-
-    });
-
-  };
-
-})( jQuery );
-
-
-/* Flag Widget Functionality */
-// If flag exists then return value, else return false
-window.Flag = function (Fnam) {
-	if (State.variables.Flags == undefined) {
-		State.variables.Flags = {};
-	} else if (State.variables.Flags[Fnam.toLowerCase()] !== undefined) {
-		return State.variables.Flags[Fnam.toLowerCase()];
-	};
-	return false;
-};
-
-window.Num = function (Fnam) {
-	if (State.variables.Flags == undefined) {
-		State.variables.Flags = {};
-	} else if (State.variables.Flags[Fnam.toLowerCase()] !== undefined) {
-		return State.variables.Flags[Fnam.toLowerCase()];
-	};
-	return 0;
-};
-
+/* twine-user-script #2: "chapel-css-macro.js" */
 (function () {
     // v1.0.0
     'use strict';
@@ -2144,57 +1809,98 @@ window.Num = function (Fnam) {
     });
 
 }());
+/* twine-user-script #3: "chapel-dialog-macro.js" */
+//Dialog API Macros
+// dialog API macro set, by chapel; for sugarcube 2
+// version 1.3.0
+// see the documentation: https://github.com/ChapelR/custom-macros-for-sugarcube-2#dialog-api-macros
 
-/* <<chunkText>> macro v1.2 - Start */
-Macro.add('chunkText', {
-	tags: [ 'next' ],
-	handler: function() {
-		var tmp = '<<if ndef $textGroup>><<set $textGroup = 1>><</if>><<switch $textGroup>>', linkText, n, cls, txt, psg;
-		for (var i = 0; i < this.payload.length; ++i) {
-			if ((i == this.payload.length - 1) && (this.payload[i].args.length < 2)) {
-				return this.error('Final section missing link text and passage name parameters.');
-			}
-			cls = "";
-			txt = "";
-			psg = "";
-			if (this.payload[i].args.length == 0) {
-				linkText = '<<link "Next" `passage()`>><</link>>';
-			} else {
-				for (n = 0; n < this.payload[i].args.length; ++n) {
-					if (this.payload[i].args[n].indexOf(".") == 0) {
-						if (cls) {
-							cls += ' ' + this.payload[i].args[n].substring(1);
-						} else {
-							cls = '<span class="' + this.payload[i].args[n].substring(1);
-						}
-					} else if (txt == "") {
-						txt = this.payload[i].args[n];
-					} else if (psg == "") {
-						psg = this.payload[i].args[n];
-					}
-				}
-				if (txt == "") {
-					txt = "Next";
-				}
-				if (cls) {
-					cls += '">';
-				}
-				if (psg) {
-					linkText = '<<unset $textGroup>>' + cls + '[' + '[' + txt + '|' + psg + ']]';
-				} else {
-					linkText = cls + '<<link "' + txt + '" `passage()`>><</link>>';
-				}
-				if (cls) {
-					linkText += '</span>';
-				}
-			}
-			tmp += '<<case ' + (i + 1) + '>>' + this.payload[i].contents + linkText;
-		}
-		$(this.output).wiki(tmp + '<</switch>><<if def $textGroup>><<set $textGroup += 1>><</if>>');
-	}
+// <<dialog>> macro
+Macro.add('dialog', {
+    tags : ['onopen', 'onclose'],
+ handler : function () {
+     
+     // handle args (if any)
+     var errors = [];
+     var content = '', onOpen = null, onClose = null;
+     var title = (this.args.length > 0) ? this.args[0] : '';
+     var classes = (this.args.length > 1) ? this.args.slice(1).flatten() : [];
+
+     this.payload.forEach( function (pl, idx) {
+         if (idx === 0) {
+             content = pl.contents;
+         } else {
+             if (pl.name === 'onopen') {
+                 onOpen = onOpen ? onOpen + pl.contents : pl.contents;
+             } else {
+                 onClose = onClose ? onClose + pl.contents : pl.contents;
+             }
+         }
+     });
+     
+     // add the macro- class
+     classes.push('macro-' + this.name);
+     
+     // dialog box
+     Dialog.setup(title, classes.join(' '));
+     Dialog.wiki(content);
+
+     // should these be shadowWrapper-aware?
+     if (onOpen && typeof onOpen === 'string' && onOpen.trim()) {
+         $(document).one(':dialogopened', function () {
+             $.wiki(onOpen);
+         });
+     }
+
+     if (onClose && typeof onClose === 'string' && onClose.trim()) {
+         $(document).one(':dialogclosed', function () {
+             $.wiki(onClose);
+         });
+     }
+
+     Dialog.open();
+     
+ }
+
 });
-/* <<chunkText>> macro - End */
-/* twine-user-script #2: "chapel-event-macro.js" */
+
+// <<popup>> macro
+Macro.add('popup', {
+ handler : function () {
+     
+     // errors
+     if (this.args.length < 1) {
+         return this.error('need at least one argument; the passage to display');
+     }
+     if (!Story.has(this.args[0])) {
+         return this.error('the passage ' + this.args[0] + 'does not exist');
+     }
+     
+     // passage name and title
+     var psg   = this.args[0];
+     var title = (this.args.length > 1) ? this.args[1] : '';
+     var classes = (this.args.length > 2) ? this.args.slice(2).flatten() : [];
+     
+     // add the macro- class
+     classes.push('macro-' + this.name);
+     
+     // dialog box
+     Dialog.setup(title, classes.join(' '));
+     Dialog.wiki(Story.get(psg).processText());
+     Dialog.open();
+     
+ }
+
+});
+
+// <<dialogclose>> macro
+Macro.add('dialogclose', { 
+ skipArgs : true, 
+ handler : function () {
+     Dialog.close();
+ } 
+});
+/* twine-user-script #4: "chapel-event-macro.js" */
 // event macro set, by chapel; for sugarcube 2
 // version 2.0.0
 
@@ -2297,7 +2003,102 @@ Macro.add('chunkText', {
     });
 
 }());
-/* twine-user-script #3: "click-to-proceed.js" */
+/* twine-user-script #5: "chapel-first-macro.js" */
+// First Macro
+// first macro, by chapel; for sugarcube 2
+// version 1.1.1
+// see the documentation: https://github.com/ChapelR/custom-macros-for-sugarcube-2#first-macro
+
+// <<first>> macro
+Macro.add('first', {
+    skipArgs : true,
+        tags : ['then', 'finally'],
+     handler : function () {
+
+        var $wrapper = $(document.createElement('span')),
+            last     = this.payload[this.payload.length - 1],
+            visits   = visited() - 1, 
+            content;
+            
+            if (visits < this.payload.length) {
+                content = this.payload[visits].contents;
+            } else {
+                content = (last.name === 'finally') ? last.contents : '';
+            }
+
+        $wrapper
+            .wiki(content)
+            .addClass('macro-' + this.name)
+            .appendTo(this.output);
+    }
+
+});
+/* twine-user-script #6: "chapel-reload-macro.js" */
+(function () {
+    'use strict';
+    // v1.0.0
+    // preload images prior to story startup
+
+    function preloadImage (url, cb) {
+        var img = new Image();
+        img.onload = cb;
+        img.onerror = cb;
+        img.src = url;
+    }
+
+    function preloadAll (urls, cb) {
+        var loaded = 0;
+        var toBeLoaded = urls.length;
+        if (toBeLoaded === 0) {
+            throw new Error("No URLs to preload!");
+        }
+        urls.forEach( function (url) {
+            preloadImage( url, function () {
+                loaded++;
+                if (loaded === toBeLoaded) {
+                    cb();
+                }
+            });
+        });
+    }
+
+    function isInit () {
+        return State.length <= 0;
+    }
+
+
+    function preload () {
+        var list = [].slice.call(arguments).flatten();
+        var id = isInit() ? LoadScreen.lock() : false;
+        preloadAll( list, function () {
+            if (id) {
+                LoadScreen.unlock(id);
+            }
+        });
+        return id;
+    }
+
+    setup.preload = preload;
+    setup.preload.force = false;
+
+    /* <<preload imageUrls...>> */
+    Macro.add('preload', {
+        handler : function () {
+            if (!isInit() && !setup.preload.force) {
+                return this.error("Attempting to preload images outside of `StoryInit` or similar can cause performance issues. Set `setup.preload.force` to `true` if you want to do it anyway.");
+            }
+            preload(this.args.flatten().filter( function (url) {
+                return typeof url === 'string';
+            }));
+        }
+    });
+}());
+/* twine-user-script #7: "chapel-simple-inventory.js" */
+// Simple Inventory, for SugarCube 2, by Chapel
+// v3.0.0-beta1, 2022-07-25, 19f255d958852e55a8a3afcde5c53331f0d938e8
+;"use strict";function _typeof(t){return _typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t},_typeof(t)}function _classCallCheck(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}function _defineProperties(t,e){for(var n=0;n<e.length;n++){var i=e[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}function _createClass(t,e,n){return e&&_defineProperties(t.prototype,e),n&&_defineProperties(t,n),Object.defineProperty(t,"prototype",{writable:!1}),t}!function(){var t={description:"",handler:null,displayName:"",consumable:!0,unique:!1,permanent:!1},e=new Map,n=function(){function n(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"",i=arguments.length>1&&void 0!==arguments[1]?arguments[1]:clone(t),r=arguments.length>2&&void 0!==arguments[2]?arguments[2]:[];if(_classCallCheck(this,n),!e||"string"!=typeof e)throw new Error("invalid item ID");if("object"!==_typeof(i))throw new Error("invalid item definition");Object.assign(this,Object.assign(t,i)),this.id=e,this.tags=r instanceof Array?r:"string"==typeof r?[r]:[]}return _createClass(n,[{key:"name",get:function(){return this.displayName||this.id},set:function(t){this.displayName=t}},{key:"use",value:function(){return"string"==typeof this.handler?$.wiki(this.handler):"function"==typeof this.handler&&this.handler(this),this}},{key:"inspect",value:function(){return Dialog.setup(this.name,"simple-inventory item-description"),Dialog.wiki(this.description),Dialog.open(),this}}],[{key:"is",value:function(t){return t instanceof n}},{key:"add",value:function(t,i,r){var a=new n(t,i,r);return e.set(t,a),a}},{key:"get",value:function(t){return e.get(t)}},{key:"has",value:function(t){return e.has(t)}},{key:"list",get:function(){return e}}]),n}();setup.Item=n,window.Item=window.Item||n}(),function(){var t=setup.Item,e=!1,n="&hellip;",i={inspect:"Inspect",use:"Use",drop:"Drop",stack:"stack",take:"Take",give:"Give",stackPre:"&nbsp;&times;&nbsp;",stackPost:"&nbsp;"},r={};function a(e){return t.has(e)&&t.get(e).unique}function s(e){return t.has(e)&&t.get(e).permanent}function o(t){return t&&"string"==typeof t&&t.trim()}var u=function(){function u(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:[];_classCallCheck(this,u),this.data=clone(t),this.tags=e instanceof Array?e:"string"==typeof e?[e]:[]}return _createClass(u,[{key:"emit",value:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};return u.emit(t,this,e),this}},{key:"array",get:function(){var t=this,e=[];return Object.keys(this.data).forEach((function(n){if(e.push(n),t.data[n]>1)for(var i=1;i<t.data[n];i++)e.push(n)})),e}},{key:"list",get:function(){return Object.keys(this.data)}},{key:"length",get:function(){return this.array.length}},{key:"uniqueLength",get:function(){return this.list.length}},{key:"table",get:function(){return this.data}},{key:"count",value:function(t){return t?this.data[t]||0:this.length}},{key:"has",value:function(t){var e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:1;return this.data[t]>=e}},{key:"hasAll",value:function(){var t=this,e=[].slice.call(arguments).flat(1/0);return e.every((function(e){return t.has(e)}))}},{key:"hasAny",value:function(){var t=this,e=[].slice.call(arguments).flat(1/0);return e.some((function(e){return t.has(e)}))}},{key:"compare",value:function(t){var e=this,n=u.itemset(t);return Object.keys(n).every((function(t){return e.has(t,n[t])}))}},{key:"merge",value:function(t){var e=this,n=u.itemset(t);return Object.keys(n).forEach((function(t){u.change(e,t,n[t])})),n}},{key:"unmerge",value:function(t){var e=this,n={},i=u.itemset(t);return Object.keys(i).forEach((function(t){e.has(t,i[t])?n[t]=i[t]:e.has(t)&&(n[t]=e.count(t)),u.change(e,t,i[t],!0)})),n}},{key:"pickup",value:function(){var t=this.merge(u.parseArgList.apply(null,arguments));return this.emit("update",{delta:t}),this}},{key:"drop",value:function(){var t=this.unmerge(u.parseArgList.apply(null,arguments));return this.emit("update",{delta:t}),this}},{key:"empty",value:function(){var t=clone(this.data);return this.data={},this.emit("update",{delta:t}),this}},{key:"transfer",value:function(t){var e=u.parseArgList.apply(null,[].slice.call(arguments).slice(1));if(!u.is(t))throw new TypeError("target inventory is not an inventory instance");var n=this.unmerge(e);return t.merge(n),this.emit("update",{target:t,delta:n}),this}},{key:"isEmpty",value:function(){return 0===this.length}},{key:"iterate",value:function(t){var e=this;return"function"!=typeof t||this.list.forEach((function(n){t(n,e.data[n])})),this}},{key:"use",value:function(e){if(t.has(e)){var n=t.get(e);if(n.use(),n.consumable){u.change(this,e,1,!0);var i={};i[e]=1,this.emit("update",{delta:i})}return this.emit("use",{item:n}),this}}},{key:"clone",value:function(){return new u(this.data||{},this.tags||[])}},{key:"toJSON",value:function(){return JSON.reviveWrapper("new setup.Inventory("+JSON.stringify(this.data)+", "+JSON.stringify(this.tags)+")")}}],[{key:"confirm",get:function(){return e},set:function(t){e="string"==typeof t&&"all"===t.trim().toLowerCase()?"all":"string"==typeof t&&"stack"===t.trim().toLowerCase()?"stack":!!t}},{key:"emptyMessage",get:function(){return n},set:function(t){"string"==typeof t&&(n=t)}},{key:"strings",get:function(){return Object.assign(clone(i),r)},set:function(t){"object"===_typeof(t)&&(r=Object.assign(r,clone(t)))}},{key:"change",value:function(t,e){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:1,i=arguments.length>3&&void 0!==arguments[3]&&arguments[3];if(0!==n){if(t instanceof u&&(t=t.data),"object"!==_typeof(t)){if(t)throw new TypeError("cannot access inventory data");t={}}if(!o(e))throw new TypeError("invalid item name/id");if("number"==typeof n&&!Number.isNaN(n)&&Number.isInteger(n)||(n=1),i&&(n*=-1),n>0){if(Object.keys(t).includes(e)&&a(e))return;Object.keys(t).includes(e)||(t[e]=0),t[e]+=n}else{if(s(e))return;Object.keys(t).includes(e)&&"number"==typeof t[e]&&(t[e]+=n),t[e]<=0&&delete t[e]}return t}}},{key:"itemset",value:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{};if(u.is(t)&&(t=t.data),"object"!==_typeof(t))return{};var e={};return Object.keys(t).forEach((function(n){"number"==typeof t[n]&&Number.isInteger(t[n])&&0!==t[n]&&(e[n]=t[n])})),e}},{key:"parseArgList",value:function(){var t=[].slice.call(arguments).flat(1/0);if(t.length%2!=0)throw new Error("item sets should be pairs of item IDs and numbers");var e={};return t.forEach((function(n,i){i%2==0&&(e[n]=t[i+1])})),e}},{key:"is",value:function(t){return t instanceof u}},{key:"emit",value:function(t,e){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{};$(document).trigger(Object.assign({type:":inventory-"+t+".simple-inventory",inventory:e,target:null,delta:{},item:null},n))}},{key:"create",value:function(t,e){return new u(t,e)}}]),u}();setup.Inventory=u,window.Inventory=window.Inventory||u}(),function(){var t=setup.Item,e=setup.Inventory;function n(e){return t.has(e)&&t.get(e).permanent}function i(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,i=arguments.length>2&&void 0!==arguments[2]&&arguments[2],r=arguments.length>3&&void 0!==arguments[3]?arguments[3]:"Alert",a=arguments.length>4&&void 0!==arguments[4]?arguments[4]:"Are you sure?";if(!t||"function"!=typeof t)throw new Error("Invalid confirmation callback!");if(e.confirm)if("all"!==e.confirm||"all"===i)if("stack"!==e.confirm||i){var s={display:"inline-block",float:"right"},o=$(document.createElement("div")),u=$(document.createElement("p")).append(a),l=$(document.createElement("div")).addClass("confirmation-buttons"),c=$(document.createElement("button")).append("Okay").addClass("confirm-yes").css(Object.assign(s,{"margin-right":"0.5rem"})),d=$(document.createElement("button")).append("Cancel").addClass("confirm-no").css(s);t&&"function"==typeof t&&c.ariaClick(t),n&&"function"==typeof n&&d.ariaClick(n),l.append(d,c),o.append(u,l),Dialog.setup(r,"simple-inventory confirmation"),Dialog.append(o),Dialog.open()}else t();else t();else t()}function r(t){var e=$(document.createElement("span")).addClass("spacer");return t&&e.wiki(""+t),e}function a(n,i,r){var a=arguments.length>3&&void 0!==arguments[3]&&arguments[3];return r=r||e.strings.inspect,$(document.createElement(a?"button":"a")).addClass("inspect-link").wiki(""+r).ariaClick((function(){t.get(i).inspect()}))}function s(t,n,i){var r=arguments.length>3&&void 0!==arguments[3]&&arguments[3];return i=i||e.strings.use,$(document.createElement(r?"button":"a")).addClass("use-link").wiki(""+i).ariaClick((function(){t.use(n)}))}function o(t,n,r){var a=arguments.length>3&&void 0!==arguments[3]&&arguments[3],s=arguments.length>4&&void 0!==arguments[4]?arguments[4]:null;return r=r||(s?e.strings.give:e.strings.drop),$(document.createElement(a?"button":"a")).addClass("drop-link").wiki(""+r).ariaClick((function(){i((function(){s&&e.is(s)?t.transfer(s,n,1):t.drop(n,1),Dialog.close()}),(function(){Dialog.close()}))}))}function u(t,n,r){var a=arguments.length>3&&void 0!==arguments[3]&&arguments[3],s=arguments.length>4&&void 0!==arguments[4]?arguments[4]:null;return r=r||(s?e.strings.give:e.strings.drop)+"&nbsp;"+e.strings.stack,$(document.createElement(a?"button":"a")).addClass("stack-link drop-link").wiki(""+r).ariaClick((function(){i((function(){s&&e.is(s)?t.transfer(s,n,t.count(n)):t.drop(n,t.count(n)),Dialog.close()}),(function(){Dialog.close()}))}))}function l(t,n){var r=arguments.length>2&&void 0!==arguments[2]&&arguments[2],a=arguments.length>3&&void 0!==arguments[3]?arguments[3]:null;return n=n||(a?e.strings.give:e.strings.drop),$(document.createElement(r?"button":"a")).addClass("all-link drop-link").wiki(n+" all").ariaClick((function(){t.isEmpty()||i((function(){a&&e.is(a)?(a.merge(t),t.empty()):t.empty(),Dialog.close()}),(function(){Dialog.close()}),!0)}))}function c(t,n,i,r){return i=i||e.strings.stackPre,r=r||e.strings.stackPost,$(document.createElement("span")).addClass("item-count").append(""+i+(t.count(n)||0)+r)}function d(i){var d,f=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{description:!0,use:!0,transfer:null,drop:!0,all:!0,stack:!0,dropActionText:"",classes:""},p=$(document.createElement("ul")).addClass("simple-inventory-list");if(i.length){if(d=i.list.map((function(l){var d=[];return f.description&&t.has(l)&&t.get(l).description?d.push(a(i,l,t.has(l)?t.get(l).name:l)):d.push($(document.createElement("span")).append(t.has(l)?t.get(l).name:l).addClass("item-name")),d.push(c(i,l)),f.use&&t.has(l)&&t.get(l).handler?d.push(s(i,l)):d.push(r()),(f.transfer&&e.is(f.transfer)||f.drop)&&!n(l)?(d.push(o(i,l,f.dropActionText,!1,f.transfer||null)),i.count(l)>1&&f.stack?d.push(u(i,l,f.dropActionText+"&nbsp;"+e.strings.stack,!1,f.transfer||null)):d.push(r())):d.push(r()),$(document.createElement("li")).append(d).addClass("simple-inventory-listing")})),f.all){var h=$(document.createElement("li")).addClass("all-listing simple-inventory-listing").append([r("&mdash;"),r(),r(),l(i,f.dropActionText,!1,f.transfer||null)]);d.push(h)}}else d=$(document.createElement("li")).addClass("simple-inventory-listing").append($(document.createElement("span")).wiki(e.emptyMessage));return p.append(d),p}e.prototype.interface=function(){var t,e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,i=this,r=$(document.createElement("div")).addClass("simple-inventory-wrapper");return r.append(d(this,e)),$(document).on(":inventory-update.simple-inventory.gui-built-in",(function(){r.length?r.empty().append(d(i,e)):$(document).off(":inventory-update.simple-inventory.gui-built-in")})),n&&n instanceof $?t=n:n&&(t=$(n)),t&&r.appendTo(t),r}}(),function(){setup.Inventory,setup.Item;var t=".simple-inventory-userland",e=":inventory-update.simple-inventory"+t,n=":inventory-use.simple-inventory"+t;function i(t){return t&&"function"==typeof t}Object.assign(setup.Inventory,{events:{update:{on:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";i(t)&&$(document).on(e+n,t)},one:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";i(t)&&$(document).one(e+n,t)},off:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";$(document).off(e+t)}},use:{on:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";i(t)&&$(document).on(n+e,t)},one:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,e=arguments.length>1&&void 0!==arguments[1]?arguments[1]:"";i(t)&&$(document).one(n+e,t)},off:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"";$(document).off(n+t)}}}})}(),function(){var t=function(t){if(!Story.has(t))return{};var e,n,i,r,a=(e=Story.get(t).text,i=function(t){return t.replace(/\r+/g,"\n").replace(/\n+/,"\n").replace(/ +/g," ").trim().split(/\n/g)}(e),r={},i.forEach((function(t){var e=function(t,e){return e=e||":",t.trim().split(e)}(t,n);r[e[0].trim()]=e[1].trim()})),r);return a}("inventory.strings");t.empty&&"string"==typeof t.empty&&t.empty.trim()&&(setup.Inventory.emptyMessage=t.empty,delete t.empty),setup.Inventory.strings=t||{}}(),function(){var t=setup.Item,e=setup.Inventory;function n(t){return t&&"string"==typeof t&&t.length>2&&("$"===t[0]||"_"===t[0])}function i(t){if(n(t)&&(t=State.getVar(t)),e.is(t))return t}Macro.add(["item","consumable"],{tags:["description","tags","unique","permanent"],handler:function(){var e,n,i,r,a=null,s=!1,o=!1,u=!1;if(State.length>0)return this.error("items must be defined in `StoryInit` or story JavaScript!");if(!this.args[0]||"string"!=typeof this.args[0]||!this.args[0].trim())return this.error("invalid item ID");if(e=this.args[0].trim(),"consumable"===this.name&&(a=this.payload[0].contents||null,s=!0),this.args[1]&&(n=this.args[1]),this.payload.length>1){var l=this.payload.find((function(t){return"description"===t.name})),c=this.payload.find((function(t){return"tags"===t.name})),d=this.payload.find((function(t){return"unique"===t.name})),f=this.payload.find((function(t){return"permanent"===t.name}));l&&(i=l.contents.trim()),c&&(r=c.args.flat(1/0)),d&&(o=!0),f&&(u=!0)}t.add(e,{displayName:n||"",description:i||"",handler:a,consumable:s,unique:o,permanent:u},r)}}),Macro.add("newinv",{handler:function(){var t=this.args.raw.trim().split(" ").first().replace(/["']/g,"").trim();if(!n(t))return this.error("argument must be a story or temporary variable!");State.setVar(t,new e({},this.args.flat(1/0).slice(1)))}}),Macro.add(["pickup","drop"],{handler:function(){var t=i(this.args[0]);return t?this.args.length<3?this.error("no items to pick up were provided"):void t[this.name](this.args.slice(1)):this.error("first argument must be a valid inventory!")}}),Macro.add("dropall",{handler:function(){var t=i(this.args[0]);if(!t)return this.error("first argument must be a valid inventory!");t.empty()}}),Macro.add(["transfer","merge","unmerge"],{handler:function(){var t=i(this.args[0]);if(!t)return this.error("first argument must be a valid inventory!");var e=i(this.args[1]);if(!e)return this.error("second argument must be a valid inventory!");if("transfer"===this.name){if(this.args.length<4)return this.error("no items to transfer were provided");t.transfer(e,this.args.slice(2))}else t[this.name](e)}}),Macro.add(["inv","take","give"],{handler:function(){var t=null,n=i(this.args[0]);if(!n)return this.error("first argument must be a valid inventory!");this.args[1]&&i(this.args[1])&&(t=i(this.args[1]));var r={description:this.args.includesAny("inspect","description"),use:this.args.includes("use"),transfer:t,drop:this.args.includes("drop"),all:this.args.includes("all"),stack:this.args.includes("stack"),dropActionText:"inv"===this.name?"Drop":e.strings[this.name.trim().toLowerCase()],classes:"macro-".concat(this.name)};n.interface(r,$(this.output))}})}(),function(){var t=setup.Item,e=setup.Inventory;function n(t,e,n){if("object"!==_typeof(e))throw new TypeError("the extension should be a plain generic object holding the properties and methods you want to add");Object.keys(e).forEach((function(i){if(t[i]&&!n)throw new Error('Cannot override existing property "'+i+'"!');t[i]=e[i]}))}Object.assign(e,{extend:function(t){var i=arguments.length>1&&void 0!==arguments[1]&&arguments[1];n(e,t,i)},extendPrototype:function(t){var i=arguments.length>1&&void 0!==arguments[1]&&arguments[1];n(e.prototype,t,i)}}),Object.assign(t,{extend:function(e){var i=arguments.length>1&&void 0!==arguments[1]&&arguments[1];n(t,e,i)},extendPrototype:function(e){var i=arguments.length>1&&void 0!==arguments[1]&&arguments[1];n(t.prototype,e,i)}})}();
+// End Simple Inventory
+/* twine-user-script #8: "cyrusfirheir-click-to-proceed.js" */
 (function () {
 	"use strict";
 
@@ -2459,7 +2260,278 @@ Macro.add('chunkText', {
 		}
 	});
 })();
-/* twine-user-script #4: "linkif.js" */
+/* twine-user-script #9: "cyrusfirheir-live-update.js" */
+// Live Update Macro by cyrusfirheir
+(function () {
+	"use strict";
+
+	$(document).on(":liveupdate", function () {
+		$(".macro-live").trigger(":liveupdateinternal");
+	});
+
+	Macro.add(['update', 'upd'], {
+		handler: function handler() {
+			$(document).trigger(":liveupdate");
+		}
+	});
+
+	Macro.add(['live', 'l', 'lh'], {
+		skipArgs: true,
+		handler: function handler() {
+			if (this.args.full.length === 0) {
+				return this.error('no expression specified');
+			}
+			try {
+				var statement = this.args.full;
+				var result = toStringOrDefault(Scripting.evalJavaScript(statement), null);
+				if (result !== null) {
+					var lh = this.name === "lh";
+					var $el = $("<span></span>").addClass("macro-live").wiki(lh ? Util.escape(result) : result).appendTo(this.output);
+					$el.on(":liveupdateinternal", this.createShadowWrapper(function (ev) {
+						var out = toStringOrDefault(Scripting.evalJavaScript(statement), null);
+						$el.empty().wiki(lh ? Util.escape(out) : out);
+					}));
+				}
+			} catch (ex) {
+				return this.error("bad evaluation: " + (_typeof(ex) === 'object' ? ex.message : ex));
+			}
+		}
+	});
+
+	Macro.add(['liveblock', 'lb'], {
+		tags: null,
+		handler: function handler() {
+			try {
+				var content = this.payload[0].contents.trim();
+				if (content) {
+					var $el = $("<span></span>").addClass("macro-live macro-live-block").wiki(content).appendTo(this.output);
+					$el.on(":liveupdateinternal", this.createShadowWrapper(function (ev) {
+						$el.empty().wiki(content);
+					}));
+				}
+			} catch (ex) {
+				return this.error("bad evaluation: " + (_typeof(ex) === 'object' ? ex.message : ex));
+			}
+		}
+	});
+})();
+/* twine-user-script #10: "hiev-chunktext.js" */
+/* <<chunkText>> macro v1.2 - Start */
+Macro.add('chunkText', {
+	tags: [ 'next' ],
+	handler: function() {
+		var tmp = '<<if ndef $textGroup>><<set $textGroup = 1>><</if>><<switch $textGroup>>', linkText, n, cls, txt, psg;
+		for (var i = 0; i < this.payload.length; ++i) {
+			if ((i == this.payload.length - 1) && (this.payload[i].args.length < 2)) {
+				return this.error('Final section missing link text and passage name parameters.');
+			}
+			cls = "";
+			txt = "";
+			psg = "";
+			if (this.payload[i].args.length == 0) {
+				linkText = '<<link "Next" `passage()`>><</link>>';
+			} else {
+				for (n = 0; n < this.payload[i].args.length; ++n) {
+					if (this.payload[i].args[n].indexOf(".") == 0) {
+						if (cls) {
+							cls += ' ' + this.payload[i].args[n].substring(1);
+						} else {
+							cls = '<span class="' + this.payload[i].args[n].substring(1);
+						}
+					} else if (txt == "") {
+						txt = this.payload[i].args[n];
+					} else if (psg == "") {
+						psg = this.payload[i].args[n];
+					}
+				}
+				if (txt == "") {
+					txt = "Next";
+				}
+				if (cls) {
+					cls += '">';
+				}
+				if (psg) {
+					linkText = '<<unset $textGroup>>' + cls + '[' + '[' + txt + '|' + psg + ']]';
+				} else {
+					linkText = cls + '<<link "' + txt + '" `passage()`>><</link>>';
+				}
+				if (cls) {
+					linkText += '</span>';
+				}
+			}
+			tmp += '<<case ' + (i + 1) + '>>' + this.payload[i].contents + linkText;
+		}
+		$(this.output).wiki(tmp + '<</switch>><<if def $textGroup>><<set $textGroup += 1>><</if>>');
+	}
+});
+/* <<chunkText>> macro - End */
+/* twine-user-script #11: "hiev-event-flags.js" */
+/* Flag Widget Functionality */
+// If flag exists then return value, else return false
+window.Flag = function (Fnam) {
+	if (State.variables.Flags == undefined) {
+		State.variables.Flags = {};
+	} else if (State.variables.Flags[Fnam.toLowerCase()] !== undefined) {
+		return State.variables.Flags[Fnam.toLowerCase()];
+	};
+	return false;
+};
+
+window.Num = function (Fnam) {
+	if (State.variables.Flags == undefined) {
+		State.variables.Flags = {};
+	} else if (State.variables.Flags[Fnam.toLowerCase()] !== undefined) {
+		return State.variables.Flags[Fnam.toLowerCase()];
+	};
+	return 0;
+};
+/* twine-user-script #12: "hogart-hubnav.js" */
+// Could use this for dialogue options
+// HubNav by hogart
+(function hubnavMacro(renderLinkWrapper) {
+    'use strict';
+    /* globals version, Story, Config, Macro, passage, Wikifier, State */
+    const macroName = 'hubnav';
+
+    if (!version || !version.title || 'SugarCube' !== version.title || !version.major || version.major < 2) {
+        throw new Error(`<<${macroName}>> macros family requires SugarCube 2.0 or greater, aborting load`);
+    }
+
+    renderLinkWrapper = renderLinkWrapper || function(link) {
+        const span = link.wrap('<span>');
+        span.append('<br/><br/>');
+        return span;
+    };
+
+    function has(obj, prop) {
+        return Object.prototype.hasOwnProperty.call(obj, prop);
+    }
+
+    function parseLinkArg(arg) {
+        let passage;
+        let $content;
+        if (arg.isImage) {
+            // Argument was in wiki image syntax.
+            $content = jQuery(document.createElement('img'))
+                .attr('src', arg.source);
+
+            if (has(arg, 'passage')) {
+                $content.attr('data-passage', arg.passage);
+            }
+
+            if (has(arg,'title')) {
+                $content.attr('title', arg.title);
+            }
+
+            if (has(arg, 'align')) {
+                $content.attr('align', arg.align);
+            }
+
+            passage = arg.link;
+        } else {
+            // Argument was in wiki link syntax.
+            $content = jQuery(document.createTextNode(arg.text));
+            passage = arg.link;
+        }
+
+        return {
+            passage,
+            $content,
+            setFn: arg.setFn,
+        };
+    }
+
+    function createLink({passage, $content, setFn}) {
+        const $link = jQuery(Wikifier.createInternalLink(
+            null,
+            passage,
+            null,
+            ((passage, fn) => () => {
+                if (typeof fn === 'function') {
+                    fn();
+                }
+            })(passage, setFn)
+        ))
+            .addClass(`macro-${macroName}`)
+            .append($content);
+
+        if (passage != null) { // lazy equality for null
+            $link.attr('data-passage', passage);
+
+            if (Story.has(passage)) {
+                $link.addClass('link-internal');
+
+                if (Config.addVisitedLinkClass && State.hasPlayed(passage)) {
+                    $link.addClass('link-visited');
+                }
+            } else {
+                $link.addClass('link-broken');
+            }
+        } else {
+            $link.addClass('link-internal');
+        }
+
+        return $link;
+    }
+
+    function isLink(arg) {
+        return arg && jQuery.isPlainObject(arg) && ('link' in arg);
+    }
+
+    Macro.add(macroName, {
+        handler() {
+            if (this.args.length === 0) {
+                return this.error(`no ${macroName} links specified`);
+            }
+
+            const currentPassage = passage();
+
+            const links = [];
+
+            if (this.args.length === 1 && typeof this.args[0] === 'string') {
+                // single string argument: find all passages with given tag and use them as navigation
+                const passages = Story.lookupWith(p => p.tags.includes(this.args[0]))
+                    .map(p => p.title);
+                for (const passageTitle of passages) {
+                    if (passageTitle !== currentPassage) {
+                        links.push({
+                            $content: jQuery(document.createTextNode(passageTitle)),
+                            passage: passageTitle,
+                        });
+                    }
+                }
+            } else {
+                for (let i = 0, len = this.args.length; i < len; i++) {
+                    const arg = this.args[i];
+                    if (isLink(arg)) {
+                        const parsed = parseLinkArg(arg);
+                        if (parsed.passage === currentPassage) {
+                            continue;
+                        }
+
+                        const nextArg = this.args[i + 1];
+
+                        if (i < len - 1 && !isLink(nextArg)) { // next is not a link
+                            if (nextArg) {
+                                links.push(parsed);
+                                i++; // skip next round
+                            }
+                        } else {
+                            links.push(parsed);
+                        }
+                    }
+                }
+            }
+
+            const $output = jQuery(this.output);
+
+            links.forEach((link) => {
+                $output.append(renderLinkWrapper(createLink(link)));
+            });
+        },
+    });
+}());
+/* twine-user-script #13: "hogart-linkif.js" */
 (function linkifMacro() {
     'use strict';
     /* globals version, Macro, Story, Config, State, Wikifier, Engine */
@@ -2560,7 +2632,7 @@ Macro.add('chunkText', {
         },
     });
 }());
-/* twine-user-script #5: "menuButton.js" */
+/* twine-user-script #14: "hogart-menuButton.js" */
 (function menuButtonUtil() {
     'use strict';
 
@@ -2692,98 +2764,7 @@ Macro.add('chunkText', {
         }
     );
 }());
-/* twine-user-script #6: "on-macro.js" */
-/* Maliface's <<on>> macro, customizable element which updates on event.
-Syntax:
-<<on 'eventName' 'elementType' [attribute + value] [`{ attribute : value }`]>>
-...contents...
-<</on>>
-To run the contents again (update it):
-<<trigger 'eventName'>> */
-
-(function() {
-
-setup.on_macro_events = [];
-
-//Clean listeners on passage transition to avoid stacking !
-$(document).on(':passageinit', function () {
-	setup.on_macro_events.forEach(event => $(document).off(event));
-	setup.on_macro_events = [];
-});
-
-Macro.add('ou', {
-	tags  : null,
-
-	handler() {
-		
-		if (!this.args[0]) {
-			return this.error(`Missing event type.`);
-		} else if (typeof this.args[0] !== 'string'){
-			return this.error(`Event name must be a string, reading: ${typeof this.args[0]}.`);
-		};
-        
-		const trig = this.args[0].split(',').map(event => event.trim()),
-        		content = this.payload[0].contents,
-            		attributes = this.args.slice(2);
-      		let onInit;
-      
-		// Create element, apply attributes
-		let container = $(document.createElement(this.args[1] || 'span'));
-		
-      		if (attributes.includes('onInit')){
-        		onInit = eval(attributes.deleteAt(attributes.indexOf('onInit')+1)[0]);
-          		attributes.delete('onInit');
-		} else {
-        		onInit = true;
-		};
-      
-		for (let i = 0; i < attributes.length;i++) {
-			if (typeof attributes[i] === 'object'){//JQuery style object
-				container.attr(attributes[i]);
-			} else { // Simple pairs
-				container.attr(attributes[i], attributes[i+1]);
-				i++;
-			}
-		};
-
-		// Apply listener for each event name
-		trig.forEach(event => {
-			setup.on_macro_events.pushUnique(event);
-			$(document).on(event, function() {
-				container.empty().wiki(content);
-			});
-		});
-      
-		// Wikify on passage load, unless onInit is false
-		container.addClass(`macro-${this.name}`).wiki(onInit ? content : '').appendTo(this.output);
-	}
-});
-
-// Triggers custom events
-
-Macro.add('ou-trig', {
-	handler() {
-		
-      		let trig = this.args[0];
-      
-		if (!['string','object'].includes(typeof trig)) {
-			return this.error(`Invalid event type, reading :'${typeof trig}'.`);
-		}
-		
-		if (typeof trig === 'string'){ //Comma-separated string of events
-			trig = trig.split(',').map(event => event.trim());
-		} else if (typeof trig === 'object' && !Array.isArray(trig)){ //A single event object
-        		trig = [trig];
-        	}//Do nothing if trig is already an array, it's fine
-
-		// Triggers each event supplied
-		trig.forEach(event => {
-			$(this.args[1] ?? document).trigger(event);
-		});
-	}
-});
-})();
-/* twine-user-script #7: "pickUnique.js" */
+/* twine-user-script #15: "hogart-pickUnique.js" */
 (function pickUniqueUtil() {
     'use strict';
 
@@ -2880,67 +2861,148 @@ Macro.add('ou-trig', {
         }
     );
 }());
-/* twine-user-script #8: "preloadImages.js" */
-(function () {
-    'use strict';
-    // v1.0.0
-    // preload images prior to story startup
+/* twine-user-script #16: "maliface-on-macro.js" */
+/* Maliface's <<on>> macro, customizable element which updates on event.
+Syntax:
+<<on 'eventName' 'elementType' [attribute + value] [`{ attribute : value }`]>>
+...contents...
+<</on>>
+To run the contents again (update it):
+<<trigger 'eventName'>> */
 
-    function preloadImage (url, cb) {
-        var img = new Image();
-        img.onload = cb;
-        img.onerror = cb;
-        img.src = url;
-    }
+(function() {
 
-    function preloadAll (urls, cb) {
-        var loaded = 0;
-        var toBeLoaded = urls.length;
-        if (toBeLoaded === 0) {
-            throw new Error("No URLs to preload!");
-        }
-        urls.forEach( function (url) {
-            preloadImage( url, function () {
-                loaded++;
-                if (loaded === toBeLoaded) {
-                    cb();
-                }
-            });
-        });
-    }
+setup.on_macro_events = [];
 
-    function isInit () {
-        return State.length <= 0;
-    }
+//Clean listeners on passage transition to avoid stacking !
+$(document).on(':passageinit', function () {
+	setup.on_macro_events.forEach(event => $(document).off(event));
+	setup.on_macro_events = [];
+});
 
+Macro.add('ou', {
+	tags  : null,
 
-    function preload () {
-        var list = [].slice.call(arguments).flatten();
-        var id = isInit() ? LoadScreen.lock() : false;
-        preloadAll( list, function () {
-            if (id) {
-                LoadScreen.unlock(id);
-            }
-        });
-        return id;
-    }
+	handler() {
+		
+		if (!this.args[0]) {
+			return this.error(`Missing event type.`);
+		} else if (typeof this.args[0] !== 'string'){
+			return this.error(`Event name must be a string, reading: ${typeof this.args[0]}.`);
+		};
+        
+		const trig = this.args[0].split(',').map(event => event.trim()),
+        		content = this.payload[0].contents,
+            		attributes = this.args.slice(2);
+      		let onInit;
+      
+		// Create element, apply attributes
+		let container = $(document.createElement(this.args[1] || 'span'));
+		
+      		if (attributes.includes('onInit')){
+        		onInit = eval(attributes.deleteAt(attributes.indexOf('onInit')+1)[0]);
+          		attributes.delete('onInit');
+		} else {
+        		onInit = true;
+		};
+      
+		for (let i = 0; i < attributes.length;i++) {
+			if (typeof attributes[i] === 'object'){//JQuery style object
+				container.attr(attributes[i]);
+			} else { // Simple pairs
+				container.attr(attributes[i], attributes[i+1]);
+				i++;
+			}
+		};
 
-    setup.preload = preload;
-    setup.preload.force = false;
+		// Apply listener for each event name
+		trig.forEach(event => {
+			setup.on_macro_events.pushUnique(event);
+			$(document).on(event, function() {
+				container.empty().wiki(content);
+			});
+		});
+      
+		// Wikify on passage load, unless onInit is false
+		container.addClass(`macro-${this.name}`).wiki(onInit ? content : '').appendTo(this.output);
+	}
+});
 
-    /* <<preload imageUrls...>> */
-    Macro.add('preload', {
-        handler : function () {
-            if (!isInit() && !setup.preload.force) {
-                return this.error("Attempting to preload images outside of `StoryInit` or similar can cause performance issues. Set `setup.preload.force` to `true` if you want to do it anyway.");
-            }
-            preload(this.args.flatten().filter( function (url) {
-                return typeof url === 'string';
-            }));
-        }
-    });
-}());
-/* twine-user-script #9: "simplebar.min.js" */
+// Triggers custom events
+
+Macro.add('ou-trig', {
+	handler() {
+		
+      		let trig = this.args[0];
+      
+		if (!['string','object'].includes(typeof trig)) {
+			return this.error(`Invalid event type, reading :'${typeof trig}'.`);
+		}
+		
+		if (typeof trig === 'string'){ //Comma-separated string of events
+			trig = trig.split(',').map(event => event.trim());
+		} else if (typeof trig === 'object' && !Array.isArray(trig)){ //A single event object
+        		trig = [trig];
+        	}//Do nothing if trig is already an array, it's fine
+
+		// Triggers each event supplied
+		trig.forEach(event => {
+			$(this.args[1] ?? document).trigger(event);
+		});
+	}
+});
+})();
+/* twine-user-script #17: "sugarcube-replacelink.js" */
+/*! <<replacelink>> macro set for SugarCube 2.x */
+!function(){"use strict";function showVer(n,notrans){n&&(n.innerHTML="",new Wikifier(n,n.tweecode),n.setAttribute("data-enabled","true"),n.style.display="inline",n.classList.remove("revision-span-out"),notrans||(n.classList.add("revision-span-in"),n.timeout&&clearTimeout(n.timeout),n.timeout=setTimeout(function(){n.classList.remove("revision-span-in"),n=null},20)))}function hideVer(n,notrans){n&&(n.setAttribute("data-enabled","false"),n.classList.remove("revision-span-in"),n.timeout&&clearTimeout(n.timeout),notrans?(n.style.display="none",n.innerHTML="",n=null):(n.classList.add("revision-span-out"),n.timeout=setTimeout(function(){"false"===n.getAttribute("data-enabled")&&(n.classList.remove("revision-span-out"),n.style.display="none",n.innerHTML=""),n=null},1e3)))}function tagcontents(b,starttags,desttags,endtags,k){function tagfound(i,e,endtag){for(var j=0;j<e.length;j++)if(a.indexOf("<<"+e[j]+(endtag?">>":""),i)===i)return e[j]}for(var tg,l=0,c="",a=b.source.slice(k),i=0;i<a.length;i++){if(tg=tagfound(i,starttags))l++;else{if((tg=tagfound(i,desttags,!0))&&0===l)return b.nextMatch=k+i+tg.length+4,[c,tg];if((tg=tagfound(i,endtags,!0))&&(l--,l<0))return null}c+=a.charAt(i)}return null}function revisionSpanHandler(g,e,f,b){function mkspan(vtype){return h=insertElement(m,"span",null,"revision-span "+vtype),h.setAttribute("data-enabled",!1),h.style.display="none",h.tweecode="",h}var becomes,c,cn,m,h,vsn,k=b.source.indexOf(">>",b.matchStart)+2,vsns=[],vtype=e,flen=f.length;if(this.shorthand&&flen)for(;f.length>0;)vsns.push([f.shift(),"insert"===this.flavour?"gains":"becomes"]);else("insert"===this.flavour||"continue"===this.flavour&&"time"===this.trigger)&&vsns.push(["","becomes"]);if("continue"===this.flavour&&flen)b.nextMatch=k+b.source.slice(k).length,vsns.push([b.source.slice(k),vtype]);else{if(becomes=["becomes","gains"],c=tagcontents(b,begintags,becomes.concat(endtags),endtags,k),c&&endtags.indexOf(c[1])===-1){for(;c;)vsns.push(c),c=tagcontents(b,begintags,becomes,endtags,b.nextMatch);c=tagcontents(b,begintags,["/"+e,"end"+e],endtags,b.nextMatch)}if(!c)return void throwError(g,"<<"+e+">>: cannot find a matching close tag");vsns.push(c),"continue"===this.flavour&&(k=b.nextMatch,b.nextMatch=k+b.source.slice(k).length,vsns.push([b.source.slice(k),""]))}for("remove"===this.flavour&&vsns.push(["","becomes"]),cn=0,m=insertElement(g,"span",null,e),m.setAttribute("data-flavour",this.flavour),h=mkspan("initial"),vsn=vsns.shift(),h.tweecode=vsn[0],showVer(h,!0);vsns.length>0;)vsn&&(vtype=vsn[1]),vsn=vsns.shift(),h=mkspan(vtype),h.tweecode=vsn[0];"function"==typeof this.setup&&this.setup(m,g,e,f)}function revisionSetup(m,g,e,f){m.className+=" "+f[0].replace(" ","_")}function keySetup(m,g,e,f){f[0];m.setEventListener("keydown",function l(e){var done=!revise("revise",m);done&&m.removeEventListener("keydown",l)})}function timeSetup(m,g,e,f){function cssTimeUnit(s){if("string"==typeof s){if("ms"===s.slice(-2).toLowerCase())return Number(s.slice(0,-2))||0;if("s"===s.slice(-1).toLowerCase())return 1e3*Number(s.slice(0,-1))||0}return throwError(g,"<<"+e+'>>: "'+s+'" is not a valid CSS time unit'),0}var tm=cssTimeUnit(f[0]),s=passage();setTimeout(function timefn(){if(passage()===s){var done=!revise("revise",m);done||setTimeout(timefn,tm)}},tm)}function hoverSetup(m){var fn,noMouseEnter=null!==document.head.onmouseenter,m1=m.children[0],m2=m.children[1],gains=m2.className.indexOf("gains")>-1;m1&&m2&&(m1.onmouseenter=function(e){for(var efp=document.elementFromPoint(e.clientX,e.clientY);efp&&efp!==this;)efp=efp.parentNode;efp&&"false"!==this.getAttribute("data-enabled")&&revise("revise",this.parentNode)},m2.onmouseleave=function(e){for(var efp=document.elementFromPoint(e.clientX,e.clientY);efp&&efp!==this;)efp=efp.parentNode;efp||"false"!==this.getAttribute("data-enabled")&&revise("revert",this.parentNode)},gains&&(m1.onmouseleave=m2.onmouseleave),noMouseEnter&&(fn=function(n){return function(e){event.relatedTarget&&(event.relatedTarget===this||this.compareDocumentPosition(event.relatedTarget)&Node.DOCUMENT_POSITION_CONTAINED_BY)||this[n]()}},m1.onmouseover=fn("onmouseenter"),m2.onmouseout=fn("onmouseleave"),gains&&(m1.onmouseout=m2.onmouseout)),m=null)}function mouseSetup(m){var evt=null===document.head.onmouseenter?"onmouseenter":"onmouseover";m[evt]=function(){var done=!revise("revise",this);done&&(this[evt]=null)},m=null}function linkSetup(m,g,e,f){var l=document.createElement("a"),p=m.parentNode;l.className="link-internal replaceLink",p.insertBefore(l,m),l.insertBefore(m,null),jQuery(l).ariaClick(function(){var done=!1;m&&m.parentNode===this&&(done=!revise("revise",m),scrollWindowTo(m)),done&&(this.parentNode.insertBefore(m,this),this.parentNode.removeChild(this))}),l=null}function visitedSetup(m,g,e,f){var done,sav=State.variables,os="once seen",d=m.firstChild&&("insert"===this.flavour?m.firstChild.nextSibling:m.firstChild).tweecode;if(sav[os]=sav[os]||{},d&&!sav[os].hasOwnProperty(d))sav[os][d]=1;else{for(var i=sav[os][d];i>0&&!done;i--)done=!revise("revise",m,!0);sav[os].hasOwnProperty(d)&&(sav[os][d]+=1)}}function insideDepartingSpan(elem){for(var r=elem.parentNode;!r.classList.contains("passage");){if(r.classList.contains("revision-span-out"))return!0;r=r.parentNode}}function reviseAll(rt,rname){for(var rall=document.querySelectorAll(".passage [data-flavour]."+rname),ret=!1,i=0;i<rall.length;i++)insideDepartingSpan(rall[i])||(ret=revise(rt,rall[i])||ret);return ret}function revise(rt,r,notrans){function doToGainerSpans(n,fn){for(var k=n-1;k>=0&&rc[k+1].classList.contains("gains");k--)fn(rc[k],notrans)}for(var ind2,curr,next,ind=-1,rev="revert"===rt,rnd=rt.indexOf("random")>-1,fl=r.getAttribute("data-flavour"),rc=r.childNodes,cyc="cycle"===fl,rcl=rc.length-1,k=0;k<=rcl;k++)"true"===rc[k].getAttribute("data-enabled")&&(ind=k);rev&&(ind-=1),curr=ind>=0?rc[ind]:cyc?rc[rcl]:null,ind2=ind,rnd&&(ind2=(ind+Math.floor(Math.random()*rcl))%rcl),next=ind2<rcl?rc[ind2+1]:cyc?rc[0]:null;var docurr=rev?showVer:hideVer,donext=rev?hideVer:showVer,currfn=function(){next&&next.classList.contains("gains")&&!rnd||(docurr(curr,notrans),doToGainerSpans(ind,docurr,notrans))},nextfn=function(){donext(next,notrans),rnd&&doToGainerSpans(ind2+1,donext,notrans)};return rev?(nextfn(),currfn()):(currfn(),nextfn()),!!cyc||(rev?ind>0:ind2<rcl-1)}if("undefined"==typeof version||"undefined"==typeof version.title||"SugarCube"!==version.title||"undefined"==typeof version.major||version.major<2)throw new Error("<<replacelink>> macro set requires SugarCube 2.0.0 or greater, aborting load");version.extensions.replacelinkMacroSet={major:1,minor:1,revision:7};var begintags=[],endtags=[];[{name:"insertlink",flavour:"insert",trigger:"link",setup:linkSetup},{name:"timedinsert",flavour:"insert",trigger:"time",setup:timeSetup},{name:"insertion",flavour:"insert",trigger:"revisemacro",setup:revisionSetup},{name:"later",flavour:"insert",trigger:"visited",setup:visitedSetup},{name:"keyinsert",flavour:"insert",trigger:"key",setup:keySetup},{name:"replacelink",flavour:"replace",trigger:"link",setup:linkSetup},{name:"timedreplace",flavour:"replace",trigger:"time",setup:timeSetup},{name:"mousereplace",flavour:"replace",trigger:"mouse",setup:mouseSetup},{name:"hoverreplace",flavour:"replace",trigger:"hover",setup:hoverSetup},{name:"revision",flavour:"replace",trigger:"revisemacro",setup:revisionSetup},{name:"keyreplace",flavour:"replace",trigger:"key",setup:keySetup},{name:"timedremove",flavour:"remove",trigger:"time",setup:timeSetup},{name:"mouseremove",flavour:"remove",trigger:"mouse",setup:mouseSetup},{name:"hoverremove",flavour:"remove",trigger:"hover",setup:hoverSetup},{name:"removal",flavour:"remove",trigger:"revisemacro",setup:revisionSetup},{name:"once",flavour:"remove",trigger:"visited",setup:visitedSetup},{name:"keyremove",flavour:"remove",trigger:"key",setup:keySetup},{name:"continuelink",flavour:"continue",trigger:"link",setup:linkSetup},{name:"timedcontinue",flavour:"continue",trigger:"time",setup:timeSetup},{name:"mousecontinue",flavour:"continue",trigger:"mouse",setup:mouseSetup},{name:"keycontinue",flavour:"continue",trigger:"key",setup:keySetup},{name:"cycle",flavour:"cycle",trigger:"revisemacro",setup:revisionSetup},{name:"mousecycle",flavour:"cycle",trigger:"mouse",setup:mouseSetup},{name:"timedcycle",flavour:"cycle",trigger:"time",setup:timeSetup},{name:"keycycle",flavour:"replace",trigger:"key",setup:keySetup}].forEach(function(e){e.handler=revisionSpanHandler,e.shorthand=["link","mouse","hover"].indexOf(e.trigger)>-1,macros[e.name]=e,Macro.tags.register(e.name),begintags.push(e.name),endtags.push("/"+e.name,"end"+e.name)}),macros.revertlink=macros.reviselink=macros.randomiselink=macros.randomizelink={handler:function(a,b,c){function disableLink(l){l.style.display="none"}function enableLink(l){l.style.display="inline"}function updateLink(l){if(l.className.indexOf("random")>-1)return void enableLink(l);for(var cannext,canprev,r,fl,rall=document.querySelectorAll(".passage [data-flavour]."+rname),i=0;i<rall.length;i++)r=rall[i],fl=r.getAttribute("data-flavour"),insideDepartingSpan(r)||("cycle"===fl?cannext=canprev=!0:("false"===r.firstChild.getAttribute("data-enabled")&&(canprev=!0),"false"===r.lastChild.getAttribute("data-enabled")&&(cannext=!0)));var can=l.classList.contains("revert")?canprev:cannext;(can?enableLink:disableLink)(l)}function toggleText(w){w.classList.toggle(rl+"Enabled"),w.classList.toggle(rl+"Disabled"),w.style.display="none"===w.style.display?"inline":"none"}if(c.length<2)return void throwError(a,"<<"+b+">>: insufficient arguments (requires at least 2)");var l,rname,actName=b.slice(0,-4),rl="reviseLink",v="",end=!1,out=!1;switch(rname=c.shift().replace(" ","_"),l=insertElement(a,"a"),l.className="link-internal "+rl+" "+rl+"_"+rname+" "+actName,c.length>1&&"$"===c[0][0]&&(v=c[0].slice(1),c.shift()),c[c.length-1]){case"end":end=!0,c.pop();break;case"out":out=!0,c.pop()}for(var h=State.variables,i=0;i<c.length;i++){var on=i===Math.max(c.indexOf(h[v]),0),d=insertElement(null,"span",null,rl+(on?"En":"Dis")+"abled");on?(h[v]=c[i],l.setAttribute("data-cycle",i)):d.style.display="none",insertText(d,c[i]),l.appendChild(d)}jQuery(l).ariaClick(function(){reviseAll(actName,rname);var lall,t=this.childNodes,u=this.getAttribute("data-cycle")-0,m=t.length;if((end||out)&&u>=m-(end?2:1)){if(!end)return void this.parentNode.removeChild(this);var n=this.removeChild(t[u+1]||t[u]);n.className=rl+"End",n.style.display="inline",this.parentNode.replaceChild(n,this)}else toggleText(t[u]),u=(u+1)%m,v&&(h[v]=c[u]),toggleText(t[u]),this.setAttribute("data-cycle",u);lall=document.getElementsByClassName(rl+"_"+rname);for(var i=0;i<lall.length;i++)updateLink(lall[i])}),disableLink(l),setTimeout(function(l){return function(){updateLink(l)}}(l),1),l=null}},macros.mouserevise=macros.hoverrevise={handler:function(a,b,c,d){var endtags=["/"+b,"end"+b],evt=null===window.onmouseenter?"onmouseenter":"onmouseover",t=tagcontents(d,[b],endtags,endtags,d.source.indexOf(">>",d.matchStart)+2);if(t){var rname=c[0].replace(" ","_"),h=insertElement(a,"span",null,"hoverrevise hoverrevise_"+rname),f=function(){var done=!reviseAll("revise",rname);"hoverrevise"!=b&&done&&(this[evt]=null)};new Wikifier(h,t[0]),"hoverrevise"===b?(h.onmouseover=f,h.onmouseout=function(){reviseAll("revert",rname)}):h[evt]=f,h=null}}},Macro.tags.register("mouserevise"),Macro.tags.register("hoverrevise"),macros.instantrevise={handler:function(a,b,c,d){reviseAll("revise",c[0].replace(" ","_"))}}}();
+/* twine-user-script #18: "sugarcube-shake-macro.js" */
+/*! <<shake>> macro set for SugarCube 2.x */
+!function(){"use strict";if("undefined"==typeof version||"undefined"==typeof version.title||"SugarCube"!==version.title||"undefined"==typeof version.major||version.major<2||"undefined"==typeof version.minor||version.minor<5)throw new Error("<<shake>> macro requires SugarCube 2.5.0 or greater, aborting load");Macro.add("shake",{tags:null,handler:function(){var duration=this.args.length>0?this.args[0]:1/0,shakeClass="shake";if(1/0!==duration)try{duration=Math.max(Engine.minDomActionDelay,Util.fromCssTime(duration))}catch(e){return this.error(e.message)}Config.debug&&this.debugView.modes({block:!0});var $wrapper=jQuery(document.createElement("span"));$wrapper.addClass("macro-"+this.name+" "+shakeClass).wiki(this.payload[0].contents).appendTo(this.output),1/0!==duration&&setTimeout(function(){$wrapper.removeClass(shakeClass)},Engine.minDomActionDelay+duration)}}),Macro.add(["shakescreen","shaketarget"],{handler:function(){var $targets,duration,shakeClass;if("shakescreen"===this.name)$targets=jQuery("#passages"),duration=this.args.length>0?this.args[0]:1/0,shakeClass="shake-block";else{if(0===this.args.length)return this.error("no selector specified");if($targets=jQuery(this.args[0]),0===$targets.length)return this.error('no elements matched the selector "'+this.args[0]+'"');duration=this.args.length>1?this.args[1]:1/0,shakeClass="block"===jQuery($targets[0]).css("display")?"shake-block":"shake"}if("stop"===duration)return void $targets.removeClass(shakeClass);if(1/0!==duration)try{duration=Math.max(Engine.minDomActionDelay,Util.fromCssTime(duration))}catch(e){return this.error(e.message)}$targets.addClass(shakeClass),1/0!==duration&&setTimeout(function(){$targets.removeClass(shakeClass)},Engine.minDomActionDelay+duration)}})}();
+/* twine-user-script #19: "utility-fittext.js" */
+/*global jQuery */
+/*!
+* FitText.js 1.2
+*
+* Copyright 2011, Dave Rupert http://daverupert.com
+* Released under the WTFPL license
+* http://sam.zoy.org/wtfpl/
+*
+* Date: Thu May 05 14:23:00 2011 -0600
+*/
+
+(function( $ ){
+
+    $.fn.fitText = function( kompressor, options ) {
+  
+      // Setup options
+      var compressor = kompressor || 1,
+          settings = $.extend({
+            'minFontSize' : Number.NEGATIVE_INFINITY,
+            'maxFontSize' : Number.POSITIVE_INFINITY
+          }, options);
+  
+      return this.each(function(){
+  
+        // Store the object
+        var $this = $(this);
+  
+        // Resizer() resizes items based on the object width divided by the compressor * 10
+        var resizer = function () {
+          $this.css('font-size', Math.max(Math.min($this.width() / (compressor*10), parseFloat(settings.maxFontSize)), parseFloat(settings.minFontSize)));
+        };
+  
+        // Call once to set.
+        resizer();
+  
+        // Call on resize. Opera debounces their resize by default.
+        $(window).on('resize.fittext orientationchange.fittext', resizer);
+  
+      });
+  
+    };
+  
+  })( jQuery );
+/* twine-user-script #20: "utility-simplebar.js" */
 /**
  * simplebar - v6.2.1
  * Scrollbars, simpler.
@@ -2950,8 +3012,828 @@ Macro.add('ou-trig', {
  * Under MIT License
  */
 
-window.SimpleBar=function(){"use strict";var e=function(t,i){return e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var i in t)Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i])},e(t,i)};var t=!("undefined"==typeof window||!window.document||!window.document.createElement),i="object"==typeof global&&global&&global.Object===Object&&global,s="object"==typeof self&&self&&self.Object===Object&&self,r=i||s||Function("return this")(),l=r.Symbol,o=Object.prototype,n=o.hasOwnProperty,a=o.toString,c=l?l.toStringTag:void 0;var h=Object.prototype.toString;var u=l?l.toStringTag:void 0;function d(e){return null==e?void 0===e?"[object Undefined]":"[object Null]":u&&u in Object(e)?function(e){var t=n.call(e,c),i=e[c];try{e[c]=void 0;var s=!0}catch(e){}var r=a.call(e);return s&&(t?e[c]=i:delete e[c]),r}(e):function(e){return h.call(e)}(e)}var p=/\s/;var v=/^\s+/;function f(e){return e?e.slice(0,function(e){for(var t=e.length;t--&&p.test(e.charAt(t)););return t}(e)+1).replace(v,""):e}function m(e){var t=typeof e;return null!=e&&("object"==t||"function"==t)}var b=/^[-+]0x[0-9a-f]+$/i,g=/^0b[01]+$/i,x=/^0o[0-7]+$/i,y=parseInt;function E(e){if("number"==typeof e)return e;if(function(e){return"symbol"==typeof e||function(e){return null!=e&&"object"==typeof e}(e)&&"[object Symbol]"==d(e)}(e))return NaN;if(m(e)){var t="function"==typeof e.valueOf?e.valueOf():e;e=m(t)?t+"":t}if("string"!=typeof e)return 0===e?e:+e;e=f(e);var i=g.test(e);return i||x.test(e)?y(e.slice(2),i?2:8):b.test(e)?NaN:+e}var O=function(){return r.Date.now()},w=Math.max,S=Math.min;function A(e,t,i){var s,r,l,o,n,a,c=0,h=!1,u=!1,d=!0;if("function"!=typeof e)throw new TypeError("Expected a function");function p(t){var i=s,l=r;return s=r=void 0,c=t,o=e.apply(l,i)}function v(e){return c=e,n=setTimeout(b,t),h?p(e):o}function f(e){var i=e-a;return void 0===a||i>=t||i<0||u&&e-c>=l}function b(){var e=O();if(f(e))return g(e);n=setTimeout(b,function(e){var i=t-(e-a);return u?S(i,l-(e-c)):i}(e))}function g(e){return n=void 0,d&&s?p(e):(s=r=void 0,o)}function x(){var e=O(),i=f(e);if(s=arguments,r=this,a=e,i){if(void 0===n)return v(a);if(u)return clearTimeout(n),n=setTimeout(b,t),p(a)}return void 0===n&&(n=setTimeout(b,t)),o}return t=E(t)||0,m(i)&&(h=!!i.leading,l=(u="maxWait"in i)?w(E(i.maxWait)||0,t):l,d="trailing"in i?!!i.trailing:d),x.cancel=function(){void 0!==n&&clearTimeout(n),c=0,s=a=r=n=void 0},x.flush=function(){return void 0===n?o:g(O())},x}var k=function(){return k=Object.assign||function(e){for(var t,i=1,s=arguments.length;i<s;i++)for(var r in t=arguments[i])Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r]);return e},k.apply(this,arguments)},W=null,M=null;function N(){if(null===W){if("undefined"==typeof document)return W=0;var e=document.body,t=document.createElement("div");t.classList.add("simplebar-hide-scrollbar"),e.appendChild(t);var i=t.getBoundingClientRect().right;e.removeChild(t),W=i}return W}function L(e){return e&&e.ownerDocument&&e.ownerDocument.defaultView?e.ownerDocument.defaultView:window}function z(e){return e&&e.ownerDocument?e.ownerDocument:document}t&&window.addEventListener("resize",(function(){M!==window.devicePixelRatio&&(M=window.devicePixelRatio,W=null)}));var C=function(e){return Array.prototype.reduce.call(e,(function(e,t){var i=t.name.match(/data-simplebar-(.+)/);if(i){var s=i[1].replace(/\W+(.)/g,(function(e,t){return t.toUpperCase()}));switch(t.value){case"true":e[s]=!0;break;case"false":e[s]=!1;break;case void 0:e[s]=!0;break;default:e[s]=t.value}}return e}),{})};function T(e,t){var i;e&&(i=e.classList).add.apply(i,t.split(" "))}function R(e,t){e&&t.split(" ").forEach((function(t){e.classList.remove(t)}))}function D(e){return".".concat(e.split(" ").join("."))}var V=Object.freeze({__proto__:null,addClasses:T,classNamesToQuery:D,getElementDocument:z,getElementWindow:L,getOptions:C,removeClasses:R}),H=L,j=z,B=C,_=T,q=R,P=D,X=function(){function e(t,i){void 0===i&&(i={});var s=this;if(this.removePreventClickId=null,this.minScrollbarWidth=20,this.stopScrollDelay=175,this.isScrolling=!1,this.isMouseEntering=!1,this.scrollXTicking=!1,this.scrollYTicking=!1,this.wrapperEl=null,this.contentWrapperEl=null,this.contentEl=null,this.offsetEl=null,this.maskEl=null,this.placeholderEl=null,this.heightAutoObserverWrapperEl=null,this.heightAutoObserverEl=null,this.rtlHelpers=null,this.scrollbarWidth=0,this.resizeObserver=null,this.mutationObserver=null,this.elStyles=null,this.isRtl=null,this.mouseX=0,this.mouseY=0,this.onMouseMove=function(){},this.onWindowResize=function(){},this.onStopScrolling=function(){},this.onMouseEntered=function(){},this.onScroll=function(){var e=H(s.el);s.scrollXTicking||(e.requestAnimationFrame(s.scrollX),s.scrollXTicking=!0),s.scrollYTicking||(e.requestAnimationFrame(s.scrollY),s.scrollYTicking=!0),s.isScrolling||(s.isScrolling=!0,_(s.el,s.classNames.scrolling)),s.showScrollbar("x"),s.showScrollbar("y"),s.onStopScrolling()},this.scrollX=function(){s.axis.x.isOverflowing&&s.positionScrollbar("x"),s.scrollXTicking=!1},this.scrollY=function(){s.axis.y.isOverflowing&&s.positionScrollbar("y"),s.scrollYTicking=!1},this._onStopScrolling=function(){q(s.el,s.classNames.scrolling),s.options.autoHide&&(s.hideScrollbar("x"),s.hideScrollbar("y")),s.isScrolling=!1},this.onMouseEnter=function(){s.isMouseEntering||(_(s.el,s.classNames.mouseEntered),s.showScrollbar("x"),s.showScrollbar("y"),s.isMouseEntering=!0),s.onMouseEntered()},this._onMouseEntered=function(){q(s.el,s.classNames.mouseEntered),s.options.autoHide&&(s.hideScrollbar("x"),s.hideScrollbar("y")),s.isMouseEntering=!1},this._onMouseMove=function(e){s.mouseX=e.clientX,s.mouseY=e.clientY,(s.axis.x.isOverflowing||s.axis.x.forceVisible)&&s.onMouseMoveForAxis("x"),(s.axis.y.isOverflowing||s.axis.y.forceVisible)&&s.onMouseMoveForAxis("y")},this.onMouseLeave=function(){s.onMouseMove.cancel(),(s.axis.x.isOverflowing||s.axis.x.forceVisible)&&s.onMouseLeaveForAxis("x"),(s.axis.y.isOverflowing||s.axis.y.forceVisible)&&s.onMouseLeaveForAxis("y"),s.mouseX=-1,s.mouseY=-1},this._onWindowResize=function(){s.scrollbarWidth=s.getScrollbarWidth(),s.hideNativeScrollbar()},this.onPointerEvent=function(e){var t,i;s.axis.x.track.el&&s.axis.y.track.el&&s.axis.x.scrollbar.el&&s.axis.y.scrollbar.el&&(s.axis.x.track.rect=s.axis.x.track.el.getBoundingClientRect(),s.axis.y.track.rect=s.axis.y.track.el.getBoundingClientRect(),(s.axis.x.isOverflowing||s.axis.x.forceVisible)&&(t=s.isWithinBounds(s.axis.x.track.rect)),(s.axis.y.isOverflowing||s.axis.y.forceVisible)&&(i=s.isWithinBounds(s.axis.y.track.rect)),(t||i)&&(e.stopPropagation(),"pointerdown"===e.type&&"touch"!==e.pointerType&&(t&&(s.axis.x.scrollbar.rect=s.axis.x.scrollbar.el.getBoundingClientRect(),s.isWithinBounds(s.axis.x.scrollbar.rect)?s.onDragStart(e,"x"):s.onTrackClick(e,"x")),i&&(s.axis.y.scrollbar.rect=s.axis.y.scrollbar.el.getBoundingClientRect(),s.isWithinBounds(s.axis.y.scrollbar.rect)?s.onDragStart(e,"y"):s.onTrackClick(e,"y")))))},this.drag=function(t){var i,r,l,o,n,a,c,h,u,d,p;if(s.draggedAxis&&s.contentWrapperEl){var v=s.axis[s.draggedAxis].track,f=null!==(r=null===(i=v.rect)||void 0===i?void 0:i[s.axis[s.draggedAxis].sizeAttr])&&void 0!==r?r:0,m=s.axis[s.draggedAxis].scrollbar,b=null!==(o=null===(l=s.contentWrapperEl)||void 0===l?void 0:l[s.axis[s.draggedAxis].scrollSizeAttr])&&void 0!==o?o:0,g=parseInt(null!==(a=null===(n=s.elStyles)||void 0===n?void 0:n[s.axis[s.draggedAxis].sizeAttr])&&void 0!==a?a:"0px",10);t.preventDefault(),t.stopPropagation();var x=("y"===s.draggedAxis?t.pageY:t.pageX)-(null!==(h=null===(c=v.rect)||void 0===c?void 0:c[s.axis[s.draggedAxis].offsetAttr])&&void 0!==h?h:0)-s.axis[s.draggedAxis].dragOffset,y=(x=s.isRtl?(null!==(d=null===(u=v.rect)||void 0===u?void 0:u[s.axis[s.draggedAxis].sizeAttr])&&void 0!==d?d:0)-m.size-x:x)/(f-m.size)*(b-g);"x"===s.draggedAxis&&s.isRtl&&(y=(null===(p=e.getRtlHelpers())||void 0===p?void 0:p.isScrollingToNegative)?-y:y),s.contentWrapperEl[s.axis[s.draggedAxis].scrollOffsetAttr]=y}},this.onEndDrag=function(e){var t=j(s.el),i=H(s.el);e.preventDefault(),e.stopPropagation(),q(s.el,s.classNames.dragging),t.removeEventListener("mousemove",s.drag,!0),t.removeEventListener("mouseup",s.onEndDrag,!0),s.removePreventClickId=i.setTimeout((function(){t.removeEventListener("click",s.preventClick,!0),t.removeEventListener("dblclick",s.preventClick,!0),s.removePreventClickId=null}))},this.preventClick=function(e){e.preventDefault(),e.stopPropagation()},this.el=t,this.options=k(k({},e.defaultOptions),i),this.classNames=k(k({},e.defaultOptions.classNames),i.classNames),this.axis={x:{scrollOffsetAttr:"scrollLeft",sizeAttr:"width",scrollSizeAttr:"scrollWidth",offsetSizeAttr:"offsetWidth",offsetAttr:"left",overflowAttr:"overflowX",dragOffset:0,isOverflowing:!0,forceVisible:!1,track:{size:null,el:null,rect:null,isVisible:!1},scrollbar:{size:null,el:null,rect:null,isVisible:!1}},y:{scrollOffsetAttr:"scrollTop",sizeAttr:"height",scrollSizeAttr:"scrollHeight",offsetSizeAttr:"offsetHeight",offsetAttr:"top",overflowAttr:"overflowY",dragOffset:0,isOverflowing:!0,forceVisible:!1,track:{size:null,el:null,rect:null,isVisible:!1},scrollbar:{size:null,el:null,rect:null,isVisible:!1}}},"object"!=typeof this.el||!this.el.nodeName)throw new Error("Argument passed to SimpleBar must be an HTML element instead of ".concat(this.el));this.onMouseMove=function(e,t,i){var s=!0,r=!0;if("function"!=typeof e)throw new TypeError("Expected a function");return m(i)&&(s="leading"in i?!!i.leading:s,r="trailing"in i?!!i.trailing:r),A(e,t,{leading:s,maxWait:t,trailing:r})}(this._onMouseMove,64),this.onWindowResize=A(this._onWindowResize,64,{leading:!0}),this.onStopScrolling=A(this._onStopScrolling,this.stopScrollDelay),this.onMouseEntered=A(this._onMouseEntered,this.stopScrollDelay),this.init()}return e.getRtlHelpers=function(){if(e.rtlHelpers)return e.rtlHelpers;var t=document.createElement("div");t.innerHTML='<div class="simplebar-dummy-scrollbar-size"><div></div></div>';var i=t.firstElementChild,s=null==i?void 0:i.firstElementChild;if(!s)return null;document.body.appendChild(i),i.scrollLeft=0;var r=e.getOffset(i),l=e.getOffset(s);i.scrollLeft=-999;var o=e.getOffset(s);return document.body.removeChild(i),e.rtlHelpers={isScrollOriginAtZero:r.left!==l.left,isScrollingToNegative:l.left!==o.left},e.rtlHelpers},e.prototype.getScrollbarWidth=function(){try{return this.contentWrapperEl&&"none"===getComputedStyle(this.contentWrapperEl,"::-webkit-scrollbar").display||"scrollbarWidth"in document.documentElement.style||"-ms-overflow-style"in document.documentElement.style?0:N()}catch(e){return N()}},e.getOffset=function(e){var t=e.getBoundingClientRect(),i=j(e),s=H(e);return{top:t.top+(s.pageYOffset||i.documentElement.scrollTop),left:t.left+(s.pageXOffset||i.documentElement.scrollLeft)}},e.prototype.init=function(){t&&(this.initDOM(),this.rtlHelpers=e.getRtlHelpers(),this.scrollbarWidth=this.getScrollbarWidth(),this.recalculate(),this.initListeners())},e.prototype.initDOM=function(){var e,t;this.wrapperEl=this.el.querySelector(P(this.classNames.wrapper)),this.contentWrapperEl=this.options.scrollableNode||this.el.querySelector(P(this.classNames.contentWrapper)),this.contentEl=this.options.contentNode||this.el.querySelector(P(this.classNames.contentEl)),this.offsetEl=this.el.querySelector(P(this.classNames.offset)),this.maskEl=this.el.querySelector(P(this.classNames.mask)),this.placeholderEl=this.findChild(this.wrapperEl,P(this.classNames.placeholder)),this.heightAutoObserverWrapperEl=this.el.querySelector(P(this.classNames.heightAutoObserverWrapperEl)),this.heightAutoObserverEl=this.el.querySelector(P(this.classNames.heightAutoObserverEl)),this.axis.x.track.el=this.findChild(this.el,"".concat(P(this.classNames.track)).concat(P(this.classNames.horizontal))),this.axis.y.track.el=this.findChild(this.el,"".concat(P(this.classNames.track)).concat(P(this.classNames.vertical))),this.axis.x.scrollbar.el=(null===(e=this.axis.x.track.el)||void 0===e?void 0:e.querySelector(P(this.classNames.scrollbar)))||null,this.axis.y.scrollbar.el=(null===(t=this.axis.y.track.el)||void 0===t?void 0:t.querySelector(P(this.classNames.scrollbar)))||null,this.options.autoHide||(_(this.axis.x.scrollbar.el,this.classNames.visible),_(this.axis.y.scrollbar.el,this.classNames.visible))},e.prototype.initListeners=function(){var e,t=this,i=H(this.el);if(this.el.addEventListener("mouseenter",this.onMouseEnter),this.el.addEventListener("pointerdown",this.onPointerEvent,!0),this.el.addEventListener("mousemove",this.onMouseMove),this.el.addEventListener("mouseleave",this.onMouseLeave),null===(e=this.contentWrapperEl)||void 0===e||e.addEventListener("scroll",this.onScroll),i.addEventListener("resize",this.onWindowResize),this.contentEl){if(window.ResizeObserver){var s=!1,r=i.ResizeObserver||ResizeObserver;this.resizeObserver=new r((function(){s&&i.requestAnimationFrame((function(){t.recalculate()}))})),this.resizeObserver.observe(this.el),this.resizeObserver.observe(this.contentEl),i.requestAnimationFrame((function(){s=!0}))}this.mutationObserver=new i.MutationObserver((function(){i.requestAnimationFrame((function(){t.recalculate()}))})),this.mutationObserver.observe(this.contentEl,{childList:!0,subtree:!0,characterData:!0})}},e.prototype.recalculate=function(){if(this.heightAutoObserverEl&&this.contentEl&&this.contentWrapperEl&&this.wrapperEl&&this.placeholderEl){var e=H(this.el);this.elStyles=e.getComputedStyle(this.el),this.isRtl="rtl"===this.elStyles.direction;var t=this.contentEl.offsetWidth,i=this.heightAutoObserverEl.offsetHeight<=1,s=this.heightAutoObserverEl.offsetWidth<=1||t>0,r=this.contentWrapperEl.offsetWidth,l=this.elStyles.overflowX,o=this.elStyles.overflowY;this.contentEl.style.padding="".concat(this.elStyles.paddingTop," ").concat(this.elStyles.paddingRight," ").concat(this.elStyles.paddingBottom," ").concat(this.elStyles.paddingLeft),this.wrapperEl.style.margin="-".concat(this.elStyles.paddingTop," -").concat(this.elStyles.paddingRight," -").concat(this.elStyles.paddingBottom," -").concat(this.elStyles.paddingLeft);var n=this.contentEl.scrollHeight,a=this.contentEl.scrollWidth;this.contentWrapperEl.style.height=i?"auto":"100%",this.placeholderEl.style.width=s?"".concat(t||a,"px"):"auto",this.placeholderEl.style.height="".concat(n,"px");var c=this.contentWrapperEl.offsetHeight;this.axis.x.isOverflowing=0!==t&&a>t,this.axis.y.isOverflowing=n>c,this.axis.x.isOverflowing="hidden"!==l&&this.axis.x.isOverflowing,this.axis.y.isOverflowing="hidden"!==o&&this.axis.y.isOverflowing,this.axis.x.forceVisible="x"===this.options.forceVisible||!0===this.options.forceVisible,this.axis.y.forceVisible="y"===this.options.forceVisible||!0===this.options.forceVisible,this.hideNativeScrollbar();var h=this.axis.x.isOverflowing?this.scrollbarWidth:0,u=this.axis.y.isOverflowing?this.scrollbarWidth:0;this.axis.x.isOverflowing=this.axis.x.isOverflowing&&a>r-u,this.axis.y.isOverflowing=this.axis.y.isOverflowing&&n>c-h,this.axis.x.scrollbar.size=this.getScrollbarSize("x"),this.axis.y.scrollbar.size=this.getScrollbarSize("y"),this.axis.x.scrollbar.el&&(this.axis.x.scrollbar.el.style.width="".concat(this.axis.x.scrollbar.size,"px")),this.axis.y.scrollbar.el&&(this.axis.y.scrollbar.el.style.height="".concat(this.axis.y.scrollbar.size,"px")),this.positionScrollbar("x"),this.positionScrollbar("y"),this.toggleTrackVisibility("x"),this.toggleTrackVisibility("y")}},e.prototype.getScrollbarSize=function(e){var t,i;if(void 0===e&&(e="y"),!this.axis[e].isOverflowing||!this.contentEl)return 0;var s,r=this.contentEl[this.axis[e].scrollSizeAttr],l=null!==(i=null===(t=this.axis[e].track.el)||void 0===t?void 0:t[this.axis[e].offsetSizeAttr])&&void 0!==i?i:0,o=l/r;return s=Math.max(~~(o*l),this.options.scrollbarMinSize),this.options.scrollbarMaxSize&&(s=Math.min(s,this.options.scrollbarMaxSize)),s},e.prototype.positionScrollbar=function(t){var i,s,r;void 0===t&&(t="y");var l=this.axis[t].scrollbar;if(this.axis[t].isOverflowing&&this.contentWrapperEl&&l.el&&this.elStyles){var o=this.contentWrapperEl[this.axis[t].scrollSizeAttr],n=(null===(i=this.axis[t].track.el)||void 0===i?void 0:i[this.axis[t].offsetSizeAttr])||0,a=parseInt(this.elStyles[this.axis[t].sizeAttr],10),c=this.contentWrapperEl[this.axis[t].scrollOffsetAttr];c="x"===t&&this.isRtl&&(null===(s=e.getRtlHelpers())||void 0===s?void 0:s.isScrollOriginAtZero)?-c:c,"x"===t&&this.isRtl&&(c=(null===(r=e.getRtlHelpers())||void 0===r?void 0:r.isScrollingToNegative)?c:-c);var h=c/(o-a),u=~~((n-l.size)*h);u="x"===t&&this.isRtl?-u+(n-l.size):u,l.el.style.transform="x"===t?"translate3d(".concat(u,"px, 0, 0)"):"translate3d(0, ".concat(u,"px, 0)")}},e.prototype.toggleTrackVisibility=function(e){void 0===e&&(e="y");var t=this.axis[e].track.el,i=this.axis[e].scrollbar.el;t&&i&&this.contentWrapperEl&&(this.axis[e].isOverflowing||this.axis[e].forceVisible?(t.style.visibility="visible",this.contentWrapperEl.style[this.axis[e].overflowAttr]="scroll",this.el.classList.add("".concat(this.classNames.scrollable,"-").concat(e))):(t.style.visibility="hidden",this.contentWrapperEl.style[this.axis[e].overflowAttr]="hidden",this.el.classList.remove("".concat(this.classNames.scrollable,"-").concat(e))),this.axis[e].isOverflowing?i.style.display="block":i.style.display="none")},e.prototype.showScrollbar=function(e){void 0===e&&(e="y"),this.axis[e].isOverflowing&&!this.axis[e].scrollbar.isVisible&&(_(this.axis[e].scrollbar.el,this.classNames.visible),this.axis[e].scrollbar.isVisible=!0)},e.prototype.hideScrollbar=function(e){void 0===e&&(e="y"),this.axis[e].isOverflowing&&this.axis[e].scrollbar.isVisible&&(q(this.axis[e].scrollbar.el,this.classNames.visible),this.axis[e].scrollbar.isVisible=!1)},e.prototype.hideNativeScrollbar=function(){this.offsetEl&&(this.offsetEl.style[this.isRtl?"left":"right"]=this.axis.y.isOverflowing||this.axis.y.forceVisible?"-".concat(this.scrollbarWidth,"px"):"0px",this.offsetEl.style.bottom=this.axis.x.isOverflowing||this.axis.x.forceVisible?"-".concat(this.scrollbarWidth,"px"):"0px")},e.prototype.onMouseMoveForAxis=function(e){void 0===e&&(e="y");var t=this.axis[e];t.track.el&&t.scrollbar.el&&(t.track.rect=t.track.el.getBoundingClientRect(),t.scrollbar.rect=t.scrollbar.el.getBoundingClientRect(),this.isWithinBounds(t.track.rect)?(this.showScrollbar(e),_(t.track.el,this.classNames.hover),this.isWithinBounds(t.scrollbar.rect)?_(t.scrollbar.el,this.classNames.hover):q(t.scrollbar.el,this.classNames.hover)):(q(t.track.el,this.classNames.hover),this.options.autoHide&&this.hideScrollbar(e)))},e.prototype.onMouseLeaveForAxis=function(e){void 0===e&&(e="y"),q(this.axis[e].track.el,this.classNames.hover),q(this.axis[e].scrollbar.el,this.classNames.hover),this.options.autoHide&&this.hideScrollbar(e)},e.prototype.onDragStart=function(e,t){var i;void 0===t&&(t="y");var s=j(this.el),r=H(this.el),l=this.axis[t].scrollbar,o="y"===t?e.pageY:e.pageX;this.axis[t].dragOffset=o-((null===(i=l.rect)||void 0===i?void 0:i[this.axis[t].offsetAttr])||0),this.draggedAxis=t,_(this.el,this.classNames.dragging),s.addEventListener("mousemove",this.drag,!0),s.addEventListener("mouseup",this.onEndDrag,!0),null===this.removePreventClickId?(s.addEventListener("click",this.preventClick,!0),s.addEventListener("dblclick",this.preventClick,!0)):(r.clearTimeout(this.removePreventClickId),this.removePreventClickId=null)},e.prototype.onTrackClick=function(e,t){var i,s,r,l,o=this;void 0===t&&(t="y");var n=this.axis[t];if(this.options.clickOnTrack&&n.scrollbar.el&&this.contentWrapperEl){e.preventDefault();var a=H(this.el);this.axis[t].scrollbar.rect=n.scrollbar.el.getBoundingClientRect();var c=null!==(s=null===(i=this.axis[t].scrollbar.rect)||void 0===i?void 0:i[this.axis[t].offsetAttr])&&void 0!==s?s:0,h=parseInt(null!==(l=null===(r=this.elStyles)||void 0===r?void 0:r[this.axis[t].sizeAttr])&&void 0!==l?l:"0px",10),u=this.contentWrapperEl[this.axis[t].scrollOffsetAttr],d=("y"===t?this.mouseY-c:this.mouseX-c)<0?-1:1,p=-1===d?u-h:u+h,v=function(){o.contentWrapperEl&&(-1===d?u>p&&(u-=40,o.contentWrapperEl[o.axis[t].scrollOffsetAttr]=u,a.requestAnimationFrame(v)):u<p&&(u+=40,o.contentWrapperEl[o.axis[t].scrollOffsetAttr]=u,a.requestAnimationFrame(v)))};v()}},e.prototype.getContentElement=function(){return this.contentEl},e.prototype.getScrollElement=function(){return this.contentWrapperEl},e.prototype.removeListeners=function(){var e=H(this.el);this.el.removeEventListener("mouseenter",this.onMouseEnter),this.el.removeEventListener("pointerdown",this.onPointerEvent,!0),this.el.removeEventListener("mousemove",this.onMouseMove),this.el.removeEventListener("mouseleave",this.onMouseLeave),this.contentWrapperEl&&this.contentWrapperEl.removeEventListener("scroll",this.onScroll),e.removeEventListener("resize",this.onWindowResize),this.mutationObserver&&this.mutationObserver.disconnect(),this.resizeObserver&&this.resizeObserver.disconnect(),this.onMouseMove.cancel(),this.onWindowResize.cancel(),this.onStopScrolling.cancel(),this.onMouseEntered.cancel()},e.prototype.unMount=function(){this.removeListeners()},e.prototype.isWithinBounds=function(e){return this.mouseX>=e.left&&this.mouseX<=e.left+e.width&&this.mouseY>=e.top&&this.mouseY<=e.top+e.height},e.prototype.findChild=function(e,t){var i=e.matches||e.webkitMatchesSelector||e.mozMatchesSelector||e.msMatchesSelector;return Array.prototype.filter.call(e.children,(function(e){return i.call(e,t)}))[0]},e.rtlHelpers=null,e.defaultOptions={forceVisible:!1,clickOnTrack:!0,scrollbarMinSize:25,scrollbarMaxSize:0,ariaLabel:"scrollable content",classNames:{contentEl:"simplebar-content",contentWrapper:"simplebar-content-wrapper",offset:"simplebar-offset",mask:"simplebar-mask",wrapper:"simplebar-wrapper",placeholder:"simplebar-placeholder",scrollbar:"simplebar-scrollbar",track:"simplebar-track",heightAutoObserverWrapperEl:"simplebar-height-auto-observer-wrapper",heightAutoObserverEl:"simplebar-height-auto-observer",visible:"simplebar-visible",horizontal:"simplebar-horizontal",vertical:"simplebar-vertical",hover:"simplebar-hover",dragging:"simplebar-dragging",scrolling:"simplebar-scrolling",scrollable:"simplebar-scrollable",mouseEntered:"simplebar-mouse-entered"},scrollableNode:null,contentNode:null,autoHide:!0},e.getOptions=B,e.helpers=V,e}(),Y=X.helpers,F=Y.getOptions,I=Y.addClasses,$=function(t){function i(){for(var e=[],s=0;s<arguments.length;s++)e[s]=arguments[s];var r=t.apply(this,e)||this;return i.instances.set(e[0],r),r}return function(t,i){if("function"!=typeof i&&null!==i)throw new TypeError("Class extends value "+String(i)+" is not a constructor or null");function s(){this.constructor=t}e(t,i),t.prototype=null===i?Object.create(i):(s.prototype=i.prototype,new s)}(i,t),i.initDOMLoadedElements=function(){document.removeEventListener("DOMContentLoaded",this.initDOMLoadedElements),window.removeEventListener("load",this.initDOMLoadedElements),Array.prototype.forEach.call(document.querySelectorAll("[data-simplebar]"),(function(e){"init"===e.getAttribute("data-simplebar")||i.instances.has(e)||new i(e,F(e.attributes))}))},i.removeObserver=function(){var e;null===(e=i.globalObserver)||void 0===e||e.disconnect()},i.prototype.initDOM=function(){var e,t,i,s=this;if(!Array.prototype.filter.call(this.el.children,(function(e){return e.classList.contains(s.classNames.wrapper)})).length){for(this.wrapperEl=document.createElement("div"),this.contentWrapperEl=document.createElement("div"),this.offsetEl=document.createElement("div"),this.maskEl=document.createElement("div"),this.contentEl=document.createElement("div"),this.placeholderEl=document.createElement("div"),this.heightAutoObserverWrapperEl=document.createElement("div"),this.heightAutoObserverEl=document.createElement("div"),I(this.wrapperEl,this.classNames.wrapper),I(this.contentWrapperEl,this.classNames.contentWrapper),I(this.offsetEl,this.classNames.offset),I(this.maskEl,this.classNames.mask),I(this.contentEl,this.classNames.contentEl),I(this.placeholderEl,this.classNames.placeholder),I(this.heightAutoObserverWrapperEl,this.classNames.heightAutoObserverWrapperEl),I(this.heightAutoObserverEl,this.classNames.heightAutoObserverEl);this.el.firstChild;)this.contentEl.appendChild(this.el.firstChild);this.contentWrapperEl.appendChild(this.contentEl),this.offsetEl.appendChild(this.contentWrapperEl),this.maskEl.appendChild(this.offsetEl),this.heightAutoObserverWrapperEl.appendChild(this.heightAutoObserverEl),this.wrapperEl.appendChild(this.heightAutoObserverWrapperEl),this.wrapperEl.appendChild(this.maskEl),this.wrapperEl.appendChild(this.placeholderEl),this.el.appendChild(this.wrapperEl),null===(e=this.contentWrapperEl)||void 0===e||e.setAttribute("tabindex","0"),null===(t=this.contentWrapperEl)||void 0===t||t.setAttribute("role","region"),null===(i=this.contentWrapperEl)||void 0===i||i.setAttribute("aria-label",this.options.ariaLabel)}if(!this.axis.x.track.el||!this.axis.y.track.el){var r=document.createElement("div"),l=document.createElement("div");I(r,this.classNames.track),I(l,this.classNames.scrollbar),r.appendChild(l),this.axis.x.track.el=r.cloneNode(!0),I(this.axis.x.track.el,this.classNames.horizontal),this.axis.y.track.el=r.cloneNode(!0),I(this.axis.y.track.el,this.classNames.vertical),this.el.appendChild(this.axis.x.track.el),this.el.appendChild(this.axis.y.track.el)}X.prototype.initDOM.call(this),this.el.setAttribute("data-simplebar","init")},i.prototype.unMount=function(){X.prototype.unMount.call(this),i.instances.delete(this.el)},i.initHtmlApi=function(){this.initDOMLoadedElements=this.initDOMLoadedElements.bind(this),"undefined"!=typeof MutationObserver&&(this.globalObserver=new MutationObserver(i.handleMutations),this.globalObserver.observe(document,{childList:!0,subtree:!0})),"complete"===document.readyState||"loading"!==document.readyState&&!document.documentElement.doScroll?window.setTimeout(this.initDOMLoadedElements):(document.addEventListener("DOMContentLoaded",this.initDOMLoadedElements),window.addEventListener("load",this.initDOMLoadedElements))},i.handleMutations=function(e){e.forEach((function(e){e.addedNodes.forEach((function(e){1===e.nodeType&&(e.hasAttribute("data-simplebar")?!i.instances.has(e)&&document.documentElement.contains(e)&&new i(e,F(e.attributes)):e.querySelectorAll("[data-simplebar]").forEach((function(e){"init"!==e.getAttribute("data-simplebar")&&!i.instances.has(e)&&document.documentElement.contains(e)&&new i(e,F(e.attributes))})))})),e.removedNodes.forEach((function(e){1===e.nodeType&&("init"===e.getAttribute("data-simplebar")?i.instances.has(e)&&!document.documentElement.contains(e)&&i.instances.get(e).unMount():Array.prototype.forEach.call(e.querySelectorAll('[data-simplebar="init"]'),(function(e){i.instances.has(e)&&!document.documentElement.contains(e)&&i.instances.get(e).unMount()})))}))}))},i.instances=new WeakMap,i}(X);return t&&$.initHtmlApi(),$}();
-</script><tw-tag name="People" color="purple"></tw-tag><tw-tag name="To-the-Void" color="orange"></tw-tag><tw-tag name="Item" color="red"></tw-tag><tw-tag name="Menu" color="yellow"></tw-tag><tw-tag name="Outer-Ring" color="red"></tw-tag><tw-tag name="the-Void" color="purple"></tw-tag><tw-tag name="nobr" color="none"></tw-tag><tw-tag name="Inner-Ring" color="green"></tw-tag><tw-tag name="Lowest-Point" color="blue"></tw-tag><tw-tag name="U" color="orange"></tw-tag><tw-passagedata pid="1" name="intro" tags="" position="100,100" size="100,100">&lt;&lt;css &#39;#content-column&#39; &#39;opacity&#39; &#39;100%&#39;&gt;&gt;\
+window.SimpleBar = (function () {
+    "use strict";
+    var e = function (t, i) {
+        return (
+            (e =
+                Object.setPrototypeOf ||
+                ({ __proto__: [] } instanceof Array &&
+                    function (e, t) {
+                        e.__proto__ = t;
+                    }) ||
+                function (e, t) {
+                    for (var i in t) Object.prototype.hasOwnProperty.call(t, i) && (e[i] = t[i]);
+                }),
+            e(t, i)
+        );
+    };
+    var t = !("undefined" == typeof window || !window.document || !window.document.createElement),
+        i = "object" == typeof global && global && global.Object === Object && global,
+        s = "object" == typeof self && self && self.Object === Object && self,
+        r = i || s || Function("return this")(),
+        l = r.Symbol,
+        o = Object.prototype,
+        n = o.hasOwnProperty,
+        a = o.toString,
+        c = l ? l.toStringTag : void 0;
+    var h = Object.prototype.toString;
+    var u = l ? l.toStringTag : void 0;
+    function d(e) {
+        return null == e
+            ? void 0 === e
+                ? "[object Undefined]"
+                : "[object Null]"
+            : u && u in Object(e)
+            ? (function (e) {
+                  var t = n.call(e, c),
+                      i = e[c];
+                  try {
+                      e[c] = void 0;
+                      var s = !0;
+                  } catch (e) {}
+                  var r = a.call(e);
+                  return s && (t ? (e[c] = i) : delete e[c]), r;
+              })(e)
+            : (function (e) {
+                  return h.call(e);
+              })(e);
+    }
+    var p = /\s/;
+    var v = /^\s+/;
+    function f(e) {
+        return e
+            ? e
+                  .slice(
+                      0,
+                      (function (e) {
+                          for (var t = e.length; t-- && p.test(e.charAt(t)); );
+                          return t;
+                      })(e) + 1
+                  )
+                  .replace(v, "")
+            : e;
+    }
+    function m(e) {
+        var t = typeof e;
+        return null != e && ("object" == t || "function" == t);
+    }
+    var b = /^[-+]0x[0-9a-f]+$/i,
+        g = /^0b[01]+$/i,
+        x = /^0o[0-7]+$/i,
+        y = parseInt;
+    function E(e) {
+        if ("number" == typeof e) return e;
+        if (
+            (function (e) {
+                return (
+                    "symbol" == typeof e ||
+                    ((function (e) {
+                        return null != e && "object" == typeof e;
+                    })(e) &&
+                        "[object Symbol]" == d(e))
+                );
+            })(e)
+        )
+            return NaN;
+        if (m(e)) {
+            var t = "function" == typeof e.valueOf ? e.valueOf() : e;
+            e = m(t) ? t + "" : t;
+        }
+        if ("string" != typeof e) return 0 === e ? e : +e;
+        e = f(e);
+        var i = g.test(e);
+        return i || x.test(e) ? y(e.slice(2), i ? 2 : 8) : b.test(e) ? NaN : +e;
+    }
+    var O = function () {
+            return r.Date.now();
+        },
+        w = Math.max,
+        S = Math.min;
+    function A(e, t, i) {
+        var s,
+            r,
+            l,
+            o,
+            n,
+            a,
+            c = 0,
+            h = !1,
+            u = !1,
+            d = !0;
+        if ("function" != typeof e) throw new TypeError("Expected a function");
+        function p(t) {
+            var i = s,
+                l = r;
+            return (s = r = void 0), (c = t), (o = e.apply(l, i));
+        }
+        function v(e) {
+            return (c = e), (n = setTimeout(b, t)), h ? p(e) : o;
+        }
+        function f(e) {
+            var i = e - a;
+            return void 0 === a || i >= t || i < 0 || (u && e - c >= l);
+        }
+        function b() {
+            var e = O();
+            if (f(e)) return g(e);
+            n = setTimeout(
+                b,
+                (function (e) {
+                    var i = t - (e - a);
+                    return u ? S(i, l - (e - c)) : i;
+                })(e)
+            );
+        }
+        function g(e) {
+            return (n = void 0), d && s ? p(e) : ((s = r = void 0), o);
+        }
+        function x() {
+            var e = O(),
+                i = f(e);
+            if (((s = arguments), (r = this), (a = e), i)) {
+                if (void 0 === n) return v(a);
+                if (u) return clearTimeout(n), (n = setTimeout(b, t)), p(a);
+            }
+            return void 0 === n && (n = setTimeout(b, t)), o;
+        }
+        return (
+            (t = E(t) || 0),
+            m(i) && ((h = !!i.leading), (l = (u = "maxWait" in i) ? w(E(i.maxWait) || 0, t) : l), (d = "trailing" in i ? !!i.trailing : d)),
+            (x.cancel = function () {
+                void 0 !== n && clearTimeout(n), (c = 0), (s = a = r = n = void 0);
+            }),
+            (x.flush = function () {
+                return void 0 === n ? o : g(O());
+            }),
+            x
+        );
+    }
+    var k = function () {
+            return (
+                (k =
+                    Object.assign ||
+                    function (e) {
+                        for (var t, i = 1, s = arguments.length; i < s; i++) for (var r in (t = arguments[i])) Object.prototype.hasOwnProperty.call(t, r) && (e[r] = t[r]);
+                        return e;
+                    }),
+                k.apply(this, arguments)
+            );
+        },
+        W = null,
+        M = null;
+    function N() {
+        if (null === W) {
+            if ("undefined" == typeof document) return (W = 0);
+            var e = document.body,
+                t = document.createElement("div");
+            t.classList.add("simplebar-hide-scrollbar"), e.appendChild(t);
+            var i = t.getBoundingClientRect().right;
+            e.removeChild(t), (W = i);
+        }
+        return W;
+    }
+    function L(e) {
+        return e && e.ownerDocument && e.ownerDocument.defaultView ? e.ownerDocument.defaultView : window;
+    }
+    function z(e) {
+        return e && e.ownerDocument ? e.ownerDocument : document;
+    }
+    t &&
+        window.addEventListener("resize", function () {
+            M !== window.devicePixelRatio && ((M = window.devicePixelRatio), (W = null));
+        });
+    var C = function (e) {
+        return Array.prototype.reduce.call(
+            e,
+            function (e, t) {
+                var i = t.name.match(/data-simplebar-(.+)/);
+                if (i) {
+                    var s = i[1].replace(/\W+(.)/g, function (e, t) {
+                        return t.toUpperCase();
+                    });
+                    switch (t.value) {
+                        case "true":
+                            e[s] = !0;
+                            break;
+                        case "false":
+                            e[s] = !1;
+                            break;
+                        case void 0:
+                            e[s] = !0;
+                            break;
+                        default:
+                            e[s] = t.value;
+                    }
+                }
+                return e;
+            },
+            {}
+        );
+    };
+    function T(e, t) {
+        var i;
+        e && (i = e.classList).add.apply(i, t.split(" "));
+    }
+    function R(e, t) {
+        e &&
+            t.split(" ").forEach(function (t) {
+                e.classList.remove(t);
+            });
+    }
+    function D(e) {
+        return ".".concat(e.split(" ").join("."));
+    }
+    var V = Object.freeze({ __proto__: null, addClasses: T, classNamesToQuery: D, getElementDocument: z, getElementWindow: L, getOptions: C, removeClasses: R }),
+        H = L,
+        j = z,
+        B = C,
+        _ = T,
+        q = R,
+        P = D,
+        X = (function () {
+            function e(t, i) {
+                void 0 === i && (i = {});
+                var s = this;
+                if (
+                    ((this.removePreventClickId = null),
+                    (this.minScrollbarWidth = 20),
+                    (this.stopScrollDelay = 175),
+                    (this.isScrolling = !1),
+                    (this.isMouseEntering = !1),
+                    (this.scrollXTicking = !1),
+                    (this.scrollYTicking = !1),
+                    (this.wrapperEl = null),
+                    (this.contentWrapperEl = null),
+                    (this.contentEl = null),
+                    (this.offsetEl = null),
+                    (this.maskEl = null),
+                    (this.placeholderEl = null),
+                    (this.heightAutoObserverWrapperEl = null),
+                    (this.heightAutoObserverEl = null),
+                    (this.rtlHelpers = null),
+                    (this.scrollbarWidth = 0),
+                    (this.resizeObserver = null),
+                    (this.mutationObserver = null),
+                    (this.elStyles = null),
+                    (this.isRtl = null),
+                    (this.mouseX = 0),
+                    (this.mouseY = 0),
+                    (this.onMouseMove = function () {}),
+                    (this.onWindowResize = function () {}),
+                    (this.onStopScrolling = function () {}),
+                    (this.onMouseEntered = function () {}),
+                    (this.onScroll = function () {
+                        var e = H(s.el);
+                        s.scrollXTicking || (e.requestAnimationFrame(s.scrollX), (s.scrollXTicking = !0)),
+                            s.scrollYTicking || (e.requestAnimationFrame(s.scrollY), (s.scrollYTicking = !0)),
+                            s.isScrolling || ((s.isScrolling = !0), _(s.el, s.classNames.scrolling)),
+                            s.showScrollbar("x"),
+                            s.showScrollbar("y"),
+                            s.onStopScrolling();
+                    }),
+                    (this.scrollX = function () {
+                        s.axis.x.isOverflowing && s.positionScrollbar("x"), (s.scrollXTicking = !1);
+                    }),
+                    (this.scrollY = function () {
+                        s.axis.y.isOverflowing && s.positionScrollbar("y"), (s.scrollYTicking = !1);
+                    }),
+                    (this._onStopScrolling = function () {
+                        q(s.el, s.classNames.scrolling), s.options.autoHide && (s.hideScrollbar("x"), s.hideScrollbar("y")), (s.isScrolling = !1);
+                    }),
+                    (this.onMouseEnter = function () {
+                        s.isMouseEntering || (_(s.el, s.classNames.mouseEntered), s.showScrollbar("x"), s.showScrollbar("y"), (s.isMouseEntering = !0)), s.onMouseEntered();
+                    }),
+                    (this._onMouseEntered = function () {
+                        q(s.el, s.classNames.mouseEntered), s.options.autoHide && (s.hideScrollbar("x"), s.hideScrollbar("y")), (s.isMouseEntering = !1);
+                    }),
+                    (this._onMouseMove = function (e) {
+                        (s.mouseX = e.clientX), (s.mouseY = e.clientY), (s.axis.x.isOverflowing || s.axis.x.forceVisible) && s.onMouseMoveForAxis("x"), (s.axis.y.isOverflowing || s.axis.y.forceVisible) && s.onMouseMoveForAxis("y");
+                    }),
+                    (this.onMouseLeave = function () {
+                        s.onMouseMove.cancel(),
+                            (s.axis.x.isOverflowing || s.axis.x.forceVisible) && s.onMouseLeaveForAxis("x"),
+                            (s.axis.y.isOverflowing || s.axis.y.forceVisible) && s.onMouseLeaveForAxis("y"),
+                            (s.mouseX = -1),
+                            (s.mouseY = -1);
+                    }),
+                    (this._onWindowResize = function () {
+                        (s.scrollbarWidth = s.getScrollbarWidth()), s.hideNativeScrollbar();
+                    }),
+                    (this.onPointerEvent = function (e) {
+                        var t, i;
+                        s.axis.x.track.el &&
+                            s.axis.y.track.el &&
+                            s.axis.x.scrollbar.el &&
+                            s.axis.y.scrollbar.el &&
+                            ((s.axis.x.track.rect = s.axis.x.track.el.getBoundingClientRect()),
+                            (s.axis.y.track.rect = s.axis.y.track.el.getBoundingClientRect()),
+                            (s.axis.x.isOverflowing || s.axis.x.forceVisible) && (t = s.isWithinBounds(s.axis.x.track.rect)),
+                            (s.axis.y.isOverflowing || s.axis.y.forceVisible) && (i = s.isWithinBounds(s.axis.y.track.rect)),
+                            (t || i) &&
+                                (e.stopPropagation(),
+                                "pointerdown" === e.type &&
+                                    "touch" !== e.pointerType &&
+                                    (t && ((s.axis.x.scrollbar.rect = s.axis.x.scrollbar.el.getBoundingClientRect()), s.isWithinBounds(s.axis.x.scrollbar.rect) ? s.onDragStart(e, "x") : s.onTrackClick(e, "x")),
+                                    i && ((s.axis.y.scrollbar.rect = s.axis.y.scrollbar.el.getBoundingClientRect()), s.isWithinBounds(s.axis.y.scrollbar.rect) ? s.onDragStart(e, "y") : s.onTrackClick(e, "y")))));
+                    }),
+                    (this.drag = function (t) {
+                        var i, r, l, o, n, a, c, h, u, d, p;
+                        if (s.draggedAxis && s.contentWrapperEl) {
+                            var v = s.axis[s.draggedAxis].track,
+                                f = null !== (r = null === (i = v.rect) || void 0 === i ? void 0 : i[s.axis[s.draggedAxis].sizeAttr]) && void 0 !== r ? r : 0,
+                                m = s.axis[s.draggedAxis].scrollbar,
+                                b = null !== (o = null === (l = s.contentWrapperEl) || void 0 === l ? void 0 : l[s.axis[s.draggedAxis].scrollSizeAttr]) && void 0 !== o ? o : 0,
+                                g = parseInt(null !== (a = null === (n = s.elStyles) || void 0 === n ? void 0 : n[s.axis[s.draggedAxis].sizeAttr]) && void 0 !== a ? a : "0px", 10);
+                            t.preventDefault(), t.stopPropagation();
+                            var x =
+                                    ("y" === s.draggedAxis ? t.pageY : t.pageX) -
+                                    (null !== (h = null === (c = v.rect) || void 0 === c ? void 0 : c[s.axis[s.draggedAxis].offsetAttr]) && void 0 !== h ? h : 0) -
+                                    s.axis[s.draggedAxis].dragOffset,
+                                y = ((x = s.isRtl ? (null !== (d = null === (u = v.rect) || void 0 === u ? void 0 : u[s.axis[s.draggedAxis].sizeAttr]) && void 0 !== d ? d : 0) - m.size - x : x) / (f - m.size)) * (b - g);
+                            "x" === s.draggedAxis && s.isRtl && (y = (null === (p = e.getRtlHelpers()) || void 0 === p ? void 0 : p.isScrollingToNegative) ? -y : y), (s.contentWrapperEl[s.axis[s.draggedAxis].scrollOffsetAttr] = y);
+                        }
+                    }),
+                    (this.onEndDrag = function (e) {
+                        var t = j(s.el),
+                            i = H(s.el);
+                        e.preventDefault(),
+                            e.stopPropagation(),
+                            q(s.el, s.classNames.dragging),
+                            t.removeEventListener("mousemove", s.drag, !0),
+                            t.removeEventListener("mouseup", s.onEndDrag, !0),
+                            (s.removePreventClickId = i.setTimeout(function () {
+                                t.removeEventListener("click", s.preventClick, !0), t.removeEventListener("dblclick", s.preventClick, !0), (s.removePreventClickId = null);
+                            }));
+                    }),
+                    (this.preventClick = function (e) {
+                        e.preventDefault(), e.stopPropagation();
+                    }),
+                    (this.el = t),
+                    (this.options = k(k({}, e.defaultOptions), i)),
+                    (this.classNames = k(k({}, e.defaultOptions.classNames), i.classNames)),
+                    (this.axis = {
+                        x: {
+                            scrollOffsetAttr: "scrollLeft",
+                            sizeAttr: "width",
+                            scrollSizeAttr: "scrollWidth",
+                            offsetSizeAttr: "offsetWidth",
+                            offsetAttr: "left",
+                            overflowAttr: "overflowX",
+                            dragOffset: 0,
+                            isOverflowing: !0,
+                            forceVisible: !1,
+                            track: { size: null, el: null, rect: null, isVisible: !1 },
+                            scrollbar: { size: null, el: null, rect: null, isVisible: !1 },
+                        },
+                        y: {
+                            scrollOffsetAttr: "scrollTop",
+                            sizeAttr: "height",
+                            scrollSizeAttr: "scrollHeight",
+                            offsetSizeAttr: "offsetHeight",
+                            offsetAttr: "top",
+                            overflowAttr: "overflowY",
+                            dragOffset: 0,
+                            isOverflowing: !0,
+                            forceVisible: !1,
+                            track: { size: null, el: null, rect: null, isVisible: !1 },
+                            scrollbar: { size: null, el: null, rect: null, isVisible: !1 },
+                        },
+                    }),
+                    "object" != typeof this.el || !this.el.nodeName)
+                )
+                    throw new Error("Argument passed to SimpleBar must be an HTML element instead of ".concat(this.el));
+                (this.onMouseMove = (function (e, t, i) {
+                    var s = !0,
+                        r = !0;
+                    if ("function" != typeof e) throw new TypeError("Expected a function");
+                    return m(i) && ((s = "leading" in i ? !!i.leading : s), (r = "trailing" in i ? !!i.trailing : r)), A(e, t, { leading: s, maxWait: t, trailing: r });
+                })(this._onMouseMove, 64)),
+                    (this.onWindowResize = A(this._onWindowResize, 64, { leading: !0 })),
+                    (this.onStopScrolling = A(this._onStopScrolling, this.stopScrollDelay)),
+                    (this.onMouseEntered = A(this._onMouseEntered, this.stopScrollDelay)),
+                    this.init();
+            }
+            return (
+                (e.getRtlHelpers = function () {
+                    if (e.rtlHelpers) return e.rtlHelpers;
+                    var t = document.createElement("div");
+                    t.innerHTML = '<div class="simplebar-dummy-scrollbar-size"><div></div></div>';
+                    var i = t.firstElementChild,
+                        s = null == i ? void 0 : i.firstElementChild;
+                    if (!s) return null;
+                    document.body.appendChild(i), (i.scrollLeft = 0);
+                    var r = e.getOffset(i),
+                        l = e.getOffset(s);
+                    i.scrollLeft = -999;
+                    var o = e.getOffset(s);
+                    return document.body.removeChild(i), (e.rtlHelpers = { isScrollOriginAtZero: r.left !== l.left, isScrollingToNegative: l.left !== o.left }), e.rtlHelpers;
+                }),
+                (e.prototype.getScrollbarWidth = function () {
+                    try {
+                        return (this.contentWrapperEl && "none" === getComputedStyle(this.contentWrapperEl, "::-webkit-scrollbar").display) ||
+                            "scrollbarWidth" in document.documentElement.style ||
+                            "-ms-overflow-style" in document.documentElement.style
+                            ? 0
+                            : N();
+                    } catch (e) {
+                        return N();
+                    }
+                }),
+                (e.getOffset = function (e) {
+                    var t = e.getBoundingClientRect(),
+                        i = j(e),
+                        s = H(e);
+                    return { top: t.top + (s.pageYOffset || i.documentElement.scrollTop), left: t.left + (s.pageXOffset || i.documentElement.scrollLeft) };
+                }),
+                (e.prototype.init = function () {
+                    t && (this.initDOM(), (this.rtlHelpers = e.getRtlHelpers()), (this.scrollbarWidth = this.getScrollbarWidth()), this.recalculate(), this.initListeners());
+                }),
+                (e.prototype.initDOM = function () {
+                    var e, t;
+                    (this.wrapperEl = this.el.querySelector(P(this.classNames.wrapper))),
+                        (this.contentWrapperEl = this.options.scrollableNode || this.el.querySelector(P(this.classNames.contentWrapper))),
+                        (this.contentEl = this.options.contentNode || this.el.querySelector(P(this.classNames.contentEl))),
+                        (this.offsetEl = this.el.querySelector(P(this.classNames.offset))),
+                        (this.maskEl = this.el.querySelector(P(this.classNames.mask))),
+                        (this.placeholderEl = this.findChild(this.wrapperEl, P(this.classNames.placeholder))),
+                        (this.heightAutoObserverWrapperEl = this.el.querySelector(P(this.classNames.heightAutoObserverWrapperEl))),
+                        (this.heightAutoObserverEl = this.el.querySelector(P(this.classNames.heightAutoObserverEl))),
+                        (this.axis.x.track.el = this.findChild(this.el, "".concat(P(this.classNames.track)).concat(P(this.classNames.horizontal)))),
+                        (this.axis.y.track.el = this.findChild(this.el, "".concat(P(this.classNames.track)).concat(P(this.classNames.vertical)))),
+                        (this.axis.x.scrollbar.el = (null === (e = this.axis.x.track.el) || void 0 === e ? void 0 : e.querySelector(P(this.classNames.scrollbar))) || null),
+                        (this.axis.y.scrollbar.el = (null === (t = this.axis.y.track.el) || void 0 === t ? void 0 : t.querySelector(P(this.classNames.scrollbar))) || null),
+                        this.options.autoHide || (_(this.axis.x.scrollbar.el, this.classNames.visible), _(this.axis.y.scrollbar.el, this.classNames.visible));
+                }),
+                (e.prototype.initListeners = function () {
+                    var e,
+                        t = this,
+                        i = H(this.el);
+                    if (
+                        (this.el.addEventListener("mouseenter", this.onMouseEnter),
+                        this.el.addEventListener("pointerdown", this.onPointerEvent, !0),
+                        this.el.addEventListener("mousemove", this.onMouseMove),
+                        this.el.addEventListener("mouseleave", this.onMouseLeave),
+                        null === (e = this.contentWrapperEl) || void 0 === e || e.addEventListener("scroll", this.onScroll),
+                        i.addEventListener("resize", this.onWindowResize),
+                        this.contentEl)
+                    ) {
+                        if (window.ResizeObserver) {
+                            var s = !1,
+                                r = i.ResizeObserver || ResizeObserver;
+                            (this.resizeObserver = new r(function () {
+                                s &&
+                                    i.requestAnimationFrame(function () {
+                                        t.recalculate();
+                                    });
+                            })),
+                                this.resizeObserver.observe(this.el),
+                                this.resizeObserver.observe(this.contentEl),
+                                i.requestAnimationFrame(function () {
+                                    s = !0;
+                                });
+                        }
+                        (this.mutationObserver = new i.MutationObserver(function () {
+                            i.requestAnimationFrame(function () {
+                                t.recalculate();
+                            });
+                        })),
+                            this.mutationObserver.observe(this.contentEl, { childList: !0, subtree: !0, characterData: !0 });
+                    }
+                }),
+                (e.prototype.recalculate = function () {
+                    if (this.heightAutoObserverEl && this.contentEl && this.contentWrapperEl && this.wrapperEl && this.placeholderEl) {
+                        var e = H(this.el);
+                        (this.elStyles = e.getComputedStyle(this.el)), (this.isRtl = "rtl" === this.elStyles.direction);
+                        var t = this.contentEl.offsetWidth,
+                            i = this.heightAutoObserverEl.offsetHeight <= 1,
+                            s = this.heightAutoObserverEl.offsetWidth <= 1 || t > 0,
+                            r = this.contentWrapperEl.offsetWidth,
+                            l = this.elStyles.overflowX,
+                            o = this.elStyles.overflowY;
+                        (this.contentEl.style.padding = "".concat(this.elStyles.paddingTop, " ").concat(this.elStyles.paddingRight, " ").concat(this.elStyles.paddingBottom, " ").concat(this.elStyles.paddingLeft)),
+                            (this.wrapperEl.style.margin = "-".concat(this.elStyles.paddingTop, " -").concat(this.elStyles.paddingRight, " -").concat(this.elStyles.paddingBottom, " -").concat(this.elStyles.paddingLeft));
+                        var n = this.contentEl.scrollHeight,
+                            a = this.contentEl.scrollWidth;
+                        (this.contentWrapperEl.style.height = i ? "auto" : "100%"), (this.placeholderEl.style.width = s ? "".concat(t || a, "px") : "auto"), (this.placeholderEl.style.height = "".concat(n, "px"));
+                        var c = this.contentWrapperEl.offsetHeight;
+                        (this.axis.x.isOverflowing = 0 !== t && a > t),
+                            (this.axis.y.isOverflowing = n > c),
+                            (this.axis.x.isOverflowing = "hidden" !== l && this.axis.x.isOverflowing),
+                            (this.axis.y.isOverflowing = "hidden" !== o && this.axis.y.isOverflowing),
+                            (this.axis.x.forceVisible = "x" === this.options.forceVisible || !0 === this.options.forceVisible),
+                            (this.axis.y.forceVisible = "y" === this.options.forceVisible || !0 === this.options.forceVisible),
+                            this.hideNativeScrollbar();
+                        var h = this.axis.x.isOverflowing ? this.scrollbarWidth : 0,
+                            u = this.axis.y.isOverflowing ? this.scrollbarWidth : 0;
+                        (this.axis.x.isOverflowing = this.axis.x.isOverflowing && a > r - u),
+                            (this.axis.y.isOverflowing = this.axis.y.isOverflowing && n > c - h),
+                            (this.axis.x.scrollbar.size = this.getScrollbarSize("x")),
+                            (this.axis.y.scrollbar.size = this.getScrollbarSize("y")),
+                            this.axis.x.scrollbar.el && (this.axis.x.scrollbar.el.style.width = "".concat(this.axis.x.scrollbar.size, "px")),
+                            this.axis.y.scrollbar.el && (this.axis.y.scrollbar.el.style.height = "".concat(this.axis.y.scrollbar.size, "px")),
+                            this.positionScrollbar("x"),
+                            this.positionScrollbar("y"),
+                            this.toggleTrackVisibility("x"),
+                            this.toggleTrackVisibility("y");
+                    }
+                }),
+                (e.prototype.getScrollbarSize = function (e) {
+                    var t, i;
+                    if ((void 0 === e && (e = "y"), !this.axis[e].isOverflowing || !this.contentEl)) return 0;
+                    var s,
+                        r = this.contentEl[this.axis[e].scrollSizeAttr],
+                        l = null !== (i = null === (t = this.axis[e].track.el) || void 0 === t ? void 0 : t[this.axis[e].offsetSizeAttr]) && void 0 !== i ? i : 0,
+                        o = l / r;
+                    return (s = Math.max(~~(o * l), this.options.scrollbarMinSize)), this.options.scrollbarMaxSize && (s = Math.min(s, this.options.scrollbarMaxSize)), s;
+                }),
+                (e.prototype.positionScrollbar = function (t) {
+                    var i, s, r;
+                    void 0 === t && (t = "y");
+                    var l = this.axis[t].scrollbar;
+                    if (this.axis[t].isOverflowing && this.contentWrapperEl && l.el && this.elStyles) {
+                        var o = this.contentWrapperEl[this.axis[t].scrollSizeAttr],
+                            n = (null === (i = this.axis[t].track.el) || void 0 === i ? void 0 : i[this.axis[t].offsetSizeAttr]) || 0,
+                            a = parseInt(this.elStyles[this.axis[t].sizeAttr], 10),
+                            c = this.contentWrapperEl[this.axis[t].scrollOffsetAttr];
+                        (c = "x" === t && this.isRtl && (null === (s = e.getRtlHelpers()) || void 0 === s ? void 0 : s.isScrollOriginAtZero) ? -c : c),
+                            "x" === t && this.isRtl && (c = (null === (r = e.getRtlHelpers()) || void 0 === r ? void 0 : r.isScrollingToNegative) ? c : -c);
+                        var h = c / (o - a),
+                            u = ~~((n - l.size) * h);
+                        (u = "x" === t && this.isRtl ? -u + (n - l.size) : u), (l.el.style.transform = "x" === t ? "translate3d(".concat(u, "px, 0, 0)") : "translate3d(0, ".concat(u, "px, 0)"));
+                    }
+                }),
+                (e.prototype.toggleTrackVisibility = function (e) {
+                    void 0 === e && (e = "y");
+                    var t = this.axis[e].track.el,
+                        i = this.axis[e].scrollbar.el;
+                    t &&
+                        i &&
+                        this.contentWrapperEl &&
+                        (this.axis[e].isOverflowing || this.axis[e].forceVisible
+                            ? ((t.style.visibility = "visible"), (this.contentWrapperEl.style[this.axis[e].overflowAttr] = "scroll"), this.el.classList.add("".concat(this.classNames.scrollable, "-").concat(e)))
+                            : ((t.style.visibility = "hidden"), (this.contentWrapperEl.style[this.axis[e].overflowAttr] = "hidden"), this.el.classList.remove("".concat(this.classNames.scrollable, "-").concat(e))),
+                        this.axis[e].isOverflowing ? (i.style.display = "block") : (i.style.display = "none"));
+                }),
+                (e.prototype.showScrollbar = function (e) {
+                    void 0 === e && (e = "y"), this.axis[e].isOverflowing && !this.axis[e].scrollbar.isVisible && (_(this.axis[e].scrollbar.el, this.classNames.visible), (this.axis[e].scrollbar.isVisible = !0));
+                }),
+                (e.prototype.hideScrollbar = function (e) {
+                    void 0 === e && (e = "y"), this.axis[e].isOverflowing && this.axis[e].scrollbar.isVisible && (q(this.axis[e].scrollbar.el, this.classNames.visible), (this.axis[e].scrollbar.isVisible = !1));
+                }),
+                (e.prototype.hideNativeScrollbar = function () {
+                    this.offsetEl &&
+                        ((this.offsetEl.style[this.isRtl ? "left" : "right"] = this.axis.y.isOverflowing || this.axis.y.forceVisible ? "-".concat(this.scrollbarWidth, "px") : "0px"),
+                        (this.offsetEl.style.bottom = this.axis.x.isOverflowing || this.axis.x.forceVisible ? "-".concat(this.scrollbarWidth, "px") : "0px"));
+                }),
+                (e.prototype.onMouseMoveForAxis = function (e) {
+                    void 0 === e && (e = "y");
+                    var t = this.axis[e];
+                    t.track.el &&
+                        t.scrollbar.el &&
+                        ((t.track.rect = t.track.el.getBoundingClientRect()),
+                        (t.scrollbar.rect = t.scrollbar.el.getBoundingClientRect()),
+                        this.isWithinBounds(t.track.rect)
+                            ? (this.showScrollbar(e), _(t.track.el, this.classNames.hover), this.isWithinBounds(t.scrollbar.rect) ? _(t.scrollbar.el, this.classNames.hover) : q(t.scrollbar.el, this.classNames.hover))
+                            : (q(t.track.el, this.classNames.hover), this.options.autoHide && this.hideScrollbar(e)));
+                }),
+                (e.prototype.onMouseLeaveForAxis = function (e) {
+                    void 0 === e && (e = "y"), q(this.axis[e].track.el, this.classNames.hover), q(this.axis[e].scrollbar.el, this.classNames.hover), this.options.autoHide && this.hideScrollbar(e);
+                }),
+                (e.prototype.onDragStart = function (e, t) {
+                    var i;
+                    void 0 === t && (t = "y");
+                    var s = j(this.el),
+                        r = H(this.el),
+                        l = this.axis[t].scrollbar,
+                        o = "y" === t ? e.pageY : e.pageX;
+                    (this.axis[t].dragOffset = o - ((null === (i = l.rect) || void 0 === i ? void 0 : i[this.axis[t].offsetAttr]) || 0)),
+                        (this.draggedAxis = t),
+                        _(this.el, this.classNames.dragging),
+                        s.addEventListener("mousemove", this.drag, !0),
+                        s.addEventListener("mouseup", this.onEndDrag, !0),
+                        null === this.removePreventClickId
+                            ? (s.addEventListener("click", this.preventClick, !0), s.addEventListener("dblclick", this.preventClick, !0))
+                            : (r.clearTimeout(this.removePreventClickId), (this.removePreventClickId = null));
+                }),
+                (e.prototype.onTrackClick = function (e, t) {
+                    var i,
+                        s,
+                        r,
+                        l,
+                        o = this;
+                    void 0 === t && (t = "y");
+                    var n = this.axis[t];
+                    if (this.options.clickOnTrack && n.scrollbar.el && this.contentWrapperEl) {
+                        e.preventDefault();
+                        var a = H(this.el);
+                        this.axis[t].scrollbar.rect = n.scrollbar.el.getBoundingClientRect();
+                        var c = null !== (s = null === (i = this.axis[t].scrollbar.rect) || void 0 === i ? void 0 : i[this.axis[t].offsetAttr]) && void 0 !== s ? s : 0,
+                            h = parseInt(null !== (l = null === (r = this.elStyles) || void 0 === r ? void 0 : r[this.axis[t].sizeAttr]) && void 0 !== l ? l : "0px", 10),
+                            u = this.contentWrapperEl[this.axis[t].scrollOffsetAttr],
+                            d = ("y" === t ? this.mouseY - c : this.mouseX - c) < 0 ? -1 : 1,
+                            p = -1 === d ? u - h : u + h,
+                            v = function () {
+                                o.contentWrapperEl &&
+                                    (-1 === d
+                                        ? u > p && ((u -= 40), (o.contentWrapperEl[o.axis[t].scrollOffsetAttr] = u), a.requestAnimationFrame(v))
+                                        : u < p && ((u += 40), (o.contentWrapperEl[o.axis[t].scrollOffsetAttr] = u), a.requestAnimationFrame(v)));
+                            };
+                        v();
+                    }
+                }),
+                (e.prototype.getContentElement = function () {
+                    return this.contentEl;
+                }),
+                (e.prototype.getScrollElement = function () {
+                    return this.contentWrapperEl;
+                }),
+                (e.prototype.removeListeners = function () {
+                    var e = H(this.el);
+                    this.el.removeEventListener("mouseenter", this.onMouseEnter),
+                        this.el.removeEventListener("pointerdown", this.onPointerEvent, !0),
+                        this.el.removeEventListener("mousemove", this.onMouseMove),
+                        this.el.removeEventListener("mouseleave", this.onMouseLeave),
+                        this.contentWrapperEl && this.contentWrapperEl.removeEventListener("scroll", this.onScroll),
+                        e.removeEventListener("resize", this.onWindowResize),
+                        this.mutationObserver && this.mutationObserver.disconnect(),
+                        this.resizeObserver && this.resizeObserver.disconnect(),
+                        this.onMouseMove.cancel(),
+                        this.onWindowResize.cancel(),
+                        this.onStopScrolling.cancel(),
+                        this.onMouseEntered.cancel();
+                }),
+                (e.prototype.unMount = function () {
+                    this.removeListeners();
+                }),
+                (e.prototype.isWithinBounds = function (e) {
+                    return this.mouseX >= e.left && this.mouseX <= e.left + e.width && this.mouseY >= e.top && this.mouseY <= e.top + e.height;
+                }),
+                (e.prototype.findChild = function (e, t) {
+                    var i = e.matches || e.webkitMatchesSelector || e.mozMatchesSelector || e.msMatchesSelector;
+                    return Array.prototype.filter.call(e.children, function (e) {
+                        return i.call(e, t);
+                    })[0];
+                }),
+                (e.rtlHelpers = null),
+                (e.defaultOptions = {
+                    forceVisible: !1,
+                    clickOnTrack: !0,
+                    scrollbarMinSize: 25,
+                    scrollbarMaxSize: 0,
+                    ariaLabel: "scrollable content",
+                    classNames: {
+                        contentEl: "simplebar-content",
+                        contentWrapper: "simplebar-content-wrapper",
+                        offset: "simplebar-offset",
+                        mask: "simplebar-mask",
+                        wrapper: "simplebar-wrapper",
+                        placeholder: "simplebar-placeholder",
+                        scrollbar: "simplebar-scrollbar",
+                        track: "simplebar-track",
+                        heightAutoObserverWrapperEl: "simplebar-height-auto-observer-wrapper",
+                        heightAutoObserverEl: "simplebar-height-auto-observer",
+                        visible: "simplebar-visible",
+                        horizontal: "simplebar-horizontal",
+                        vertical: "simplebar-vertical",
+                        hover: "simplebar-hover",
+                        dragging: "simplebar-dragging",
+                        scrolling: "simplebar-scrolling",
+                        scrollable: "simplebar-scrollable",
+                        mouseEntered: "simplebar-mouse-entered",
+                    },
+                    scrollableNode: null,
+                    contentNode: null,
+                    autoHide: !0,
+                }),
+                (e.getOptions = B),
+                (e.helpers = V),
+                e
+            );
+        })(),
+        Y = X.helpers,
+        F = Y.getOptions,
+        I = Y.addClasses,
+        $ = (function (t) {
+            function i() {
+                for (var e = [], s = 0; s < arguments.length; s++) e[s] = arguments[s];
+                var r = t.apply(this, e) || this;
+                return i.instances.set(e[0], r), r;
+            }
+            return (
+                (function (t, i) {
+                    if ("function" != typeof i && null !== i) throw new TypeError("Class extends value " + String(i) + " is not a constructor or null");
+                    function s() {
+                        this.constructor = t;
+                    }
+                    e(t, i), (t.prototype = null === i ? Object.create(i) : ((s.prototype = i.prototype), new s()));
+                })(i, t),
+                (i.initDOMLoadedElements = function () {
+                    document.removeEventListener("DOMContentLoaded", this.initDOMLoadedElements),
+                        window.removeEventListener("load", this.initDOMLoadedElements),
+                        Array.prototype.forEach.call(document.querySelectorAll("[data-simplebar]"), function (e) {
+                            "init" === e.getAttribute("data-simplebar") || i.instances.has(e) || new i(e, F(e.attributes));
+                        });
+                }),
+                (i.removeObserver = function () {
+                    var e;
+                    null === (e = i.globalObserver) || void 0 === e || e.disconnect();
+                }),
+                (i.prototype.initDOM = function () {
+                    var e,
+                        t,
+                        i,
+                        s = this;
+                    if (
+                        !Array.prototype.filter.call(this.el.children, function (e) {
+                            return e.classList.contains(s.classNames.wrapper);
+                        }).length
+                    ) {
+                        for (
+                            this.wrapperEl = document.createElement("div"),
+                                this.contentWrapperEl = document.createElement("div"),
+                                this.offsetEl = document.createElement("div"),
+                                this.maskEl = document.createElement("div"),
+                                this.contentEl = document.createElement("div"),
+                                this.placeholderEl = document.createElement("div"),
+                                this.heightAutoObserverWrapperEl = document.createElement("div"),
+                                this.heightAutoObserverEl = document.createElement("div"),
+                                I(this.wrapperEl, this.classNames.wrapper),
+                                I(this.contentWrapperEl, this.classNames.contentWrapper),
+                                I(this.offsetEl, this.classNames.offset),
+                                I(this.maskEl, this.classNames.mask),
+                                I(this.contentEl, this.classNames.contentEl),
+                                I(this.placeholderEl, this.classNames.placeholder),
+                                I(this.heightAutoObserverWrapperEl, this.classNames.heightAutoObserverWrapperEl),
+                                I(this.heightAutoObserverEl, this.classNames.heightAutoObserverEl);
+                            this.el.firstChild;
+
+                        )
+                            this.contentEl.appendChild(this.el.firstChild);
+                        this.contentWrapperEl.appendChild(this.contentEl),
+                            this.offsetEl.appendChild(this.contentWrapperEl),
+                            this.maskEl.appendChild(this.offsetEl),
+                            this.heightAutoObserverWrapperEl.appendChild(this.heightAutoObserverEl),
+                            this.wrapperEl.appendChild(this.heightAutoObserverWrapperEl),
+                            this.wrapperEl.appendChild(this.maskEl),
+                            this.wrapperEl.appendChild(this.placeholderEl),
+                            this.el.appendChild(this.wrapperEl),
+                            null === (e = this.contentWrapperEl) || void 0 === e || e.setAttribute("tabindex", "0"),
+                            null === (t = this.contentWrapperEl) || void 0 === t || t.setAttribute("role", "region"),
+                            null === (i = this.contentWrapperEl) || void 0 === i || i.setAttribute("aria-label", this.options.ariaLabel);
+                    }
+                    if (!this.axis.x.track.el || !this.axis.y.track.el) {
+                        var r = document.createElement("div"),
+                            l = document.createElement("div");
+                        I(r, this.classNames.track),
+                            I(l, this.classNames.scrollbar),
+                            r.appendChild(l),
+                            (this.axis.x.track.el = r.cloneNode(!0)),
+                            I(this.axis.x.track.el, this.classNames.horizontal),
+                            (this.axis.y.track.el = r.cloneNode(!0)),
+                            I(this.axis.y.track.el, this.classNames.vertical),
+                            this.el.appendChild(this.axis.x.track.el),
+                            this.el.appendChild(this.axis.y.track.el);
+                    }
+                    X.prototype.initDOM.call(this), this.el.setAttribute("data-simplebar", "init");
+                }),
+                (i.prototype.unMount = function () {
+                    X.prototype.unMount.call(this), i.instances.delete(this.el);
+                }),
+                (i.initHtmlApi = function () {
+                    (this.initDOMLoadedElements = this.initDOMLoadedElements.bind(this)),
+                        "undefined" != typeof MutationObserver && ((this.globalObserver = new MutationObserver(i.handleMutations)), this.globalObserver.observe(document, { childList: !0, subtree: !0 })),
+                        "complete" === document.readyState || ("loading" !== document.readyState && !document.documentElement.doScroll)
+                            ? window.setTimeout(this.initDOMLoadedElements)
+                            : (document.addEventListener("DOMContentLoaded", this.initDOMLoadedElements), window.addEventListener("load", this.initDOMLoadedElements));
+                }),
+                (i.handleMutations = function (e) {
+                    e.forEach(function (e) {
+                        e.addedNodes.forEach(function (e) {
+                            1 === e.nodeType &&
+                                (e.hasAttribute("data-simplebar")
+                                    ? !i.instances.has(e) && document.documentElement.contains(e) && new i(e, F(e.attributes))
+                                    : e.querySelectorAll("[data-simplebar]").forEach(function (e) {
+                                          "init" !== e.getAttribute("data-simplebar") && !i.instances.has(e) && document.documentElement.contains(e) && new i(e, F(e.attributes));
+                                      }));
+                        }),
+                            e.removedNodes.forEach(function (e) {
+                                1 === e.nodeType &&
+                                    ("init" === e.getAttribute("data-simplebar")
+                                        ? i.instances.has(e) && !document.documentElement.contains(e) && i.instances.get(e).unMount()
+                                        : Array.prototype.forEach.call(e.querySelectorAll('[data-simplebar="init"]'), function (e) {
+                                              i.instances.has(e) && !document.documentElement.contains(e) && i.instances.get(e).unMount();
+                                          }));
+                            });
+                    });
+                }),
+                (i.instances = new WeakMap()),
+                i
+            );
+        })(X);
+    return t && $.initHtmlApi(), $;
+})();
+</script><tw-tag name="Inner-Ring" color="green"></tw-tag><tw-tag name="Item" color="red"></tw-tag><tw-tag name="Lowest-Point" color="blue"></tw-tag><tw-tag name="Outer-Ring" color="red"></tw-tag><tw-tag name="People" color="purple"></tw-tag><tw-tag name="nobr" color="none"></tw-tag><tw-tag name="To-the-Void" color="orange"></tw-tag><tw-tag name="Menu" color="yellow"></tw-tag><tw-tag name="U" color="orange"></tw-tag><tw-tag name="the-Void" color="purple"></tw-tag><tw-passagedata pid="1" name="intro" tags="" position="100,100" size="100,100">&lt;&lt;css &#39;#content-column&#39; &#39;opacity&#39; &#39;100%&#39;&gt;&gt;\
 &lt;&lt;n&gt;&gt;He sits, draped across a chair, staring at a wall crisscrossed with yarn. He tightens His grip on the dark green ball in His hand.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;continuelink &#39;Throw the ball&#39;&gt;&gt;&lt;&lt;audio &quot;bounce&quot; play&gt;&gt;\
@@ -4008,11 +4890,12 @@ $vera That there&#39;s Joy. Elation incarnate. Highly recommend it if you&#39;re
 		&lt;/div&gt;
 	&lt;/div&gt;
 &lt;/div&gt;
-&lt;script language=&#39;JavaScript&#39;&gt;
 /* This just ignores javascript errors */
+/*
+&lt;script language=&#39;JavaScript&#39;&gt;
 	function silentErrorHandler() {return true;}
 	    window.onerror=silentErrorHandler;
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="153" name="PassageHeader" tags="nobr" position="350,1975" size="100,100">/* Clears choice menu between passages */
+&lt;/script&gt;*/</tw-passagedata><tw-passagedata pid="153" name="PassageHeader" tags="nobr" position="350,1975" size="100,100">/* Clears choice menu between passages */
 &lt;&lt;replace &#39;#choice&#39;&gt;&gt;&lt;&lt;/replace&gt;&gt;
 /* Changes font to dyslexic if necessary */
 &lt;&lt;liveblock&gt;&gt;
@@ -4541,6 +5424,7 @@ Are you sure that you want to return to the title screen? Unsaved progress will 
 &lt;&lt;script&gt;&gt;
 jQuery(&quot;.title&quot;).fitText();
 jQuery(&quot;.titleOption&quot;).fitText(14);
+$(document).one(&#39;:passageinit&#39;, function (ev) {  new SimpleBar(document.getElementById(&#39;titleLoadContainer&#39;));});
 &lt;&lt;/script&gt;&gt;
 &lt;div  id=&quot;titleScreen&quot;&gt;
 	&lt;div class=&quot;eye&quot;&gt;[img[img/eye.png]]&lt;/div&gt;
@@ -4578,6 +5462,7 @@ jQuery(&quot;.titleOption&quot;).fitText(14);
 				&lt;&lt;/button&gt;&gt;&lt;/span&gt;
 			&lt;div class=&quot;titleContentSettings&quot;&gt;&lt;&lt;include &#39;Title Screen/Settings&#39;&gt;&gt;&lt;/div&gt;
 	&lt;/div&gt;
+	&lt;div class=&quot;clouds&quot;&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&quot;blackBackground&quot;&gt;&lt;/div&gt;</tw-passagedata><tw-passagedata pid="173" name="Title Screen/Settings" tags="Menu nobr" position="350,2225" size="100,100">&lt;&lt;script&gt;&gt;
 jQuery(&quot;.titleSettings&quot;).fitText();
@@ -4610,11 +5495,6 @@ jQuery(&quot;.titleSettings&quot;).fitText();
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="174" name="Title Screen/Load" tags="Menu nobr" position="475,2225" size="100,100">&lt;&lt;script&gt;&gt;
 jQuery(&quot;.titleSaveLoad&quot;).fitText();
 &lt;&lt;/script&gt;&gt;
-&lt;script&gt;
-	$(document).one(’:passageinit’, function (ev) {
-		new SimpleBar(document.getElementById(&#39;titleLoadContainer&#39;));
-	});
-&lt;/script&gt;
 &lt;div class=&quot;titleSaveLoad titleSubScreen&quot;&gt;
 &lt;div id=&quot;titleLoadContainer&quot;&gt;
 &lt;&lt;liveblock&gt;&gt;
