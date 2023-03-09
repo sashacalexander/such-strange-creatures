@@ -5015,7 +5015,7 @@ window.SimpleBar = (function () {
         })(X);
     return t && $.initHtmlApi(), $;
 })();
-</script><tw-tag name="Inner-Ring" color="green"></tw-tag><tw-tag name="Menu" color="yellow"></tw-tag><tw-tag name="People" color="purple"></tw-tag><tw-tag name="U" color="orange"></tw-tag><tw-tag name="the-Void" color="purple"></tw-tag><tw-tag name="Item" color="red"></tw-tag><tw-tag name="Lowest-Point" color="blue"></tw-tag><tw-tag name="Outer-Ring" color="red"></tw-tag><tw-tag name="nobr" color="none"></tw-tag><tw-tag name="To-the-Void" color="orange"></tw-tag><tw-passagedata pid="1" name="intro" tags="" position="100,100" size="100,100">&lt;&lt;css &#39;#content-column&#39; &#39;opacity&#39; &#39;100%&#39;&gt;&gt;\
+</script><tw-tag name="Lowest-Point" color="blue"></tw-tag><tw-tag name="Menu" color="yellow"></tw-tag><tw-tag name="Outer-Ring" color="red"></tw-tag><tw-tag name="U" color="orange"></tw-tag><tw-tag name="the-Void" color="purple"></tw-tag><tw-tag name="To-the-Void" color="orange"></tw-tag><tw-tag name="Item" color="red"></tw-tag><tw-tag name="People" color="purple"></tw-tag><tw-tag name="nobr" color="none"></tw-tag><tw-tag name="Inner-Ring" color="green"></tw-tag><tw-passagedata pid="1" name="intro" tags="" position="100,100" size="100,100">&lt;&lt;css &#39;#content-column&#39; &#39;opacity&#39; &#39;100%&#39;&gt;&gt;\
 &lt;&lt;n&gt;&gt;He sits, draped across a chair, staring at a wall crisscrossed with yarn. He tightens His grip on the dark green ball in His hand.&lt;&lt;/n&gt;&gt;
 
 &lt;&lt;continuelink &#39;Throw the ball&#39;&gt;&gt;&lt;&lt;audio &quot;bounce&quot; play&gt;&gt;\
@@ -6608,7 +6608,7 @@ Are you sure that you want to return to the title screen? Unsaved progress will 
 &lt;span id=&quot;attribution&quot;&gt;By Sasha Alexander&lt;/span&gt;
 &lt;/div&gt;
 &lt;script&gt;
-	$(document).ready(function(){
+	$(document).one(&#39;:passagedisplay&#39;, function (ev) {
 		$(&#39;#attribution&#39;).fadeIn(980).delay(2100).fadeOut(980);
 	});
 &lt;/script&gt;
